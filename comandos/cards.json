@@ -1,0 +1,318 @@
+[
+    {
+       "titulo":"Hodor! Hodor!",
+       "info": "Você sofreu uma maldição! Agora só pode dizer “*Hodor*” pelo **resto do jogo**. \nVocê permanece Hodor até que outro jogador quebre a maldição.\nCaso fale durante a maldição o jogador anterior a você irá escolher uma prenda.",
+       "imagem":"https://media.giphy.com/media/xdpR4EBirF1zq/giphy.gif"
+    },
+    {
+        "titulo":"Famoso Asiático",
+        "info": "Diga um nome de um famoso asiático, caso não conheça nenhum, o jogador seguinte a você irá escolher uma prenda.",
+        "imagem":"https://media.giphy.com/media/dykJfX4dbM0Vy/giphy.gif"
+    },
+    {
+        "titulo":"Regra da HashTag #️⃣",
+        "info":"Todos os jogadores participantes devem dizer *“HashTag”* antes de falar uma nova frase.\nA maldição acaba quando chegar na sua vez novamente.",
+        "imagem":"https://media.giphy.com/media/Sx3nd4C97S2MuZBHdJ/giphy.gif"
+    },
+    {
+        "titulo":"Regra do Harry Potter ⚡",
+        "info":"Todos os jogadores do sexo masculino só podem ser abordados como o Sr. Potter, e você tem que dizer isso com um **sotaque britânico**.\nO jogador que quebrar a regra devera pagar uma prenda escolhida pelo próximo jogador do sexo feminino que for pegar uma carta.\nA maldição acaba quando chegar na sua vez novamente.",
+        "imagem":"https://media.giphy.com/media/vTKc59U9EkbeM/giphy.gif"
+    },
+    {
+        "titulo":"Cadela de Merda 💩",
+        "info":"Cada frase que disser deverá começar com *Shit* e terminar com *Bitch*.\nCaso não obedeça a maldição, deverá enviar uma foto de uma parte do seu corpo à escolha do jogador anterior.\nA maldição termina quando chegar na sua vez novamente.",
+        "imagem":"https://media.giphy.com/media/l46Cg6mlK4d78JQQw/giphy.gif"
+    },
+    {
+        "titulo":"Olá, eu sou o Kevin!",
+        "info":"Escolha um jogador qualquer. A partir de agora ele se chamará Kevin até o final do jogo. Se alguém falar o nome desta pessoa errada terá que pegar uma prenda a escolha do Kevin.",
+        "imagem":"https://media.giphy.com/media/rcsL35YVNXBMQ/giphy.gif"
+    },
+    {
+        "titulo":"Ditador",
+        "info":"Escolha uma regra ou maldição para quebrar. Agora invente uma nova regra para algum jogador específo ou para todos(inclusive você).\nNão esqueça de definir uma prenda para quem quebre sua regra.",
+        "imagem":"https://media.giphy.com/media/JOeXqZebetYyY/giphy.gif"
+    },
+    {
+        "titulo":"Mulher do Padre",
+        "info":"A qualquer momento do jogo poste o emote 🤭 em qualquer chat do servidor. Todos devem postar o emote 🤭 no mesmo canal **após você**.\nO último a postar o emote 🤭 deverá pagar uma prenda a sua escolha.",
+        "imagem":"https://pa1.narvii.com/6690/1227c5890ac5cf74273159b0e08077e98273bad6_hq.gif"
+    },
+    {
+        "titulo":"Regra Majestosa",
+        "info":"Todos têm que falar de si mesmos no majestoso “nós”.\nPor exemplo: “*Eu tenho que ir ao banheiro*” se transforma em “*Temos que ir ao banheiro*”.\nA regra acaba quando o primeiro jogador cometer infração.\nO jogador que descumprir a regra não poderá dizer nenhuma palavra até que passe por sua vez 2 vezes.",
+        "imagem":"https://media.giphy.com/media/YG7kWyoHjsWd2/giphy-downsized.gif"
+    },
+    {
+        "titulo":"ÁS ❤️",
+        "info":"Esta carta vale ouro!\nQuebre alguma maldição ou regra de alguém à sua escolha (pode ser você mesmo).",
+        "imagem":"https://psycatgames.com/pt/magazine/party-games/kings-cup/kings-cup-card-a.png"
+    },
+    {
+        "titulo":"REI ❤️",
+        "info":"Durante uma rodada, todos os jogadores devem pedir permissão a você antes de falar ou digitar no chat, além de agradecer com *Obrigado, vossa excelência* ao ter permissão concedida. Puna o jogador que quebrar a regra com uma prenda.",
+        "imagem":"https://psycatgames.com/pt/magazine/party-games/kings-cup/kings-cup-card-k.png"
+    },
+    {
+        "titulo":"RAINHA ❤️",
+        "info":"Você cria uma categoria de coisas e a pessoa seguinte deverá dizer algo que tenha alguma relação com a coisa que você falou. Tome a **ordem da call** como referência. Continuem com a brincadeira até alguém não conseguir pensar em nada ou demorar mais do que 10 segundos para responder.\nEscolha uma prenda para quem errar.",
+        "imagem":"https://psycatgames.com/pt/magazine/party-games/kings-cup/kings-cup-card-q.png"
+    },
+    {
+        "titulo":"CORINGA ❤️",
+        "info":"Anule alguma maldição que caiu sobre você. Caso não tenha, crie uma nova maldição e jogue em alguém.",
+        "imagem":"https://psycatgames.com/pt/magazine/party-games/kings-cup/kings-cup-card-j.png"
+    },
+    {
+        "titulo":"DEZ ❤️",
+        "info":"Diga qual foi o lugar mais inusitado que você já fez amor com alguém.",
+        "imagem":"https://psycatgames.com/pt/magazine/party-games/kings-cup/kings-cup-card-10.png"
+    },
+    {
+        "titulo":"NOVE ❤️",
+        "info":"Envie uma foto sua de roupa íntima/nude ao jogador seguinte **por DM.**",
+        "imagem":"https://psycatgames.com/pt/magazine/party-games/kings-cup/kings-cup-card-9.png"
+    },
+    {
+        "titulo":"OITO ❤️",
+        "info":"Diga a idade com que você perdeu a virgindade.",
+        "imagem":"https://psycatgames.com/pt/magazine/party-games/kings-cup/kings-cup-card-8.png"
+    },
+    {
+        "titulo":"SETE ❤️",
+        "info":"Número da sorte... dos jogadores! Mande, **por DM*, uma foto sua de calcinha ou cueca para todos os jogadores participantes.",
+        "imagem":"https://psycatgames.com/pt/magazine/party-games/kings-cup/kings-cup-card-7.png"
+    },
+    {
+        "titulo":"SEIS ❤️",
+        "info":"Envie uma foto sua de roupa íntima ou nude para o jogador anterior à você **por DM**.",
+        "imagem":"https://psycatgames.com/pt/magazine/party-games/kings-cup/kings-cup-card-6.png"
+    },
+    {
+        "titulo":"CINCO ❤️",
+        "info":"Tire uma foto da sua boca para seduzir o **jogador anterior** no chat +18. Seja criativo, use sua lingua, dedo ou objeto.\nNão precisa mostrar o seu rosto.",
+        "imagem":"https://psycatgames.com/pt/magazine/party-games/kings-cup/kings-cup-card-5.png"
+    },
+    {
+        "titulo":"QUATRO ❤️",
+        "info":"O jogador anterior e o jogador seguinte a você terão que pagar uma prenda à sua escolha.",
+        "imagem":"https://psycatgames.com/pt/magazine/party-games/kings-cup/kings-cup-card-4.png"
+    },
+    {
+        "titulo":"TRES ❤️",
+        "info":"Poste uma foto da sua perna/pé no chat +18",
+        "imagem":"https://psycatgames.com/pt/magazine/party-games/kings-cup/kings-cup-card-3.png"
+    },
+    {
+        "titulo":"DOIS ❤️",
+        "info":"**Verdade ou consequência/desafio?** Brinque de *verdade ou consequência* com 2 jogadores à sua escolha.\nTodos os jogadores terão apenas 1 uso de verdade durante a partida inteira.",
+        "imagem":"https://psycatgames.com/pt/magazine/party-games/kings-cup/kings-cup-card-2.png"
+    },
+    {
+        "titulo":"REI ♣️",
+        "info":"Escolha algum jogador para postar uma foto do seu **bum-bum** no chat +18.",
+        "imagem":"https://i.ibb.co/JxBwM3Z/F629-AB65-627-E-4453-B7-E6-BA47-FB0-E1-E1-F.png"
+    },
+    {
+        "titulo":"RAINHA ♣️",
+        "info":"Nomeie um jogador para ser seu guarda-real. Durante o jogo, qualquer maldição que cair sobre você  deve ser tomada pelo guarda-real, exceto quando for uma maldição que afete todos os jogadores (apenas um uso).",
+        "imagem":"https://i.ibb.co/8c1NsFN/F69557-B7-A3-BF-45-E6-B7-CE-E0-E9138-C5665.png"
+    },
+    {
+        "titulo":"CORINGA ♣️",
+        "info":"Anule alguma maldição que caiu sobre você. Caso não tenha, crie uma nova maldição e jogue em alguém.",
+        "imagem":"https://i.ibb.co/RPX7Fgg/06-B15-D6-B-BF56-4-D08-B574-EEE6-F508-A16-D.png"
+    },
+    {
+        "titulo":"DEZ ♣️",
+        "info":"**Fui a feira** \nDiga o nome de um item que você comprou na feira, o jogador seguinte terá que repetir o seu item e acrescentar um novo no carrinho. Continue com todos jogadores até que alguém erre a ordem ou repita um item. \nExemplo: \nJogador 1: Fui a feira e comprei tomate. \nJogador 2: Fui a feira comprar tomate e limão. \nJogador 3: Fui a feira comprar tomate, limão e abacaxi. \nEssa brincadeira só é permitida no chat de voz. \nObedeça a ordem da call. \nO jogador atual escolhe uma foto do perdedor.",
+        "imagem":"https://i.ibb.co/TPG6wHt/7-B625-A4-E-6-E3-E-4-DF9-8551-36-DE78-A02-AC7.png"
+    },
+    {
+        "titulo":"NOVE ♣️",
+        "info":"Jogue Pedra-papel-tesoura-largato-spock com o StarKid. Se você ganhar, receba uma imunidade para maldição, regra especial ou prenda (uso único). Caso perca, o jogador **anterior** irá criar uma maldição para você. Caso empate jogue novamente.",
+        "imagem":"https://i.ibb.co/7KMqH9H/E5-C14016-8-EEB-435-E-9-E60-27-D7-FB4-A042-C.png"
+    },
+    {
+        "titulo":"OITO ♣️",
+        "info":"Escreva no chat +18, com detalhes, um fetiche que você tenha. Você só podera apagar a mensagem no fim de uma rodada.",
+        "imagem":"https://i.ibb.co/zGKXLQH/39-FF9190-3-BE8-464-A-BE07-D878584535-BB.png"
+    },
+    {
+        "titulo":"SETE ♣️",
+        "info":"Carta-espelho: O efeito da carta anterior foi refletido para você.",
+        "imagem":"https://i.ibb.co/J3Ntgz8/13-DA8-D2-C-8943-471-C-AA44-5-A1-CE4-DDE38-B.png"
+    },
+    {
+        "titulo":"SEIS ♣️",
+        "info":"Pronto-falei: Diga algo que você sempre quiz dizer para o jogador **seguinte** mas que nunca teve coragem. Seja sincero, o que acontece no jogo morre no jogo.",
+        "imagem":"https://i.ibb.co/V3d9FZG/42-C91005-087-D-4-BF6-827-F-4-F5103-F1-A91-A.png"
+    },
+    {
+        "titulo":"CINCO ♣️",
+        "info":"Bate-volta (escola): Faça uma entrevista de respostas rapidas com o jogador **anterior**. \nQual cadeira você sentava (região da sala)? \nLevou suspensão? \nDormiu na aula? \nConte a maior vergonha que já passou na escola. \nJá fingiu que estava doente para sair mais cedo? \nJá matou aula?",
+        "imagem":"https://i.ibb.co/GdT0YF7/149505-DC-593-B-4629-979-B-D68-F4-F5-A3-E25.png"
+    },
+    {
+        "titulo":"QUATRO ♣️",
+        "info":"Das situações abaixo, qual foi a mais constranjedora para você? Conte-nos como foi:\nCair em público\nEnviar mensagem para pessoa errada\nUsar o banheiro(💩) na casa do crush\nDar de cara contra o vidro\nFalar com sujeira nos dentes\nCurtir foto sem querer\nRir em momento impróprio/triste\nElevador com estranhos\nBarriga roncando\nSoltar gases barulhentos próximo de algém.\nEntupiu o vaso na casa de um estranho.",
+        "imagem":"https://i.ibb.co/PGK02Wj/58-F14-D4-D-5-E4-F-4060-B5-E3-F4-E77-F727-A94.png"
+    },
+    {
+        "titulo":"TRES ♣️",
+        "info":"Escreva(+18) ou fale, alguém do servidor que:\nFala de mais\nSempre atrasado\nDa as melhores dicas\nSempre na hora\nTem fotos lindas\nTem uma risada gostosa\nDoidinho/maluco\nQuero muito conhecer.",
+        "imagem":"https://i.ibb.co/xHZ4v9X/EB66-D8-D3-522-F-4891-B520-ED506318-DA11.png"
+    },
+    {
+        "titulo":"DOIS ♣️",
+        "info":"Faca da LIV: Você foi vitima da LivTagliani e perdeu os seus dedos. Não poderá digitar em nenhuma sala do servidor até que alguém(ou você) tire esta regra.\nPara cada vez que você quebrar esta regra, o primeiro jogador da call escolhe uma prenda pra você.",
+        "imagem":"https://i.ibb.co/GvdFfnJ/BC3-B309-A-FD8-A-48-A3-BA49-CFEA2-A6-F7-C09.png"
+    },
+    {
+        "titulo":"ÁS ♣️",
+        "info":"Use o comando `!crush` no canal de Flood e marque algum jogador no comando. Se der Match ele deve te mandar uma foto dedele usando roupa intima/nude **por DM**. Se não der match ele escolhe para quem você deve mandar, **por DM**, uma foto sua usando roupas intimas/nudes (pode ser ele mesmo).",
+        "imagem":"https://i.ibb.co/mhHNdJb/860-E0337-065-E-47-B2-AF1-C-D785-E02292-DD.png"
+    },
+    {
+        "titulo":"REI ♦️",
+        "info":"Sua palavra é a lei. Crie uma nova regra, todos devem obedecer. Não esqueça de criar a prenda caso alguém quebre a regra.",
+        "imagem":"https://i.ibb.co/wSdgcNq/8-A4-F9-E51-B5-D5-46-F7-A5-F4-3-EA8-E50-BAE0-A.png"
+    },
+    {
+        "titulo":"RAINHA ♦️",
+        "info":"A rainha exije poesia! Escolha um jogador para falar usando rimas ou em forma de poema por uma rodada. Se ele quebrar a regra deverá postar uma selfie no canal +18. \nEle só poderá apagar a foto quando ele for o **jogador atual**.",
+        "imagem":"https://i.ibb.co/jGMxpMW/14825-B1-A-DA21-47-F8-9-DD1-98959-A941-B1-A.png"
+    },
+    {
+        "titulo":"CORINGA ♦️",
+        "info":"Anule alguma maldição que caiu sobre você. Caso não tenha, crie uma nova maldição e jogue em alguém.",
+        "imagem":"https://i.ibb.co/YyfhK4L/F01-B2-FB9-2-CF6-4193-8-A91-3-B164-F70-B029.png"
+    },
+    {
+        "titulo":"DEZ ♦️",
+        "info":"CTRL+V: Seja rápido e honesto, você tem 10 segundos para dar CTRL+V(colar) no chat +18 e enviar a mensagem.",
+        "imagem":"https://i.ibb.co/n1vwJ6b/E2-DC33-F7-EB3-A-4151-8-AD9-840724-E1-A839.png"
+    },
+    {
+        "titulo":"NOVE ♦️",
+        "info":"Bate-volta (Ultima coisa...): Faça uma entrevista rápida com o **jogador seguinte**\nUltima coisa que ouviu?\nUltima coisa que comeu?\nA ultima coisa que enviou...\nA ultima coisa que comprou?\nA ultima coisa que assistiu?\n",
+        "imagem":"https://i.ibb.co/kq6Yjqv/0-C66454-D-4-A9-D-4-EF0-81-FE-8-C4-FB47637-ED.png"
+    },
+    {
+        "titulo":"OITO ♦️",
+        "info":"Revele-se: Diga quando foi a último vez que você **enviou** um nude.",
+        "imagem":"https://i.ibb.co/2Fx8GVc/E3300-CC9-3-FE5-44-F7-89-EC-58-A005273-DEB.png"
+    },
+    {
+        "titulo":"SETE ♦️",
+        "info":"Revele-se: Diga quando foi a última vez que **recebeu** um nude",
+        "imagem":"https://i.ibb.co/vsxyH4y/E2-A196-F3-8957-4467-8-D04-E1-B852-F18016.png"
+    },
+    {
+        "titulo":"SEIS ♦️",
+        "info":"Mande uma foto usando roupa íntima/nude sua para algum jogador a sua escolha. Este jogador deve recompensa-la pagando uma prenda no seu lugar.\nA prenda por não fazer esta missão será definida pelo @Staff mediador da noite.",
+        "imagem":"https://i.ibb.co/3yWtfJD/4-AE3-F9-A1-D98-C-4-C24-85-C8-879-F02-E91279.png"
+    },
+    {
+        "titulo":"CINCO ♦️",
+        "info":"Bate-volta (Favoritos): Faça uma entrevista rápida com o jogador **seguinte**:\nFilme favorito\nCrush famoso(celebridade)\nComida favorita\nLugar favorito\nLivro favorito\nBanda Favorita.",
+        "imagem":"https://i.ibb.co/cCTyvFb/71548933-1176-46-B4-8-AC5-427-C048-FA05-F.png"
+    },
+    {
+        "titulo":"QUATRO ♦️",
+        "info":"Já fez amor em local público? Se sim, fale ou escreva um pouco a respeito (onde, como foi, foram pegos?).",
+        "imagem":"https://i.ibb.co/tqP34Dr/2-EAD57-E9-18-B6-46-B3-9126-61990-F9-A895-C.png"
+    },
+    {
+        "titulo":"TRES ♦️",
+        "info":"Bate-volta (Crush Perfeito): Faça uma entrevista rápida com o jogador **anterior**:\nFisico ideal\nRosto ideal\nCor dos olhos\nCabelo\nDotado(a)?\nAltura ideal",
+        "imagem":"https://i.ibb.co/Wf6m1Fk/F5-BED735-AE30-41-B3-B895-9-FC920-B8561-A.png"
+    },
+    {
+        "titulo":"DOIS ♦️",
+        "info":"Chifres trocados: Todos os jogadores que ja trairam ou ja se relacionaram com alguem comprometido devem postar o emote (🐮) em qualquer sala de **chat** do servidor.",
+        "imagem":"https://i.ibb.co/ccnXLg2/6450-DB59-717-F-4-C94-8108-E654691-F00-E2.png"
+    },
+    {
+        "titulo":"ÁS ♦️",
+        "info":"Esta carta vale ouro!\nQuebre alguma maldição ou regra de alguém à sua escolha (pode ser você mesmo).",
+        "imagem":"https://i.ibb.co/5h2HGDP/A21606-FA-5-B00-48-FC-A8-C3-FF626-E6-E93-EC.png"
+    },
+    {
+        "titulo":"REI ♠️",
+        "info":"Escolha algum jogador para postar uma foto do seu **umbigo** no chat +18.",
+        "imagem":"https://i.ibb.co/WHfvhfk/D22-AC62-E-483-D-435-F-8-FC1-C8-FE07-A59-ED6.png"
+    },
+    {
+        "titulo":"RAINHA ♠️",
+        "info":"**Rainha artista**\nFaça um desenho rápido e poste no canal +18. O primeiro que advinhar o desenho escolhe alguém para postar uma foto dele como modelo de ensaio sensual (vale-tudo).\nCaso não tenha como fazer um desenho **você** é quem deve pagar a prenda.",
+        "imagem":"https://i.ibb.co/qD4fvY1/E5-FD109-E-7871-4-EAF-A03-B-AEC5-C819-F2-E3.png"
+    },
+    {
+        "titulo":"CORINGA ♠️",
+        "info":"Anule alguma maldição que caiu sobre você. Caso não tenha, crie uma nova maldição e jogue em alguém.",
+        "imagem":"https://i.ibb.co/S5Px5t0/58505274-A002-47-EB-B8-E0-70-F619-B06-B56.png"
+    },
+    {
+        "titulo":"DEZ ♠️",
+        "info":"Escolha **um** tema abaixo e conte-nos uma experiência sua.\nFazer tatuagem/piercing\nTer filhos\nDar PT\nBeijar na chuva\nIr ao cinema/viajar sozinho\nNadar pelado(a)\nPular de paraquedas\nMergulhar no Oceano\nSer flagrado\nBeijo ruim\nExperiência de cama(sexo) mais engraçada.",
+        "imagem":"https://i.ibb.co/CWd8LjT/423-CAB38-2-A10-459-C-A4-C6-2-B20-AA8-F197-A.png"
+    },
+    {
+        "titulo":"NOVE ♠️",
+        "info":"Jogue Pedra-papel-tesoura-largato-spock com o StarKid. Se você ganhar, receba uma imunidade para maldição, regra especial ou prenda (uso único). Caso perca, o jogador **seguinte** irá criar uma maldição para você.",
+        "imagem":"https://i.ibb.co/hHWzKLn/31-B75611-EA61-4-BC7-BCCB-A2297-EF29355.png"
+    },
+    {
+        "titulo":"OITO ♠️",
+        "info":"Escolha uma pessoa par matar, uma pessoa para fuder e uma pessoa para casar.\nNão pode repetir a pessoa.\nAs três pessoas devem estar na call.",
+        "imagem":"https://i.ibb.co/VShxbb5/93-C29-A7-F-4-E70-45-AE-A4-D7-FE257-F395-F02.png"
+    },
+    {
+        "titulo":"SETE ♠️",
+        "info":"Fogo no rabo🔥:\nVocê não consegue se conter, por uma rodada você terá que falar gemendo. Caso quebre a regra mande uma foto sua lambendo o cotovelo no chat +18.",
+        "imagem":"https://i.ibb.co/nm2DfPQ/D7-CE3-D59-A11-C-4-CEE-8-F49-7-CEB557-ABA87.png"
+    },
+    {
+        "titulo":"SEIS ♠️",
+        "info":"**Brincadeira do PI:**\nComece uma contagem pelo numero 1, o jogador seguinte devera dizer o próximo número. Caso este número seja **múltiplo de 4**, o jogador deverá dizer **PI** ao invés do número.\nO primeiro que errar encerra o jogo.\nCaso quebre a regra envie uma foto no chat +18 de alguma parte do seu corpo que comece com a letra **B** ou **P**.",
+        "imagem":"https://i.ibb.co/r4Fwxk4/A07-DA204-F980-4-A5-B-8639-86-D12409-A91-B.png"
+    },
+    {
+        "titulo":"CINCO ♠️",
+        "info":"Diga uma palavra aleatória, todos os jogadores vão continuar dizendo palavras que tenham alguma relação com a palavra anterior. O primeiro que falar uma palavra que comece com a **letra C, R ou S** perde.\nUse a ordem da call para esta brincadeira.\nA prenda vai ser enviar uma foto da alguma parte do seu corpo que comece com a letra **C**, **S** ou **R**.",
+        "imagem":"https://i.ibb.co/jT6dM01/DF5-B8714-89-F2-4675-95-D9-6-FC6-CDD44-DE9.png"
+    },
+    {
+        "titulo":"QUATRO ♠️",
+        "info":"**Troca-troca:**\nPor duas rodadas, toda vez que o jogador **seguinte** disser *troca* você deve trocar a última palavra falada por outra coisa aleatória.\nEx.Eu estava comendo farofa... \n-TROCA\n-Eu estava comendo chocolate...",
+        "imagem":"https://i.ibb.co/gvJdXbG/4-C6-DB162-D562-46-BF-94-DA-4-D01090-AB59-F.png"
+    },
+    {
+        "titulo":"TRES ♠️",
+        "info":"**Bate-volta (Sexo):**\nFaça uma entrevista rápida com o jogador **anterior**\nLocal onde perdeu a virgindade(ex.Casa dos pais, carro, etc)\nJá fez anal?\nPosição favorita\nSeu fetiche\nA bola rola. E a gente...? (rola ou não rola)",
+        "imagem":"https://i.ibb.co/pX9xGPX/7-AE1-BEAF-A049-4883-9-F60-13-F3-E7-D032-DC.png"
+    },
+    {
+        "titulo":"DOIS ♠️",
+        "info":"**Tudo é notícia!**\nTudo o que você disser deve ser dito como uma manchete de telejornal.\nFale assim até que chegue sua vez novamente.\nCaso quebre a regra, o jogador **anterior** esolhe uma prenda.",
+        "imagem":"https://i.ibb.co/7bqgjnL/21794-E7-A-B735-484-A-A2-E6-6134-AC1295-EE.png"
+    },
+    {
+        "titulo":"ÁS ♠️",
+        "info":"**Bate-volta (Sexo II)**\nO jogador seguinte escolhe alguém para você entrevistar:\nMelhor posição\nO que você nunca faria (sexualmente)\nO que mais gosta de fazer?\nGosta com carinho ou violento\nFez (ou faria) sexo com 2 pessoas (ou mais)?\nPrefere fazer ou receber oral?\nMaior realizalção sexual que você deseja ter\nUma pessoa do servidor ou da call com quem você deitaria.",
+        "imagem":"https://i.ibb.co/FbGTZBx/A15-E76-E2-A90-F-4369-9040-E071-C772-A1-B1.png"
+    },
+    {
+        "titulo":"SALADA MISTA",
+        "info":"O jogador **anterior** escolhe três frutas. Você deve responder o que você faria com o jogador **seguinte** caso se...\n\n🍎 - Lugar do corpo dele (jogador seguinte) onde você gostaria de passar a mão...\n🍇 - Manda uma foto da sua orelha pra ele (n precisa mostrar o rosto)\n🍉 - Deu sorte... ele (jogador seguinte) escolhe algo para você fazer\n🍒 - Mande foto mordendo o beiço\n🍐 - Local do corpo onde passaria a lingua\n🍌 - Diga algo pra ele (jogador seguinte) fazer com você, na cama, que te deixa louca\n🍍 - Tente supreender...o que faria com ele pra deixa-lo louco (na cama ou preliminar)?\n🍋 - Diga uma posição sexual que você ainda não fez e que você experimentaria com ele (jogador seguinte).\n\nO jogador seguinte escolhe a prenda caso não cumpra o desafio.",
+        "imagem":"https://media1.tenor.com/images/da81e5b3452d9b65490556ccdf7d75b0/tenor.gif"
+    },
+    {
+      "titulo":"QUAL É A MÚSICA",
+      "info":"Que música você cantaria pro jogador anterior e o jogador seguinte?\n1 - Me apaixonei pela pessoa errada\n2 - Me namora?\n3 - Minha vida é você\n5 - Você não vale nada mas eu gosto de você\n6 - Tentativas em vão\n7 - Pensa em mim\n8 - Fugidinha\n9 - Amigos para sempre\n10 - Ai se eu te pego\nA prenda será cantar uma das músicas escolhida pelo jogador **seguinte**.\nCaso não conheça a letra pesquise no Google.",
+      "imagem":"https://i.makeagif.com/media/10-31-2015/zuVsbq.gif"
+    }
+  
+ ]
