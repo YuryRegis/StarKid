@@ -6,7 +6,7 @@ const {getMember, getRandomInt} = require(`../funcoes.js`);
 var jogadores = [];
 var status = false;
 const privadoID = "626214145158545409";
-const dezoitoID = "653430770915868682";
+const dezoitoID = "674127280963977216";
 var baralho = JSON.parse(JSON.stringify(json));
 var cemiterio = [];
 
@@ -38,6 +38,7 @@ exports.run = async (client, message, args) => {
 
         if (jogadores.some(j => j === addJogador)) {
             message.delete();
+            salaAtual.send(`${addJogador} já está na lista de jogadores`);
             return console.log(`${addJogador} já está na lista de jogadores`);
         }
 
@@ -175,7 +176,7 @@ exports.run = async (client, message, args) => {
         jogadores.pop();
 
         const msg = getEmbed(anterior, atual, seguinte, embed, carta);
-        await message.channel.send("Voltei a a jogada para o jogador **anterior**.");
+        await message.channel.send("Voltei a jogada para o jogador **anterior**.");
         message.channel.send(msg);
         
         message.delete()

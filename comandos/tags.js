@@ -1,7 +1,7 @@
 const { RichEmbed } = require("discord.js");
 const { promptMessage } = require("../funcoes.js");
 
-const opcoes = [`👤`,`👥`,`👑`,`🤠`,`🎹`,`🎨`,`🔰`,`🗺️`,`🧢`,`🧚`,`🤳`,`🎒`,`❤️`,`💍`,`💍`,`😄`,`💋`, `💙`]
+const opcoes = [`👤`,`👥`,`👑`,`🤠`,`🎹`,`🎨`,`🔰`,`🗺️`,`🧢`,`🧚`,`🤳`,`🎒`,`❤️`,`💍`,`💍`,`😄`,`💋`, `💙`,`🧓`]
 
 exports.help = {
     name: "tags"
@@ -25,7 +25,7 @@ exports.run = async (client, message, args) => {
     embed.addField("**Tags Customizáveis**","👤 - Jogador Solo \n👥 - Formador de grupos \n"+
     "👑 - Colecionador \n🤠 - Explorador \n🎹 - Músico Skyniano \n🎨 - Desenhista / Pintor \n" +
     "🔰 - Veterano \n🗺️ - Guia Turístico \n🧢 - Turista \n🧚 - Ajudante \n🎒 - Carregado \n" +
-    "❤️ - Trocador \n🤳 - YouTuber\n💍 - Casado\n😄 - Solteiro\n💋 - Namorando\n💙 - Capa azul")
+    "❤️ - Trocador \n🤳 - YouTuber\n💍 - Casado\n😄 - Solteiro\n💋 - Namorando\n💙 - Capa azul\n🧓 - Elder")
     embed.setTimestamp();
 
     //Envia mensagem richEmbed
@@ -67,6 +67,8 @@ exports.run = async (client, message, args) => {
         var chave = "Namorando"
     } else if (cargoEscolhido === "💙") {
         var chave = "Capa azul"
+    } else if (cargoEscolhido  === `🧓`) {
+        var chave = "Elder"
     }
     else {
         embed.addField("**TAG NÃO DEFINIDA**",`Use o comando \`!tags\` novamente.`);
