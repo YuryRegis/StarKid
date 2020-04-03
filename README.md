@@ -1,8 +1,8 @@
 # StarKid - Discord bot
 *@StarKid* é um bot exclusivo do servidor [ThatSkyGameBrasil](https://is.gd/ThatSkyGameBrasil), no Discord. Este servidor foi criado com o objetivo de ajudar jogadores, falantes de português, de *Sky - Children of Light*, da empresa *ThatGameCompany*.
-## JOGOS
+## JOGOS 🎲
 Alguns mini-games foram adicionados ao bot, a fim de contribuir com a interatividade dos membros da nossa comunidade.
-### Pedra-papel-tesoura
+### Pedra-papel-tesoura ✂️
 Jogue pedra-papel-tesoura com o *@StarKid.* Use o comando `!ppt` e escolha uma das opçôes dentre **pedra, papael ou tesoura**, lembre-se:
 - Pedra quebra tesoura;
 - Papel embrulha de pedra;
@@ -11,7 +11,7 @@ Jogue pedra-papel-tesoura com o *@StarKid.* Use o comando `!ppt` e escolha uma d
 ```
 !ppt
 ```
-### Pedra-papel-tesoura-lagarto-Spock
+### Pedra-papel-tesoura-lagarto-Spock 🖖
 Semelhante ao Pedra-papel-tesoura, porém, com mais opções. Além das opções tradicionais, você pode também escolher **lagarto** e **Spock**. Não sabe jogar? Fique tranquilo, o [Sheldon explica!](https://www.youtube.com/watch?v=abQj0pQkSOY). Lembre-se:
 - Tesoura corta papel;
 - Papel embrulha de pedra;
@@ -23,7 +23,7 @@ Semelhante ao Pedra-papel-tesoura, porém, com mais opções. Além das opções
 - Papel reprova Spock;
 - Spock vaporiza pedra;
 - Pedra quebra tesoura;
-### Crush - Skynder ❤️
+### Crush - Skynder 💌
 Ta querendo uma ajudinha para saber se tem alguma chance com o *Crush* ? O @StarKid pode dar uma de cupido e calcular as chances de um possível *match* entre vocês.
 ##### USO
 Mencione algúém ao usar o comando `!crush` e deixe o resto com o @StarKid
@@ -34,7 +34,7 @@ Não tem nenhum *crush* em mente? Use o comando sem fazer menção que o @StarKi
 ```
 !crush
 ```
-### UNO !!!
+### UNO !!! 🃏
 O **tradicional** jogo de cartas, Uno, foi **adaptado** para ser jogado em uma sala exclusiva do servidor. Como existem várias versões do Uno, foi escolhido o conjunto de regras do *card game* oficial, disponibilizado pela *Copag*, você pode conferir neste [PDF.](http://copag.com.br/wp-content/uploads/2016/03/UNO.pdf)
 #### Pré-requisitos
 - Ser membro do servidor [ThatSkyGameBrasil](https://is.gd/ThatSkyGameBrasil) e aceitar as **#regras** do mesmo;
@@ -133,3 +133,9 @@ Ta na hora daquele compromisso e não pode esperar o fim da partida? Tudo bem, u
 | Reverse              | 8 [2 de cada cor] | 20            |
 | Curinga [escolhe cor] | 4                | 50            |
 | +4                   | 4                | 50            |
+
+## APOIA-SE ❤️
+Gostou do *@StarKid*`bot`? Ajude-nos a mante-lo online e nos motive a continuar trabalhando para trazer novas funcionalidades para você. Seja nosso [apoiador](https://apoia.se/thatskygamebrasil) ! 
+
+https://apoia.se/thatskygamebrasil
+
