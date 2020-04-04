@@ -35,12 +35,13 @@ exports.help = {
 
 exports.run = async (client, message, args) => {
     const salaAtual = message.channel;
+    const salaCorreta = await message.guild.channels.get(SalaID);
     const validaAdmin = message.member.roles
             .some(r =>  r.name === "Staff" || r.name === "Admin");
 
     if (String(salaAtual.id) !== SalaID) {
         message.delete();
-        return message.reply(`Você não pode usar este comando nesta sala de chat. Use o canal #uno, por gentileza`);
+        return message.reply(`Você não pode usar este comando nesta sala de chat. Use o canal ${salaCorreta}, por gentileza`);
     }
 
     if(args[0] === undefined) {
@@ -62,7 +63,20 @@ exports.run = async (client, message, args) => {
     if(args[0].toLowerCase()==="teste") {
         message.delete();
         
-        salaAtual.send(`${salaAtual}`)
+        // var myGuild = await client.guilds.get(message.guild.id)
+        // var myMbrGuild = myGuild.members
+        // var members = []
+        // myMbrGuild.forEach(mbr => { members.push(mbr.user.id) })
+        // console.log(members.length)
+        // members.forEach(async id => {
+        //     var membr = await message.guild.members.get(id);
+        //     //console.log(membr.nickname)
+        //     if(membr.roles.some(rolé => rolé.name==="Beta")){
+        //         //membr.roles.add('695833895848902677')
+        //         membr.addRole('695833895848902677')
+        //     }
+        // })
+
         return 
     }
 
