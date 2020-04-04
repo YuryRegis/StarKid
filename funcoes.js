@@ -65,6 +65,83 @@ module.exports = {
             .addField(`Jogador seguinte:`, seguinte)
             .setFooter(`ThatSkyGameBrasil - CIRCULO DE FOGO 🔥 +18`);
         return embed
-    }
+    },
 
+    mostrarMesa: function(jAnterior, jAtual, jSeguinte, embed, carta) {
+        var cor = carta.cor;
+        var cartasAtual = jAtual.mao
+        var cartaAnterior = jAnterior.mao
+        var cartaSeguinte = jSeguinte.mao
+        cartasAtual = cartasAtual.length
+        cartasSeguinte = cartaSeguinte.length
+        cartasAnterior = cartaAnterior.length
+        if(carta.cor==="AZUL") {cor="#13BAF2"}
+        if(carta.cor==="VERDE") {cor="#1AF213"}
+        if(carta.cor==="AMARELO") {cor="#FAFB2C"}
+        if(carta.cor==="VERMELHO") {cor="#CF3F47"}
+        embed.setTitle(`Carta da Mesa`)
+            .setColor(cor)
+            .setImage(carta.imagem)
+            .setDescription(`**${carta.titulo}**`)
+            .setThumbnail(`https://i.ibb.co/5KrcKFr/uno.png`)
+            .addField(`Jogador ATUAL:`, `${jAtual.nome} - ${cartasAtual} carta(s)`, false)
+            .addField(`Jogador anterior:`, `${jAnterior.nome} - ${cartasAnterior} carta(s)`, true)
+            .addField(`Jogador seguinte:`, `${jSeguinte.nome} - ${cartasSeguinte} carta(s)`, true)
+            .setFooter(`ThatSkyGameBrasil - UNO !!!`, `https://www.psxbrasil.com.br/trophyguide/uno/logo.png`);
+        return embed;
+    },
+
+    comprarCarta: function(quantidade, baralho, jogador) {
+        for(q=0; q<quantidade; q++) {
+            var indice = Math.floor(Math.random() * (baralho.length));
+            var carta = baralho[indice];
+            jogador.mao.unshift(carta);
+            baralho.splice(indice,1);
+        }
+        return baralho, jogador;
+    },
+
+    mostrarMao: function(jogador) {
+        var msg = "";
+        var quantidade = jogador.mao.length;
+        if(quantidade===0){
+            return "`SEM CARTAS`";
+        }
+        for (q=0; q<quantidade; q++)  {
+            msg += ` \`${String(jogador.mao[q].titulo)}\` - `;
+        }
+        return msg;
+    },
+
+    pularJogador: function(jogadores) {
+        jogadores.push(jogadores[0]);
+        jogadores.splice(0,1);
+        
+        return jogadores;
+    },
+
+    espiarMao: function(jogador, carta) {
+        var cartas = jogador.mao;
+        var encontrou = false;
+        for(i=0; i<cartas.length; i++) {
+            if(cartas[i].id === carta.id) {
+                encontrou = true;
+            }
+        } return encontrou;
+    },
+
+    encerrarPartida: function(client, vencedor, embed) {
+        const usuario = client.users.get(vencedor.id);
+        var txt = `**${vencedor.nome}** descartou sua última carta e ergueu o troféu !!!\n`;
+        embed.setTimestamp()
+            .setColor('#FAFB2C')
+            .setDescription(txt)
+            .setTitle("🏆  VENCEDOR")
+            .setThumbnail(usuario.avatarURL)
+            .setImage("https://i.ibb.co/MMfb23m/trofeu.png")
+            .setFooter(`ThatSkyGameBrasil - UNO!!!`, `https://www.psxbrasil.com.br/trophyguide/uno/logo.png`);
+        
+        return embed;
+    }
+    
 };

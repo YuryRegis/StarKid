@@ -1,0 +1,672 @@
+[
+    {
+        "id": "0",
+        "cor": "AZUL",
+        "titulo":"0 AZUL",
+        "imagem":"https://i.ibb.co/tzdRK3p/0azu.png"
+    },
+    {
+        "id": "1",
+        "cor": "AZUL",
+        "titulo":"1 AZUL",
+        "imagem":"https://i.ibb.co/yp0Gs1k/1azu.png"
+    },
+    {
+        "id": "2",
+        "cor": "AZUL",
+        "titulo":"2 AZUL",
+        "imagem":"https://i.ibb.co/8XvTDnY/2azu.png"
+    },
+    {
+        "id": "3",
+        "cor": "AZUL",
+        "titulo":"3 AZUL",
+        "imagem":"https://i.ibb.co/HVK9p82/3azu.png"
+    },
+    {
+        "id": "4",
+        "cor": "AZUL",
+        "titulo":"4 AZUL",
+        "imagem":"https://i.ibb.co/qNLjb0G/4azu.png"
+    },
+    {
+        "id": "5",
+        "cor": "AZUL",
+        "titulo":"5 AZUL",
+        "imagem":"https://i.ibb.co/KGnJB6C/5azu.png"
+    },
+    {
+        "id": "6",
+        "cor": "AZUL",
+        "titulo":"6 AZUL",
+        "imagem":"https://i.ibb.co/K51xRGS/6azu.png"
+    },
+    {
+        "id": "7",
+        "cor": "AZUL",
+        "titulo":"7 AZUL",
+        "imagem":"https://i.ibb.co/xsHBfC6/7azu.png"
+    },
+    {
+        "id": "8",
+        "cor": "AZUL",
+        "titulo":"8 AZUL",
+        "imagem":"https://i.ibb.co/LggZnrP/8azu.png"
+    },{
+        "id": "9",
+        "cor": "AZUL",
+        "titulo":"9 AZUL",
+        "imagem":"https://i.ibb.co/LrF0b5x/9azu.png"
+    },
+    {
+        "id": "10",
+        "cor": "AZUL",
+        "titulo":"REVERSE AZUL",
+        "imagem":"https://i.ibb.co/VWmgz0W/invertazu.png"
+    },
+    {
+        "id": "11",
+        "cor": "AZUL",
+        "titulo":"SKIP AZUL",
+        "imagem":"https://i.ibb.co/wN8JbqQ/pulaazu.png"
+    },
+    {
+        "id": "12",
+        "cor": "AZUL",
+        "titulo":"+2 AZUL",
+        "imagem":"https://i.ibb.co/3mpM7RN/2azul.png"
+    },
+    {
+        "id": "0",
+        "cor": "AMARELO",
+        "titulo":"0 AMARELO",
+        "imagem":"https://i.ibb.co/wwHgHZ5/0amar.png"
+    },
+    {
+        "id": "1",
+        "cor": "AMARELO",
+        "titulo":"1 AMARELO",
+        "imagem":"https://i.ibb.co/jWJdZ8P/1amar.png"
+    },
+    {
+        "id": "2",
+        "cor": "AMARELO",
+        "titulo":"2 AMARELO",
+        "imagem":"https://i.ibb.co/7jhhb2j/2amar.png"
+    },
+    {
+        "id": "3",
+        "cor": "AMARELO",
+        "titulo":"3 AMARELO",
+        "imagem":"https://i.ibb.co/d0WQQbL/3amar.png"
+    },
+    {
+        "id": "4",
+        "cor": "AMARELO",
+        "titulo":"4 AMARELO",
+        "imagem":"https://i.ibb.co/By1Dd5K/4amar.png"
+    },
+    {
+        "id": "5",
+        "cor": "AMARELO",
+        "titulo":"5 AMARELO",
+        "imagem":"https://i.ibb.co/d6Tt6tW/5amar.png"
+    },
+    {
+        "id": "6",
+        "cor": "AMARELO",
+        "titulo":"6 AMARELO",
+        "imagem":"https://i.ibb.co/pW3jC6h/6amar.png"
+    },
+    {
+        "id": "7",
+        "cor": "AMARELO",
+        "titulo":"7 AMARELO",
+        "imagem":"https://i.ibb.co/C8Lp7mT/7amar.png"
+    },
+    {
+        "id": "8",
+        "cor": "AMARELO",
+        "titulo":"8 AMARELO",
+        "imagem":"https://i.ibb.co/z7DHtp2/8amar.png"
+    },
+    {
+        "id": "9",
+        "cor": "AMARELO",
+        "titulo":"9 AMARELO",
+        "imagem":"https://i.ibb.co/jDY2PBQ/9amar.png"
+    },
+    {
+        "id": "10",
+        "cor": "AMARELO",
+        "titulo":"REVERSE AMARELO",
+        "imagem":"https://i.ibb.co/55DhNCq/invertamar.png"
+    },
+    {
+        "id": "11",
+        "cor": "AMARELO",
+        "titulo":"SKIP AMARELO",
+        "imagem":"https://i.ibb.co/y5XK9ZW/pulaamar.png"
+    },
+    {
+        "id": "12",
+        "cor": "AMARELO",
+        "titulo":"+2 AMARELO",
+        "imagem":"https://i.ibb.co/F5cLD5Y/2amar.png"
+    },
+    {
+        "id": "0",
+        "cor": "VERMELHO",
+        "titulo":"0 VERMELHO",
+        "imagem":"https://i.ibb.co/nM0rgpN/0verm.png"
+    },
+    {
+        "id": "1",
+        "cor": "VERMELHO",
+        "titulo":"1 VERMELHO",
+        "imagem":"https://i.ibb.co/Tw6vTzg/1verm.png"
+    },
+    {
+        "id": "2",
+        "cor": "VERMELHO",
+        "titulo":"2 VERMELHO",
+        "imagem":"https://i.ibb.co/WKm0D5B/2verm.png"
+    },
+    {
+        "id": "3",
+        "cor": "VERMELHO",
+        "titulo":"3 VERMELHO",
+        "imagem":"https://i.ibb.co/x5n3p1F/3verm.png"
+    },
+    {
+        "id": "4",
+        "cor": "VERMELHO",
+        "titulo":"4 VERMELHO",
+        "imagem":"https://i.ibb.co/wzRd46v/4verm.png"
+    },
+    {
+        "id": "5",
+        "cor": "VERMELHO",
+        "titulo":"5 VERMELHO",
+        "imagem":"https://i.ibb.co/LRcYJCn/5verm.png"
+    },
+    {
+        "id": "6",
+        "cor": "VERMELHO",
+        "titulo":"6 VERMELHO",
+        "imagem":"https://i.ibb.co/g74MrdX/6verm.png"
+    },
+    {
+        "id": "7",
+        "cor": "VERMELHO",
+        "titulo":"7 VERMELHO",
+        "imagem":"https://i.ibb.co/GFvjWZB/7verm.png"
+    },
+    {
+        "id": "8",
+        "cor": "VERMELHO",
+        "titulo":"8 VERMELHO",
+        "imagem":"https://i.ibb.co/2YPFZRJ/8verm.png"
+    },
+    {
+        "id": "9",
+        "cor": "VERMELHO",
+        "titulo":"9 VERMELHO",
+        "imagem":"https://i.ibb.co/ryC2H49/9verm.png"
+    },
+    {
+        "id": "10",
+        "cor": "VERMELHO",
+        "titulo":"REVERSE VERMELHO",
+        "imagem":"https://i.ibb.co/hmT1sxt/invertverm.png"
+    },
+    {
+        "id": "11",
+        "cor": "VERMELHO",
+        "titulo":"SKIP VERMELHO",
+        "imagem":"https://i.ibb.co/qsNnHzY/pulaverme.png"
+    },
+    {
+        "id": "12",
+        "cor": "VERMELHO",
+        "titulo":"+2 VERMELHO",
+        "imagem":"https://i.ibb.co/4F2ctHJ/2verm.png"
+    },
+    {
+        "id": "0",
+        "cor": "VERDE",
+        "titulo":"0 VERDE",
+        "imagem":"https://i.ibb.co/qDGfKBv/0verd.png"
+    },
+    {
+        "id": "1",
+        "cor": "VERDE",
+        "titulo":"1 VERDE",
+        "imagem":"https://i.ibb.co/GFpGVL7/1verd.png"
+    },
+    {
+        "id": "2",
+        "cor": "VERDE",
+        "titulo":"2 VERDE",
+        "imagem":"https://i.ibb.co/jwgsk3V/2verd.png"
+    },
+    {
+        "id": "3",
+        "cor": "VERDE",
+        "titulo":"3 VERDE",
+        "imagem":"https://i.ibb.co/DfnqCHx/3verd.png"
+    },
+    {
+        "id": "4",
+        "cor": "VERDE",
+        "titulo":"4 VERDE",
+        "imagem":"https://i.ibb.co/bX5792V/4verd.png"
+    },
+    {
+        "id": "5",
+        "cor": "VERDE",
+        "titulo":"5 VERDE",
+        "imagem":"https://i.ibb.co/56Lf91p/5verd.png"
+    },
+    {
+        "id": "6",
+        "cor": "VERDE",
+        "titulo":"6 VERDE",
+        "imagem":"https://i.ibb.co/HYdyhbw/6verd.png"
+    },
+    {
+        "id": "7",
+        "cor": "VERDE",
+        "titulo":"7 VERDE",
+        "imagem":"https://i.ibb.co/p3kXJHj/7verd.png"
+    },
+    {
+        "id": "8",
+        "cor": "VERDE",
+        "titulo":"8 VERDE",
+        "imagem":"https://i.ibb.co/SxDTfcj/8verd.png"
+    },
+    {
+        "id": "9",
+        "cor": "VERDE",
+        "titulo":"9 VERDE",
+        "imagem":"https://i.ibb.co/71yygZY/9verd.png"
+    },
+    {
+        "id": "10",
+        "cor": "VERDE",
+        "titulo":"REVERSE VERDE",
+        "imagem":"https://i.ibb.co/XZMqh73/invertverd.png"
+    },
+    {
+        "id": "11",
+        "cor": "VERDE",
+        "titulo":"SKIP VERDE",
+        "imagem":"https://i.ibb.co/zfwDPQ8/pulaverd.png"
+    },
+    {
+        "id": "12",
+        "cor": "VERDE",
+        "titulo":"+2 VERDE",
+        "imagem":"https://i.ibb.co/WKwRFt1/2verd.png"
+    },
+    {
+        "id": "0",
+        "cor": "AZUL",
+        "titulo":"0 AZUL",
+        "imagem":"https://i.ibb.co/tzdRK3p/0azu.png"
+    },
+    {
+        "id": "1",
+        "cor": "AZUL",
+        "titulo":"1 AZUL",
+        "imagem":"https://i.ibb.co/yp0Gs1k/1azu.png"
+    },
+    {
+        "id": "2",
+        "cor": "AZUL",
+        "titulo":"2 AZUL",
+        "imagem":"https://i.ibb.co/8XvTDnY/2azu.png"
+    },
+    {
+        "id": "3",
+        "cor": "AZUL",
+        "titulo":"3 AZUL",
+        "imagem":"https://i.ibb.co/HVK9p82/3azu.png"
+    },
+    {
+        "id": "4",
+        "cor": "AZUL",
+        "titulo":"4 AZUL",
+        "imagem":"https://i.ibb.co/qNLjb0G/4azu.png"
+    },
+    {
+        "id": "5",
+        "cor": "AZUL",
+        "titulo":"5 AZUL",
+        "imagem":"https://i.ibb.co/KGnJB6C/5azu.png"
+    },
+    {
+        "id": "6",
+        "cor": "AZUL",
+        "titulo":"6 AZUL",
+        "imagem":"https://i.ibb.co/K51xRGS/6azu.png"
+    },
+    {
+        "id": "7",
+        "cor": "AZUL",
+        "titulo":"7 AZUL",
+        "imagem":"https://i.ibb.co/xsHBfC6/7azu.png"
+    },
+    {
+        "id": "8",
+        "cor": "AZUL",
+        "titulo":"8 AZUL",
+        "imagem":"https://i.ibb.co/LggZnrP/8azu.png"
+    },{
+        "id": "9",
+        "cor": "AZUL",
+        "titulo":"9 AZUL",
+        "imagem":"https://i.ibb.co/LrF0b5x/9azu.png"
+    },
+    {
+        "id": "10",
+        "cor": "AZUL",
+        "titulo":"REVERSE AZUL",
+        "imagem":"https://i.ibb.co/VWmgz0W/invertazu.png"
+    },
+    {
+        "id": "11",
+        "cor": "AZUL",
+        "titulo":"SKIP AZUL",
+        "imagem":"https://i.ibb.co/wN8JbqQ/pulaazu.png"
+    },
+    {
+        "id": "12",
+        "cor": "AZUL",
+        "titulo":"+2 AZUL",
+        "imagem":"https://i.ibb.co/3mpM7RN/2azul.png"
+    },
+    {
+        "id": "0",
+        "cor": "AMARELO",
+        "titulo":"0 AMARELO",
+        "imagem":"https://i.ibb.co/wwHgHZ5/0amar.png"
+    },
+    {
+        "id": "1",
+        "cor": "AMARELO",
+        "titulo":"1 AMARELO",
+        "imagem":"https://i.ibb.co/jWJdZ8P/1amar.png"
+    },
+    {
+        "id": "2",
+        "cor": "AMARELO",
+        "titulo":"2 AMARELO",
+        "imagem":"https://i.ibb.co/7jhhb2j/2amar.png"
+    },
+    {
+        "id": "3",
+        "cor": "AMARELO",
+        "titulo":"3 AMARELO",
+        "imagem":"https://i.ibb.co/d0WQQbL/3amar.png"
+    },
+    {
+        "id": "4",
+        "cor": "AMARELO",
+        "titulo":"4 AMARELO",
+        "imagem":"https://i.ibb.co/By1Dd5K/4amar.png"
+    },
+    {
+        "id": "5",
+        "cor": "AMARELO",
+        "titulo":"5 AMARELO",
+        "imagem":"https://i.ibb.co/d6Tt6tW/5amar.png"
+    },
+    {
+        "id": "6",
+        "cor": "AMARELO",
+        "titulo":"6 AMARELO",
+        "imagem":"https://i.ibb.co/pW3jC6h/6amar.png"
+    },
+    {
+        "id": "7",
+        "cor": "AMARELO",
+        "titulo":"7 AMARELO",
+        "imagem":"https://i.ibb.co/C8Lp7mT/7amar.png"
+    },
+    {
+        "id": "8",
+        "cor": "AMARELO",
+        "titulo":"8 AMARELO",
+        "imagem":"https://i.ibb.co/z7DHtp2/8amar.png"
+    },
+    {
+        "id": "9",
+        "cor": "AMARELO",
+        "titulo":"9 AMARELO",
+        "imagem":"https://i.ibb.co/jDY2PBQ/9amar.png"
+    },
+    {
+        "id": "10",
+        "cor": "AMARELO",
+        "titulo":"REVERSE AMARELO",
+        "imagem":"https://i.ibb.co/55DhNCq/invertamar.png"
+    },
+    {
+        "id": "11",
+        "cor": "AMARELO",
+        "titulo":"SKIP AMARELO",
+        "imagem":"https://i.ibb.co/y5XK9ZW/pulaamar.png"
+    },
+    {
+        "id": "12",
+        "cor": "AMARELO",
+        "titulo":"+2 AMARELO",
+        "imagem":"https://i.ibb.co/F5cLD5Y/2amar.png"
+    },
+    {
+        "id": "0",
+        "cor": "VERMELHO",
+        "titulo":"0 VERMELHO",
+        "imagem":"https://i.ibb.co/nM0rgpN/0verm.png"
+    },
+    {
+        "id": "1",
+        "cor": "VERMELHO",
+        "titulo":"1 VERMELHO",
+        "imagem":"https://i.ibb.co/Tw6vTzg/1verm.png"
+    },
+    {
+        "id": "2",
+        "cor": "VERMELHO",
+        "titulo":"2 VERMELHO",
+        "imagem":"https://i.ibb.co/WKm0D5B/2verm.png"
+    },
+    {
+        "id": "3",
+        "cor": "VERMELHO",
+        "titulo":"3 VERMELHO",
+        "imagem":"https://i.ibb.co/x5n3p1F/3verm.png"
+    },
+    {
+        "id": "4",
+        "cor": "VERMELHO",
+        "titulo":"4 VERMELHO",
+        "imagem":"https://i.ibb.co/wzRd46v/4verm.png"
+    },
+    {
+        "id": "5",
+        "cor": "VERMELHO",
+        "titulo":"5 VERMELHO",
+        "imagem":"https://i.ibb.co/LRcYJCn/5verm.png"
+    },
+    {
+        "id": "6",
+        "cor": "VERMELHO",
+        "titulo":"6 VERMELHO",
+        "imagem":"https://i.ibb.co/g74MrdX/6verm.png"
+    },
+    {
+        "id": "7",
+        "cor": "VERMELHO",
+        "titulo":"7 VERMELHO",
+        "imagem":"https://i.ibb.co/GFvjWZB/7verm.png"
+    },
+    {
+        "id": "8",
+        "cor": "VERMELHO",
+        "titulo":"8 VERMELHO",
+        "imagem":"https://i.ibb.co/2YPFZRJ/8verm.png"
+    },
+    {
+        "id": "9",
+        "cor": "VERMELHO",
+        "titulo":"9 VERMELHO",
+        "imagem":"https://i.ibb.co/ryC2H49/9verm.png"
+    },
+    {
+        "id": "10",
+        "cor": "VERMELHO",
+        "titulo":"REVERSE VERMELHO",
+        "imagem":"https://i.ibb.co/hmT1sxt/invertverm.png"
+    },
+    {
+        "id": "11",
+        "cor": "VERMELHO",
+        "titulo":"SKIP VERMELHO",
+        "imagem":"https://i.ibb.co/qsNnHzY/pulaverme.png"
+    },
+    {
+        "id": "12",
+        "cor": "VERMELHO",
+        "titulo":"+2 VERMELHO",
+        "imagem":"https://i.ibb.co/4F2ctHJ/2verm.png"
+    },
+    {
+        "id": "0",
+        "cor": "VERDE",
+        "titulo":"0 VERDE",
+        "imagem":"https://i.ibb.co/qDGfKBv/0verd.png"
+    },
+    {
+        "id": "1",
+        "cor": "VERDE",
+        "titulo":"1 VERDE",
+        "imagem":"https://i.ibb.co/GFpGVL7/1verd.png"
+    },
+    {
+        "id": "2",
+        "cor": "VERDE",
+        "titulo":"2 VERDE",
+        "imagem":"https://i.ibb.co/jwgsk3V/2verd.png"
+    },
+    {
+        "id": "3",
+        "cor": "VERDE",
+        "titulo":"3 VERDE",
+        "imagem":"https://i.ibb.co/DfnqCHx/3verd.png"
+    },
+    {
+        "id": "4",
+        "cor": "VERDE",
+        "titulo":"4 VERDE",
+        "imagem":"https://i.ibb.co/bX5792V/4verd.png"
+    },
+    {
+        "id": "5",
+        "cor": "VERDE",
+        "titulo":"5 VERDE",
+        "imagem":"https://i.ibb.co/56Lf91p/5verd.png"
+    },
+    {
+        "id": "6",
+        "cor": "VERDE",
+        "titulo":"6 VERDE",
+        "imagem":"https://i.ibb.co/HYdyhbw/6verd.png"
+    },
+    {
+        "id": "7",
+        "cor": "VERDE",
+        "titulo":"7 VERDE",
+        "imagem":"https://i.ibb.co/p3kXJHj/7verd.png"
+    },
+    {
+        "id": "8",
+        "cor": "VERDE",
+        "titulo":"8 VERDE",
+        "imagem":"https://i.ibb.co/SxDTfcj/8verd.png"
+    },
+    {
+        "id": "9",
+        "cor": "VERDE",
+        "titulo":"9 VERDE",
+        "imagem":"https://i.ibb.co/71yygZY/9verd.png"
+    },
+    {
+        "id": "10",
+        "cor": "VERDE",
+        "titulo":"REVERSE VERDE",
+        "imagem":"https://i.ibb.co/XZMqh73/invertverd.png"
+    },
+    {
+        "id": "11",
+        "cor": "VERDE",
+        "titulo":"SKIP VERDE",
+        "imagem":"https://i.ibb.co/zfwDPQ8/pulaverd.png"
+    },
+    {
+        "id": "12",
+        "cor": "VERDE",
+        "titulo":"+2 VERDE",
+        "imagem":"https://i.ibb.co/WKwRFt1/2verd.png"
+    },
+    {
+        "id": "13",
+        "cor": "BLACK",
+        "titulo":"+4",
+        "imagem":"https://i.ibb.co/HDdYqHp/escolhecor-4.png"
+    },
+    {
+        "id": "14",
+        "cor": "BLACK",
+        "titulo":"ESCOLHA COR",
+        "imagem":"https://i.ibb.co/9q2Yfrr/escolhecor.png"
+    },
+    {
+        "id": "13",
+        "cor": "BLACK",
+        "titulo":"+4",
+        "imagem":"https://i.ibb.co/HDdYqHp/escolhecor-4.png"
+    },
+    {
+        "id": "14",
+        "cor": "BLACK",
+        "titulo":"ESCOLHA COR",
+        "imagem":"https://i.ibb.co/9q2Yfrr/escolhecor.png"
+    },
+    {
+        "id": "13",
+        "cor": "BLACK",
+        "titulo":"+4",
+        "imagem":"https://i.ibb.co/HDdYqHp/escolhecor-4.png"
+    },
+    {
+        "id": "14",
+        "cor": "BLACK",
+        "titulo":"ESCOLHA COR",
+        "imagem":"https://i.ibb.co/9q2Yfrr/escolhecor.png"
+    },
+    {
+        "id": "13",
+        "cor": "BLACK",
+        "titulo":"+4",
+        "imagem":"https://i.ibb.co/HDdYqHp/escolhecor-4.png"
+    },
+    {
+        "id": "14",
+        "cor": "BLACK",
+        "titulo":"ESCOLHA COR",
+        "imagem":"https://i.ibb.co/9q2Yfrr/escolhecor.png"
+    }
+]

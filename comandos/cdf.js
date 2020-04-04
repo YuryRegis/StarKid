@@ -3,6 +3,7 @@ const {getEmbed} = require(`../funcoes.js`);
 const json = require(`./cards.json`);
 const {getMember, getRandomInt} = require(`../funcoes.js`);
 
+
 var jogadores = [];
 var status = false;
 const privadoID = "626214145158545409";
