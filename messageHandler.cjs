@@ -5,7 +5,7 @@ exports.run = async (message, queue, client) => {
 	const config = require("./config.json");
 	const youtube = new YouTube(config.Google_API_KEY);
 	const ytdl = require('ytdl-core');
-	const responseobject = require(`./comandos/responseobject.mjs`);
+	const responseobject = require(`./comandos/responseobject.cjs`);
 	let sender = message.author; //Captura autor da mensagem
 	let user = message.member.user.tag;
 	let ch = message.channel.name.toString();
