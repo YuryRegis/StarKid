@@ -33,10 +33,11 @@ exports.help = {
     name: "uno"
 }
 
+
 exports.run = async (client, message, args) => {
     const salaAtual = message.channel;
     const salaCorreta = await message.guild.channels.get(SalaID);
-    const validaAdmin = message.member.roles
+    const validaAdmin = await message.member.roles
             .some(r =>  r.name === "Staff" || r.name === "Admin");
 
     if (String(salaAtual.id) !== SalaID) {
@@ -50,14 +51,15 @@ exports.run = async (client, message, args) => {
 
     if(jogoAtivo) {
         if(jogadores.length > lotacao) {
-            var baralhoAdicional = JSON.parse(JSON.stringify(json));
-            await salaAtual.send("Limite de jogadores atingido.")
-            var m = salaAtual.send("Adicionando baralho........");
+            let baralhoAdicional = JSON.parse(JSON.stringify(json));
+            await salaAtual.send("Limite de jogadores atingido.");
+            let m = await salaAtual.send("Adicionando baralho........");
             lotacao += 9;
             baralho = await baralho.push(baralhoAdicional);
-            m.edit("OK !!! Novo baralho adicionado.")
+            setTimeout(()=>{m.edit("OK !!! Novo baralho adicionado.")},2000);
         }
     }
+
 
     // comando para testes
     if(args[0].toLowerCase()==="teste") {
@@ -82,7 +84,7 @@ exports.run = async (client, message, args) => {
 
 
     //Entrar no jogo
-    if (args[0].toLowerCase() === "add") {
+    if (args[0].toLowerCase() === "add"|| args[0].toLowerCase() === "a") {
         message.delete();
         const membro = getMember(message, args[1]);
         var addJogador = membro.user.username;
@@ -127,7 +129,7 @@ exports.run = async (client, message, args) => {
 
     
     //Comando p/ iniciar partida
-    if (args[0].toLowerCase() === "iniciar") {
+    if (args[0].toLowerCase() === "iniciar"|| args[0].toLowerCase() === "i") {
         message.delete();
         if(jogoAtivo) {
             return message.reply(`Já tem um jogo de UNO em andamento.`);
@@ -159,7 +161,7 @@ exports.run = async (client, message, args) => {
 
 
     //Comando para exibir quem está jogando
-    if (args[0].toLowerCase() === "jogadores") {
+    if (args[0].toLowerCase() === "jogadores"|| args[0].toLowerCase() === "jgd") {
         
         if (jogadores.length === 0){
             message.channel.send("Não existe nenhum jogador no momento.");
@@ -184,7 +186,7 @@ exports.run = async (client, message, args) => {
     
 
     //Comprar carta do baralho
-    if (args[0].toLowerCase() === "comprar") {
+    if (args[0].toLowerCase() === "comprar"|| args[0].toLowerCase() === "cp") {
         message.delete();
         if (jogoAtivo) {
             if(jogadores[0].salvo) {
@@ -230,7 +232,7 @@ exports.run = async (client, message, args) => {
 
 
     //Aguarda escolha da cor, caso esteja pendente
-    if(args[0].toLowerCase()==="cor") {
+    if(args[0].toLowerCase()==="cor"|| args[0].toLowerCase() === "c") {
         message.delete();
         if(!statusCor.status) {
             return message.reply(`você não pode usar este comando no momento`);
@@ -257,7 +259,7 @@ exports.run = async (client, message, args) => {
 
 
     //Jogar carta da mão
-    if(args[0].toLowerCase() === "jogar") {
+    if(args[0].toLowerCase() === "jogar"|| args[0].toLowerCase() === "j") {
         message.delete();
         if (!jogoAtivo) {
             return message.reply('Parece que o jogo ainda não começou.');
@@ -556,7 +558,7 @@ exports.run = async (client, message, args) => {
 
 
     //comando para sair da partida
-    if(args[0].toLowerCase()==="sair") {
+    if(args[0].toLowerCase()==="sair"|| args[0].toLowerCase() === "s") {
         if(jogadores.length===0) {
             return message.reply(`A lista de jogadores está vazia.`);
         }
@@ -594,9 +596,41 @@ exports.run = async (client, message, args) => {
         return salaAtual.send(`${alvoSair} saiu da partida atual.`);
     }   
 
+
+    //comando de ajuda
+    if (args[0].toLowerCase() === "ajuda" || args[0].toLowerCase() === "h" )  {
+        message.delete();
+        let regras = await message.guild.channels.get("695643704236572793");
+        message.reply(`Aqui vai uma ajudinha para os comandos:
+        \`\`\`
+        ╔════════════════╦══════════════════════╦═══════════════╗
+        ║     COMANDO    ║        FUNÇÃO        ║ COMANDO CURTO ║
+        ╠════════════════╬══════════════════════╬═══════════════╣
+        ║ !uno add       ║ Adiciona jogador     ║ !uno a        ║
+        ╠════════════════╬══════════════════════╬═══════════════╣
+        ║ !uno iniciar   ║ Inicia o jogo        ║ !uno i        ║
+        ╠════════════════╬══════════════════════╬═══════════════╣
+        ║ !uno jogadores ║ Exibe jogadores      ║ !uno jgd      ║
+        ╠════════════════╬══════════════════════╬═══════════════╣
+        ║ !uno jogar     ║ Joga carta escolhida ║ !uno j        ║
+        ╠════════════════╬══════════════════════╬═══════════════╣
+        ║ !uno comprar   ║ Compra carta(s)      ║ !uno cp       ║
+        ╠════════════════╬══════════════════════╬═══════════════╣
+        ║ !uno proximo   ║ Pula sua vez         ║ !uno p        ║
+        ╠════════════════╬══════════════════════╬═══════════════╣
+        ║ !uno cor       ║ Escolhe cor          ║ !uno c        ║
+        ╠════════════════╬══════════════════════╬═══════════════╣
+        ║ !uno uno       ║ Salva jogador        ║ !uno u        ║
+        ╠════════════════╬══════════════════════╬═══════════════╣
+        ║ !uno sair      ║ Sai do jogo          ║ !uno s        ║
+        ╚════════════════╩══════════════════════╩═══════════════╝\`\`\`
+        Não encontrou o que queria? Confira o canal ${regras}`)
+        return;
+    }
     
+
     //UNO !!!
-    if (args[0].toLowerCase() === "uno")  {
+    if (args[0].toLowerCase() === "uno"|| args[0].toLowerCase() === "u")  {
         message.delete();
         if (!jogoAtivo) {
             message.reply(`Não tem ninguém jogando UNO no momento.`);
