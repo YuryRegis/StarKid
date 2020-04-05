@@ -560,32 +560,38 @@ exports.run = async (client, message, args) => {
         if(jogadores.length===0) {
             return message.reply(`A lista de jogadores está vazia.`);
         }
+        let aviso = "";
         var id = message.author.id;
-        if(validaAdmin) {
-            var mencao = message.mentions.members.first();
-            if(mencao !== undefined) {
-                id = mencao.id
-           }
+        const alvoSair = await client.users.get(id);
+        const mencao = await message.mentions.members.first();
 
+        if(mencao !== undefined) {
+            if(validaAdmin) {
+                id = mencao.id
+            } else return message.reply("apenas **Staff** pode excluir algúem do jogo.")
         }
+        
         if(statusCor.status===true && statusCor.id===id) {
-            var msg = `Você precisa escolher uma cor antes de abandonar a partida.\n`;
-            salaAtual.send(msg+"Use o comando `!uno cor` para escolher uma cor.");
+            aviso = `${alvoSair.nome} precisa escolher uma cor antes de abandonar a partida.\n`;
+            salaAtual.send(aviso+`${alvoSair}, use o comando \`!uno cor\` para escolher uma cor.`);
             return;
         }
-        var indice = -1;
-        for(i=0; i<jogadores.length; i++) {
-            if (jogadores[i].id === id) {indice = i;}
-        }
+        let aux = [];
+        let indice = -1;
+
+        jogadores.forEach((jogador, index)=>{
+            if(jogador.id===id) { 
+                indice = index;
+                aux = jogador.mao;
+            }
+        });    
         if(indice===-1) {
             return message.reply("você, ou a pessoa procurada, não se encontra na lista de jogadores atual.");
         }
-        var aux = jogadores[i].mao;
         aux.forEach(carta => { baralho.push(carta) });
         jogadores.splice(indice, 1);
 
-        var alvo = client.users.get(id);
-        return salaAtual.send(`${alvo} saiu da partida atual.`);
+        return salaAtual.send(`${alvoSair} saiu da partida atual.`);
     }   
 
     
