@@ -58,6 +58,17 @@ exports.run = async (client, message, args) => {
             baralho = await baralho.push(baralhoAdicional);
             setTimeout(()=>{m.edit("OK !!! Novo baralho adicionado.")},2000);
         }
+        
+        if(jAnterior.salvo && jAnterior.mao.length!==1) {
+            checarBaralho(2);
+            jAnterior.salvo = false;
+            baralho, jAnterior = comprarCarta(2, baralho, jAnterior);
+            let punicao = "Parece que você falou **uno** sem ter 1 carta na mão. Punido com +2 cartas."
+            let alvojAnterior = await message.guild.members.get(jAnterior.id);
+            await alvojAnterior.send(punicao + mostrarMao(jAnterior));
+            salaAtual.send(`🗣️ **${jAnterior.nome}** punido com +2 cartas por falar **uno** sem ter 1 carta na mão`);
+            return;
+        }
     }
 
 
@@ -261,9 +272,15 @@ exports.run = async (client, message, args) => {
     //Jogar carta da mão
     if(args[0].toLowerCase() === "jogar"|| args[0].toLowerCase() === "j") {
         message.delete();
+        jAtual = jogadores[0];
+        
         if (!jogoAtivo) {
             return message.reply('Parece que o jogo ainda não começou.');
         }
+        if(jAtual.id !== message.author.id){
+            return message.reply(`aguarde sua vez, agora **${jAtual.nome}** está jogando...`);
+        }
+        
         var carta = {};
         var indice = -1;
         args.splice(0,1);
@@ -529,7 +546,7 @@ exports.run = async (client, message, args) => {
 
 
     //Pular sua vez
-    if (args[0].toLowerCase() === "proximo" || args[0].toLowerCase() === "próximo") {
+    if (args[0].toLowerCase() === "proximo" || args[0].toLowerCase() === "próximo" || args[0].toLowerCase() === "p") {
         message.delete();
 
         if (jogoAtivo) {
@@ -563,15 +580,15 @@ exports.run = async (client, message, args) => {
             return message.reply(`A lista de jogadores está vazia.`);
         }
         let aviso = "";
-        var id = message.author.id;
-        const alvoSair = await client.users.get(id);
+        let id = message.author.id;
         const mencao = await message.mentions.members.first();
-
+        
         if(mencao !== undefined) {
             if(validaAdmin) {
                 id = mencao.id
             } else return message.reply("apenas **Staff** pode excluir algúem do jogo.")
         }
+        let alvoSair = await client.users.get(id);
         
         if(statusCor.status===true && statusCor.id===id) {
             aviso = `${alvoSair.nome} precisa escolher uma cor antes de abandonar a partida.\n`;
@@ -638,8 +655,8 @@ exports.run = async (client, message, args) => {
         }
         const alvoUno = message.mentions.members.first();
         
-        var indiceUno = -1;
-        var idAutor = message.author.id;
+        let indiceUno = -1;
+        let idAutor = message.author.id;
 
         for(i=0; i<jogadores.length; i++){
             if(jogadores[i].id === idAutor){
@@ -656,9 +673,13 @@ exports.run = async (client, message, args) => {
                 if(requisitante.mao.length === 1){
                     if(requisitante.salvo) {
                         return message.reply(`você já está salvo. 👼`);
-                    }
+                    }    
                     requisitante.salvo = true;
                     return message.reply(`foi salvo!\nFalou **UNO** bem a tempo. 👍`);
+                }
+                if(requisitante.mao.length === 2 && idAutor===jAtual.id) {
+                    requisitante.salvo=true;
+                    return message.reply(`Se salvou ! 👼`)
                 }
                 return message.reply(`use UNO apenas quando tiver **uma carta** na mão.`);
             }
