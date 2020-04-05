@@ -709,6 +709,13 @@ exports.run = async (client, message, args) => {
         return message.reply(`tem certeza que ${nomeUno} esta jogando?`);
     }
 
+
+    //Encerrar partida
+    if (args[0].toLowerCase() === "encerrar"|| args[0].toLowerCase() === "e")  {
+        if(validaAdmin && jogoAtivo) {
+            return reset();
+        }
+        return message.reply("sem partida ativa no momento.");
 } 
 
 
