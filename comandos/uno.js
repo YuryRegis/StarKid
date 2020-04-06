@@ -173,7 +173,7 @@ exports.run = async (client, message, args) => {
 
 
     //Comando para exibir quem está jogando
-    if (args[0].toLowerCase() === "jogadores"|| args[0].toLowerCase() === "jgd") {
+    if (args[0].toLowerCase() === "jogadores"|| args[0].toLowerCase() === "j") {
         
         if (jogadores.length === 0){
             message.channel.send("Não existe nenhum jogador no momento.");
@@ -198,7 +198,7 @@ exports.run = async (client, message, args) => {
     
 
     //Comprar carta do baralho
-    if (args[0].toLowerCase() === "comprar"|| args[0].toLowerCase() === "cp") {
+    if (args[0].toLowerCase() === "comprar"|| args[0].toLowerCase() === "cc") {
         message.delete();
         if (jogoAtivo) {
             if(jogadores[0].salvo) {
@@ -271,7 +271,7 @@ exports.run = async (client, message, args) => {
 
 
     //Jogar carta da mão
-    if(args[0].toLowerCase() === "jogar"|| args[0].toLowerCase() === "j") {
+    if(args[0].toLowerCase() === "jogar"|| args[0].toLowerCase() === "jc") {
         message.delete();
         jAtual = jogadores[0];
         
@@ -628,11 +628,11 @@ exports.run = async (client, message, args) => {
         ╠════════════════╬══════════════════════╬═══════════════╣
         ║ !uno iniciar   ║ Inicia o jogo        ║ !uno i        ║
         ╠════════════════╬══════════════════════╬═══════════════╣
-        ║ !uno jogadores ║ Exibe jogadores      ║ !uno jgd      ║
+        ║ !uno jogadores ║ Exibe jogadores      ║ !uno j        ║
         ╠════════════════╬══════════════════════╬═══════════════╣
-        ║ !uno jogar     ║ Joga carta escolhida ║ !uno j        ║
+        ║ !uno jogar     ║ Joga carta escolhida ║ !uno jc       ║
         ╠════════════════╬══════════════════════╬═══════════════╣
-        ║ !uno comprar   ║ Compra carta(s)      ║ !uno cp       ║
+        ║ !uno comprar   ║ Compra carta(s)      ║ !uno cc       ║
         ╠════════════════╬══════════════════════╬═══════════════╣
         ║ !uno proximo   ║ Pula sua vez         ║ !uno p        ║
         ╠════════════════╬══════════════════════╬═══════════════╣
