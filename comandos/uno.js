@@ -1,11 +1,13 @@
 const json = require(`./uno.json`);
 const {RichEmbed} = require(`discord.js`);
+const { addRank, buscaJogador, atualizar, deleteDado, listarDado, unoRank } = require('./assets/uno/funcoes');
 const {getRandomInt, getMember, encerrarPartida, somaPontos} = require(`../funcoes.js`);
 const {comprarCarta, mostrarMao, mostrarMesa, pularJogador} = require(`../funcoes.js`);
 
 
 class Jogador {
-    constructor(nome="", mao=[], id="", salvo=false){
+    constructor(nome="", mao=[], id="", salvo=false, pontos=0){
+        this.pontos= pontos;
         this.salvo = salvo;
         this.nome = nome;
         this.mao = mao;
@@ -16,6 +18,7 @@ class Jogador {
 
 var mesa = [];
 var lotacao = 9;
+const punicao = 30;
 var jogadores = [];
 var contBaralho = 1;
 var jogoAtivo = false;
@@ -76,7 +79,14 @@ exports.run = async (client, message, args) => {
     if(args[0].toLowerCase()==="teste") {
         message.delete();
         
-        somaPontos(jogadores)
+        let embed = new RichEmbed()
+        embed = await unoRank(embed);
+        message.reply(embed)
+        // addRank(jogadores[0]);
+        // atualizar(jogadores[0])
+        // deleteDado(message.author.id)
+        // buscaJogador(message.author.id)
+
         // var myGuild = await client.guilds.get(message.guild.id)
         // var myMbrGuild = myGuild.members
         // var members = []
@@ -126,7 +136,7 @@ exports.run = async (client, message, args) => {
             errStatus = false;
             return;
         }
-        var jogador = new Jogador(nomeAlvo, [], membro.user.id);
+        let jogador = new Jogador(nomeAlvo, [], membro.user.id);
         
         baralho, jogador = comprarCarta(7, baralho, jogador);
         await alvo.send(mostrarMao(jogador)).then().catch(err => {salaAtual.send(`\`\`\`${err}\`\`\``)});
@@ -136,6 +146,11 @@ exports.run = async (client, message, args) => {
         await jogadores.push(jogador);  
         console.log(`UNO: ${nomeAlvo} adicionado à lista de jogadores`);
         salaAtual.send(`${nomeAlvo} adicionado à lista de jogadores`);
+
+        let dataBase = await addRank(jogador);
+        if(!dataBase){
+            console.log(`UNO: ${nomeAlvo} adicionado ao banco de dados.`);
+        }
         return; // console.log(jogadores);
     }
 
@@ -426,14 +441,28 @@ exports.run = async (client, message, args) => {
                 jSeguinte = jogadores[1];
                 jAtual = jogadores[0];
 
-                var embed = new RichEmbed();
+                let embed = new RichEmbed();
                 embed = mostrarMesa(jAnterior, jAtual, jSeguinte, embed, mesa[0]);
                 await salaAtual.send(embed);
 
                 if(cartas.length===0) {
-                    var embed = new RichEmbed;
-                    encerrarPartida(client, jAnterior, embed);
-                    await salaAtual.send(embed);
+                    let rank = new RichEmbed();
+                    let fimDeJogo = new RichEmbed();
+ 
+                    fimDeJogo = encerrarPartida(client, jAnterior, fimDeJogo);
+                    await salaAtual.send(fimDeJogo);
+                    await salaAtual.send('Placar **geral** do servidor:');
+                    
+                    jogadores.forEach(async jogador => {
+                        jogador.pontos -= punicao;
+                        if(jogador.pontos < 0){
+                            jogador.pontos = 0;
+                            await atualizar(jogador);
+                        }
+                    });
+                    jAnterior.pontos = await somaPontos(jogadores);
+                    await atualizar(jAnterior);
+                    salaAtual.send(unoRank(rank));
                     return reset();
                 }
                 salaAtual.send(`${jAtual.nome} use o comando \`!uno comprar\` ou jogue outro **"+2"** para cobrir.`);
@@ -470,10 +499,24 @@ exports.run = async (client, message, args) => {
                 embed = mostrarMesa(jAnterior, jAtual, jSeguinte, embed, mesa[0]);
                 await salaAtual.send(embed);
 
-                if(cartas.length===0) {
-                    var embed = new RichEmbed;
-                    encerrarPartida(client, infoAtual, embed);
-                    salaAtual.send(embed);
+                if(cartas.length===0) {  //fim de jogo
+                    let rank = new RichEmbed();
+                    let fimDeJogo = new RichEmbed();
+ 
+                    fimDeJogo = encerrarPartida(client, infoAtual, fimDeJogo);
+                    await salaAtual.send(fimDeJogo);
+                    await salaAtual.send('Placar **geral** do servidor:');
+                    
+                    jogadores.forEach(async jogador => {
+                        jogador.pontos -= punicao;
+                        if(jogador.pontos < 0){
+                            jogador.pontos = 0;
+                            await atualizar(jogador);
+                        }
+                    });
+                    infoAtual.pontos = await somaPontos(jogadores);
+                    await atualizar(infoAtual);
+                    salaAtual.send(unoRank(rank));
                     return reset();
                 }
                 return salaAtual.send(`Aguardando ${jAtual.nome} fazer a sua jogada...`)
@@ -505,9 +548,23 @@ exports.run = async (client, message, args) => {
                 await salaAtual.send(embed);
 
                 if(cartas.length===0) {
-                    var embed = new RichEmbed;
-                    encerrarPartida(client, infoJogador, embed);
-                    salaAtual.send(embed);
+                    let rank = new RichEmbed();
+                    let fimDeJogo = new RichEmbed();
+ 
+                    fimDeJogo = encerrarPartida(client, infoJogador, fimDeJogo);
+                    await salaAtual.send(fimDeJogo);
+                    await salaAtual.send('Placar **geral** do servidor:');
+                    
+                    jogadores.forEach(async jogador => {
+                        jogador.pontos -= punicao;
+                        if(jogador.pontos < 0){
+                            jogador.pontos = 0;
+                            await atualizar(jogador);
+                        }
+                    });
+                    infoJogador.pontos = await somaPontos(jogadores);
+                    await atualizar(infoJogador);
+                    salaAtual.send(unoRank(rank));
                     return reset();
                 }
                 return salaAtual.send(`Aguardando ${jAtual.nome} fazer a sua jogada...`);
@@ -533,10 +590,24 @@ exports.run = async (client, message, args) => {
             embed = mostrarMesa(jAnterior, jAtual, jSeguinte, embed, mesa[0]);
             await salaAtual.send(embed);
             if(cartas.length===0) {
-                var embed = new RichEmbed;
-                encerrarPartida(client, jAnterior, embed);
-                salaAtual.send(embed);
-                return reset();
+                    let rank = new RichEmbed();
+                    let fimDeJogo = new RichEmbed();
+ 
+                    fimDeJogo = encerrarPartida(client, jAnterior, fimDeJogo);
+                    await salaAtual.send(fimDeJogo);
+                    await salaAtual.send('Placar **geral** do servidor:');
+                    
+                    jogadores.forEach(async jogador => {
+                        jogador.pontos -= punicao;
+                        if(jogador.pontos < 0){
+                            jogador.pontos = 0;
+                            await atualizar(jogador);
+                        }
+                    });
+                    jAnterior.pontos = await somaPontos(jogadores);
+                    await atualizar(jAnterior);
+                    salaAtual.send(unoRank(rank));
+                    return reset();
             }
             return salaAtual.send(`Aguardando ${jAtual.nome} fazer a sua jogada...`);
         }   

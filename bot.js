@@ -1,12 +1,13 @@
+const queue = new Map();
+const fs = require("fs");
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const fs = require("fs");
 const config = require("./config.json")
 const newmember = require("./newmember.cjs");
+const { dbUno } = require("./Routes/rotas");
 const messageHandler = require("./messageHandler.cjs");
-//const messageBotHandler = require("./messageBotHandler.mjs")
 //const reactionHandler = require("./reactionHandler.mjs")
-const queue = new Map();
+//const messageBotHandler = require("./messageBotHandler.mjs")
 
 client.commands = new Discord.Collection(); //Cria coleção de comandos
 
@@ -24,7 +25,10 @@ fs.readdir("./comandos/",(erro, arquivo) => {
 
 client.on("ready", () => {
     console.log(`Bot iniciado! ${client.users.size} usuários, ${client.channels.size} canais e ${client.guilds.size} servidores.`);
-    client.user.setActivity(`Sky: Filhos da luz`);
+	client.user.setActivity(`Sky: Filhos da luz`);
+	if(dbUno()) {
+		console.log("Rota: banco de dados OK");
+	};
 })
 
 
