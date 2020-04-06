@@ -1,8 +1,8 @@
 const json = require(`./uno.json`);
 const {RichEmbed} = require(`discord.js`);
-const { addRank, buscaJogador, atualizar, deleteDado, listarDado, unoRank } = require('./assets/uno/funcoes');
-const {getRandomInt, getMember, encerrarPartida, somaPontos} = require(`../funcoes.js`);
+const { addRank, atualizar, unoRank } = require('./assets/uno/funcoes');
 const {comprarCarta, mostrarMao, mostrarMesa, pularJogador} = require(`../funcoes.js`);
+const {getRandomInt, getMember, encerrarPartida, somaPontos} = require(`../funcoes.js`);
 
 
 class Jogador {
@@ -42,15 +42,26 @@ exports.run = async (client, message, args) => {
     const salaCorreta = await message.guild.channels.get(SalaID);
     const validaAdmin = await message.member.roles
             .some(r =>  r.name === "Staff" || r.name === "Admin");
+            
+
+    if(args[0] === undefined) {
+        return message.reply(`Erro de sintaxe.\nVerifique o canal #comandos_bot para corrigir o comando.`);
+    }
+
+
+    if(salaAtual.id === SalaID || salaAtual.id === '653744153171066880') {
+        if(args[0].toLowerCase() === "rank" || args[0].toLowerCase() === "r") {
+            let rank = new RichEmbed();
+            return salaAtual.send(unoRank(rank));
+        } 
+    }
+
 
     if (String(salaAtual.id) !== SalaID) {
         message.delete();
         return message.reply(`Você não pode usar este comando nesta sala de chat. Use o canal ${salaCorreta}, por gentileza`);
     }
 
-    if(args[0] === undefined) {
-        return message.reply(`Erro de sintaxe.\nVerifique o canal #comandos_bot para corrigir o comando.`);
-    }
 
     if(jogoAtivo) {
         if(jogadores.length > lotacao) {
@@ -78,10 +89,7 @@ exports.run = async (client, message, args) => {
     // comando para testes
     if(args[0].toLowerCase()==="teste") {
         message.delete();
-        
-        let embed = new RichEmbed()
-        embed = await unoRank(embed);
-        message.reply(embed)
+               
         // addRank(jogadores[0]);
         // atualizar(jogadores[0])
         // deleteDado(message.author.id)
@@ -696,6 +704,8 @@ exports.run = async (client, message, args) => {
         ║     COMANDO    ║        FUNÇÃO        ║ COMANDO CURTO ║
         ╠════════════════╬══════════════════════╬═══════════════╣
         ║ !uno add       ║ Adiciona jogador     ║ !uno a        ║
+        ╠════════════════╬══════════════════════╬═══════════════╣
+        ║ !uno rank      ║ Exibe rank geral     ║ !uno r        ║
         ╠════════════════╬══════════════════════╬═══════════════╣
         ║ !uno iniciar   ║ Inicia o jogo        ║ !uno i        ║
         ╠════════════════╬══════════════════════╬═══════════════╣
