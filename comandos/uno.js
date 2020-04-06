@@ -1,6 +1,6 @@
-const json = require(`./uno.json`);
+const json = require(`./assets/uno/uno.json`);
 const {RichEmbed} = require(`discord.js`);
-const {getRandomInt, getMember, encerrarPartida} = require(`../funcoes.js`);
+const {getRandomInt, getMember, encerrarPartida, somaPontos} = require(`../funcoes.js`);
 const {comprarCarta, mostrarMao, mostrarMesa, pularJogador} = require(`../funcoes.js`);
 
 
@@ -76,6 +76,7 @@ exports.run = async (client, message, args) => {
     if(args[0].toLowerCase()==="teste") {
         message.delete();
         
+        somaPontos(jogadores[0], jogadores)
         // var myGuild = await client.guilds.get(message.guild.id)
         // var myMbrGuild = myGuild.members
         // var members = []
@@ -640,6 +641,8 @@ exports.run = async (client, message, args) => {
         ║ !uno uno       ║ Salva jogador        ║ !uno u        ║
         ╠════════════════╬══════════════════════╬═══════════════╣
         ║ !uno sair      ║ Sai do jogo          ║ !uno s        ║
+        ╠════════════════╬══════════════════════╬═══════════════╣
+        ║ !uno encerrar  ║ Finaliza partida     ║ !uno e        ║
         ╚════════════════╩══════════════════════╩═══════════════╝\`\`\`
         Não encontrou o que queria? Confira o canal ${regras}`)
         return;

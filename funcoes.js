@@ -142,6 +142,29 @@ module.exports = {
             .setFooter(`ThatSkyGameBrasil - UNO!!!`, `https://www.psxbrasil.com.br/trophyguide/uno/logo.png`);
         
         return embed;
-    }
+    },
+
+    somaPontos: function(jogadores) {
+        let pontos = [];
+
+        jogadores.forEach(jogador => {
+            let ponto = 0;
+            let mao = jogador.mao;
+            mao.forEach(carta => {
+                const intID = parseInt(carta.id);
+                if(intID<10) {
+                    ponto += intID;
+                }
+                if(intID > 9 && intID <13){
+                    ponto += 20;
+                } else {
+                    ponto += 50;
+                }
+            })
+            pontos.push(ponto);
+        });
+        console.log(pontos)
+        return  pontos;
+    }   
     
 };
