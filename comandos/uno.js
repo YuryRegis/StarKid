@@ -1,4 +1,4 @@
-const json = require(`./assets/uno/uno.json`);
+const json = require(`./uno.json`);
 const {RichEmbed} = require(`discord.js`);
 const {getRandomInt, getMember, encerrarPartida, somaPontos} = require(`../funcoes.js`);
 const {comprarCarta, mostrarMao, mostrarMesa, pularJogador} = require(`../funcoes.js`);
@@ -76,7 +76,7 @@ exports.run = async (client, message, args) => {
     if(args[0].toLowerCase()==="teste") {
         message.delete();
         
-        somaPontos(jogadores[0], jogadores)
+        somaPontos(jogadores)
         // var myGuild = await client.guilds.get(message.guild.id)
         // var myMbrGuild = myGuild.members
         // var members = []
@@ -719,6 +719,7 @@ exports.run = async (client, message, args) => {
             return reset();
         }
         return message.reply("sem partida ativa no momento.");
+    }
 } 
 
 

@@ -145,7 +145,11 @@ module.exports = {
     },
 
     somaPontos: function(jogadores) {
+        if(jogadores.length===0){
+            return console.log("somaPontos: Nenhum jogador na lista.")
+        }
         let pontos = [];
+        let maiorPontuacao = 0;
 
         jogadores.forEach(jogador => {
             let ponto = 0;
@@ -157,14 +161,20 @@ module.exports = {
                 }
                 if(intID > 9 && intID <13){
                     ponto += 20;
-                } else {
+                } 
+                if(intID>=13) {
                     ponto += 50;
                 }
             })
             pontos.push(ponto);
         });
-        console.log(pontos)
-        return  pontos;
+        pontos.forEach(p => {
+            if(p > maiorPontuacao){
+                maiorPontuacao = p;
+            }
+        })
+        console.log("somaPontos: Maior pontuação -> ", maiorPontuacao);
+        return  maiorPontuacao;
     }   
     
 };
