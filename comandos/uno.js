@@ -28,7 +28,7 @@ var jAnterior = new Jogador();
 var jSeguinte = new Jogador();
 var statusCor = {"status": false, "cor":"", "id":"", "escolhido":false};
 var statusPlus = {"status":false, "valor":0, "id":""}; 
-const SalaID = "695833449205989376";  //ID da sala permitida para jogar
+const SalaID = "695640007494467604";  //ID da sala permitida para jogar
 var baralho = JSON.parse(JSON.stringify(json));
 
 
