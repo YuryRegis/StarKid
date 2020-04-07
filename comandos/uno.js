@@ -1,6 +1,6 @@
 const json = require(`./uno.json`);
 const {RichEmbed} = require(`discord.js`);
-const { addRank, atualizar, unoRank } = require('./assets/uno/funcoes');
+const { addRank, atualizar, unoRank, listarDado } = require('./assets/uno/funcoes');
 const {comprarCarta, mostrarMao, mostrarMesa, pularJogador} = require(`../funcoes.js`);
 const {getRandomInt, getMember, encerrarPartida, somaPontos} = require(`../funcoes.js`);
 
@@ -111,6 +111,18 @@ exports.run = async (client, message, args) => {
         // })
 
         return 
+    }
+
+    
+    //listar banco de dados
+    if(args[0].toLowerCase()==="database" || args[0].toLowerCase() === "db") {
+        message.delete();
+
+        if(validaAdmin) {
+            let resposta = await listarDado();
+            salaAtual.send(`Terminal - DataBase \`\`\`${resposta}\`\`\` `);
+            return;
+        }
     }
 
 

@@ -12,9 +12,9 @@ module.exports = {
     //add jogador na base de dados
     addRank: async function(jogador) {
         let resposta = await dbUnoBuscar(jogador.id);
-
+        console.log(`addRank: ${jogador.nome} => ${resposta}`)
         if(resposta===undefined) {
-            dbUnoCriar(jogador);
+            await dbUnoCriar(jogador);
             return true;
         }
         return false;
@@ -31,6 +31,7 @@ module.exports = {
     //atualiza dado do jogador 
     atualizar: function(jogador) {
         dbUnoEditar(jogador);
+
         return true;
     },
 
