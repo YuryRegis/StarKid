@@ -51,8 +51,9 @@ exports.run = async (client, message, args) => {
 
     if(salaAtual.id === SalaID || salaAtual.id === '653744153171066880') {
         if(args[0].toLowerCase() === "rank" || args[0].toLowerCase() === "r") {
+            message.delete();
             let rank = new RichEmbed();
-            return salaAtual.send(unoRank(rank));
+            return salaAtual.send(await unoRank(rank));
         } 
     }
 
@@ -127,7 +128,7 @@ exports.run = async (client, message, args) => {
         var nomeAlvo = addJogador;
     
         if (addJogador !== alvo.username) {
-            alvo = message.mentions.members.first();
+            alvo = await message.mentions.members.first();
             nomeAlvo = alvo.user.username;
             console.log('Alvo: ',nomeAlvo);
         }
@@ -156,7 +157,7 @@ exports.run = async (client, message, args) => {
         salaAtual.send(`${nomeAlvo} adicionado à lista de jogadores`);
 
         let dataBase = await addRank(jogador);
-        if(!dataBase){
+        if(dataBase){
             console.log(`UNO: ${nomeAlvo} adicionado ao banco de dados.`);
         }
         return; // console.log(jogadores);
@@ -312,8 +313,8 @@ exports.run = async (client, message, args) => {
         var palavraProcurada = args.join(" ").toLowerCase();
         for(i=0; i<cartas.length; i++) {
             var cartaMao = cartas[i];
-            console.log(cartaMao.titulo, palavraProcurada);
-            console.log(cartaMao.titulo.toLowerCase()===palavraProcurada.toLowerCase());
+            // console.log(cartaMao.titulo, palavraProcurada);
+            // console.log(cartaMao.titulo.toLowerCase()===palavraProcurada.toLowerCase());
             if (palavraProcurada === cartaMao.titulo.toLowerCase()) {
 
                 indice = i;     //encontrei a carta
@@ -470,7 +471,7 @@ exports.run = async (client, message, args) => {
                     });
                     jAnterior.pontos = await somaPontos(jogadores);
                     await atualizar(jAnterior);
-                    salaAtual.send(unoRank(rank));
+                    salaAtual.send(await unoRank(rank));
                     return reset();
                 }
                 salaAtual.send(`${jAtual.nome} use o comando \`!uno comprar\` ou jogue outro **"+2"** para cobrir.`);
@@ -524,7 +525,7 @@ exports.run = async (client, message, args) => {
                     });
                     infoAtual.pontos = await somaPontos(jogadores);
                     await atualizar(infoAtual);
-                    salaAtual.send(unoRank(rank));
+                    salaAtual.send(await unoRank(rank));
                     return reset();
                 }
                 return salaAtual.send(`Aguardando ${jAtual.nome} fazer a sua jogada...`)
@@ -572,7 +573,7 @@ exports.run = async (client, message, args) => {
                     });
                     infoJogador.pontos = await somaPontos(jogadores);
                     await atualizar(infoJogador);
-                    salaAtual.send(unoRank(rank));
+                    salaAtual.send(await unoRank(rank));
                     return reset();
                 }
                 return salaAtual.send(`Aguardando ${jAtual.nome} fazer a sua jogada...`);
@@ -614,7 +615,7 @@ exports.run = async (client, message, args) => {
                     });
                     jAnterior.pontos = await somaPontos(jogadores);
                     await atualizar(jAnterior);
-                    salaAtual.send(unoRank(rank));
+                    salaAtual.send(await unoRank(rank));
                     return reset();
             }
             return salaAtual.send(`Aguardando ${jAtual.nome} fazer a sua jogada...`);
