@@ -18,7 +18,7 @@ class Jogador {
 
 var mesa = [];
 var lotacao = 9;
-const punicao = 30;
+const punicao = 5;
 var jogadores = [];
 var contBaralho = 1;
 var jogoAtivo = false;
@@ -90,7 +90,7 @@ exports.run = async (client, message, args) => {
     // comando para testes
     if(args[0].toLowerCase()==="teste") {
         message.delete();
-               
+        
         // addRank(jogadores[0]);
         // atualizar(jogadores[0])
         // deleteDado(message.author.id)
@@ -120,7 +120,14 @@ exports.run = async (client, message, args) => {
 
         if(validaAdmin) {
             let resposta = await listarDado();
-            salaAtual.send(`Terminal - DataBase \`\`\`${resposta}\`\`\` `);
+            let terminal = "Terminal - DataBase";
+            let dbinfo = "";
+            resposta.forEach(dado => {
+                dbinfo += `${dado.id} ${dado.nome} ${dado.pontos}\n`
+            })
+            salaAtual.send(`${terminal}\`\`\`${dbinfo}\`\`\` `)
+                .then()
+                .catch(err => { salaAtual.send(`${terminal}\`\`\`${err}\`\`\` `) })
             return;
         }
     }
@@ -713,31 +720,31 @@ exports.run = async (client, message, args) => {
         let regras = await message.guild.channels.get("695643704236572793");
         message.reply(`Aqui vai uma ajudinha para os comandos:
         \`\`\`
-        ╔════════════════╦══════════════════════╦═══════════════╗
-        ║     COMANDO    ║        FUNÇÃO        ║ COMANDO CURTO ║
-        ╠════════════════╬══════════════════════╬═══════════════╣
-        ║ !uno add       ║ Adiciona jogador     ║ !uno a        ║
-        ╠════════════════╬══════════════════════╬═══════════════╣
-        ║ !uno rank      ║ Exibe rank geral     ║ !uno r        ║
-        ╠════════════════╬══════════════════════╬═══════════════╣
-        ║ !uno iniciar   ║ Inicia o jogo        ║ !uno i        ║
-        ╠════════════════╬══════════════════════╬═══════════════╣
-        ║ !uno jogadores ║ Exibe jogadores      ║ !uno j        ║
-        ╠════════════════╬══════════════════════╬═══════════════╣
-        ║ !uno jogar     ║ Joga carta escolhida ║ !uno jc       ║
-        ╠════════════════╬══════════════════════╬═══════════════╣
-        ║ !uno comprar   ║ Compra carta(s)      ║ !uno cc       ║
-        ╠════════════════╬══════════════════════╬═══════════════╣
-        ║ !uno proximo   ║ Pula sua vez         ║ !uno p        ║
-        ╠════════════════╬══════════════════════╬═══════════════╣
-        ║ !uno cor       ║ Escolhe cor          ║ !uno c        ║
-        ╠════════════════╬══════════════════════╬═══════════════╣
-        ║ !uno uno       ║ Salva jogador        ║ !uno u        ║
-        ╠════════════════╬══════════════════════╬═══════════════╣
-        ║ !uno sair      ║ Sai do jogo          ║ !uno s        ║
-        ╠════════════════╬══════════════════════╬═══════════════╣
-        ║ !uno encerrar  ║ Finaliza partida     ║ !uno e        ║
-        ╚════════════════╩══════════════════════╩═══════════════╝\`\`\`
+╔════════════════╦══════════════════════╦═══════════════╗
+║     COMANDO    ║        FUNÇÃO        ║ COMANDO CURTO ║
+╠════════════════╬══════════════════════╬═══════════════╣
+║ !uno add       ║ Adiciona jogador     ║ !uno a        ║
+╠════════════════╬══════════════════════╬═══════════════╣
+║ !uno rank      ║ Exibe rank geral     ║ !uno r        ║
+╠════════════════╬══════════════════════╬═══════════════╣
+║ !uno iniciar   ║ Inicia o jogo        ║ !uno i        ║
+╠════════════════╬══════════════════════╬═══════════════╣
+║ !uno jogadores ║ Exibe jogadores      ║ !uno j        ║
+╠════════════════╬══════════════════════╬═══════════════╣
+║ !uno jogar     ║ Joga carta escolhida ║ !uno jc       ║
+╠════════════════╬══════════════════════╬═══════════════╣
+║ !uno comprar   ║ Compra carta(s)      ║ !uno cc       ║
+╠════════════════╬══════════════════════╬═══════════════╣
+║ !uno proximo   ║ Pula sua vez         ║ !uno p        ║
+╠════════════════╬══════════════════════╬═══════════════╣
+║ !uno cor       ║ Escolhe cor          ║ !uno c        ║
+╠════════════════╬══════════════════════╬═══════════════╣
+║ !uno uno       ║ Salva jogador        ║ !uno u        ║
+╠════════════════╬══════════════════════╬═══════════════╣
+║ !uno sair      ║ Sai do jogo          ║ !uno s        ║
+╠════════════════╬══════════════════════╬═══════════════╣
+║ !uno encerrar  ║ Finaliza partida     ║ !uno e        ║
+╚════════════════╩══════════════════════╩═══════════════╝\`\`\`
         Não encontrou o que queria? Confira o canal ${regras}`)
         return;
     }
