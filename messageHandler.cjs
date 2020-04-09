@@ -120,7 +120,7 @@ exports.run = async (message, queue, client) => {
 				}
 				const voiceChannel = message.member.voiceChannel;
 				if (!voiceChannel) return message.channel.send('Me desculpe, mas você precisa estar em um canal de voz para tocar música!');
-				if(voiceChannel!==`612843867485765656`) return message.reply(`Só posso tocar músicas no canal de rádio`);
+				if(voiceChannel.id!==`612843867485765656`) return message.reply(`Só posso tocar músicas no canal de rádio`);
 				const permissions = voiceChannel.permissionsFor(message.client.user);
 				if (!permissions.has('CONNECT')) {
 					return message.channel.send('Não consigo me conectar ao seu canal de voz, verifique se tenho as permissões adequadas!');
