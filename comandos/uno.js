@@ -89,10 +89,7 @@ exports.run = async (client, message, args) => {
 
     // comando para testes
     if(args[0].toLowerCase()==="teste") {
-        message.delete();
         
-        // addRank(jogadores[0]);
-        // atualizar(jogadores[0])
         // deleteDado(message.author.id)
         // buscaJogador(message.author.id)
 
@@ -130,6 +127,37 @@ exports.run = async (client, message, args) => {
                 .catch(err => { salaAtual.send(`${terminal}\`\`\`${err}\`\`\` `) })
             return;
         }
+    }
+
+
+    //Editar pontos do jogador
+    if(args[0].toLowerCase()==="editPontos") {
+        let regex = /@/;
+        message.delete();
+        
+        if (args.length<3) {
+            return message.reply("Faltou argumento no comando. `!uno editPontos @jogador ponto`");
+        }
+        if (isNaN(args[2])) {
+            return message.reply("Informe o valor de pontos que deseja alterar. `!uno editPontos @jogador ponto`");
+        }
+        let alvoEdit = {};
+
+        if(!isNaN(args[1])) {
+            alvoEdit = await message.guild.members.get(args[1]);
+        }
+        if(regex.test(args[1])) {
+            alvoEdit = await message.mentions.members.first();
+        }
+
+        if (!alvoEdit.user) return message.reply("Membro não encontrado");
+
+        let jogadorEditado = new Jogador();
+        jogadorEditado.id = alvoEdit.user.id;
+        jogadorEditado.pontos = args[2];
+        
+        atualizar(jogadorEditado);
+        return message.reply("ok... Editado!");
     }
 
 
@@ -488,7 +516,7 @@ exports.run = async (client, message, args) => {
                             await atualizar(jogador);
                         }
                     });
-                    jAnterior.pontos = await somaPontos(jogadores);
+                    jAnterior.pontos += await somaPontos(jogadores);
                     await atualizar(jAnterior);
                     salaAtual.send(await unoRank(rank));
                     return reset();
@@ -542,7 +570,7 @@ exports.run = async (client, message, args) => {
                             await atualizar(jogador);
                         }
                     });
-                    infoAtual.pontos = await somaPontos(jogadores);
+                    infoAtual.pontos += await somaPontos(jogadores);
                     await atualizar(infoAtual);
                     salaAtual.send(await unoRank(rank));
                     return reset();
@@ -590,7 +618,7 @@ exports.run = async (client, message, args) => {
                             await atualizar(jogador);
                         }
                     });
-                    infoJogador.pontos = await somaPontos(jogadores);
+                    infoJogador.pontos += await somaPontos(jogadores);
                     await atualizar(infoJogador);
                     salaAtual.send(await unoRank(rank));
                     return reset();
@@ -632,7 +660,7 @@ exports.run = async (client, message, args) => {
                             await atualizar(jogador);
                         }
                     });
-                    jAnterior.pontos = await somaPontos(jogadores);
+                    jAnterior.pontos += await somaPontos(jogadores);
                     await atualizar(jAnterior);
                     salaAtual.send(await unoRank(rank));
                     return reset();
