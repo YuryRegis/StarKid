@@ -30,9 +30,10 @@ module.exports = {
 
     //atualiza dado do jogador 
     atualizar: function(jogador) {
-        dbUnoEditar(jogador);
-
-        return true;
+        let resposta = dbUnoEditar(jogador);
+        
+        if(resposta) return true;
+        else return false;
     },
 
     //deletar dado na base de dados

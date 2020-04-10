@@ -131,7 +131,7 @@ exports.run = async (client, message, args) => {
 
 
     //Editar pontos do jogador
-    if(args[0].toLowerCase()==="editPontos") {
+    if(args[0].toLowerCase()==="editpontos") {
         let regex = /@/;
         message.delete();
         
@@ -145,9 +145,11 @@ exports.run = async (client, message, args) => {
 
         if(!isNaN(args[1])) {
             alvoEdit = await message.guild.members.get(args[1]);
+            // console.log("regex ->", alvoEdit)
         }
         if(regex.test(args[1])) {
             alvoEdit = await message.mentions.members.first();
+        //    console.log("regex ->", alvoEdit)
         }
 
         if (!alvoEdit.user) return message.reply("Membro não encontrado");
@@ -156,8 +158,10 @@ exports.run = async (client, message, args) => {
         jogadorEditado.id = alvoEdit.user.id;
         jogadorEditado.pontos = args[2];
         
-        atualizar(jogadorEditado);
-        return message.reply("ok... Editado!");
+        let resposta = await atualizar(jogadorEditado);
+        
+        if(resposta) return message.reply("ok... Editado!");
+        else return salaAtual.send("Não consegui editar...");
     }
 
 
