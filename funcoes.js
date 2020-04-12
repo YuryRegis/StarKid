@@ -20,9 +20,62 @@ module.exports = {
         return target;
     },
 
+
     formatDate: function(date) {
-        return new Intl.DateTimeFormat('en-US').format(date)
+        return new Intl.DateTimeFormat('pt-BR').format(date)
     },
+
+
+    setRole: async function(client, data, servidorID) {
+        let servidor = await client.guilds.get(servidorID);
+        let membro   = await servidor.members.get(data.d.user_id);
+
+        let android = await servidor.roles.get('627270660271374387'),
+            apple   = await servidor.roles.get('627275771710406673'),
+            beta    = await servidor.roles.get('627273901197492244'),
+            skyG    = await servidor.roles.get('653331984420175903')
+
+    if(dados.t === "MESSAGE_REACTION_ADD"){
+        if(dados.d.emoji.id === "698184753848778883"){
+            if(membro.roles.has(android)) return
+            membro.addRole(android)
+            
+        } else if(dados.d.emoji.id === "698184635724857445"){
+            if(membro.roles.has(apple)) return
+            membro.addRole(apple)
+        }
+        
+        } else if(dados.d.emoji.name === "🛠️"){
+            if(membro.roles.has(beta)) return
+            membro.addRole(beta)
+
+        } else if(dados.d.emoji.name === "🌐"){
+            if(membro.roles.has(skyG)) return
+            membro.addRole(skyG)
+    }
+
+    if(dados.t === "MESSAGE_REACTION_REMOVE"){
+        if(dados.d.emoji.id === "698184753848778883"){
+            if(membro.roles.has(android)) return
+            membro.removeRole(android)
+            
+        } else if(dados.d.emoji.id === "698184635724857445"){
+            if(membro.roles.has(apple)) return
+            membro.removeRole(apple)
+        }
+        
+        } else if(dados.d.emoji.name === "🛠️"){
+            if(membro.roles.has(beta)) return
+            membro.removeRole(beta)
+
+        } else if(dados.d.emoji.name === "🌐"){
+            if(membro.roles.has(skyG)) return
+            membro.removeRole(skyG)
+    }
+
+        return
+    },
+
 
     promptMessage: async function (message, author, time, validReactions) {
         // Tempo em segundos
@@ -41,6 +94,7 @@ module.exports = {
             .then(collected => collected.first() && collected.first().emoji.name);
     },
 
+
     getJoinRank: function(ID, guild) { // ID do usuario e guild (servidor)
         if (!guild.member(ID)) return; // Retorna "Undefined" se o ID for inválido
     
@@ -52,10 +106,12 @@ module.exports = {
         }
     },
     
+
     getRandomInt: function (min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
     },
     
+
     getEmbed: function(anterior, atual, seguinte, embed, carta){
         embed.setTitle(carta.titulo)
             .setThumbnail(carta.imagem) //thumbnail da carta
@@ -66,6 +122,7 @@ module.exports = {
             .setFooter(`ThatSkyGameBrasil - CIRCULO DE FOGO 🔥 +18`);
         return embed
     },
+
 
     mostrarMesa: function(jAnterior, jAtual, jSeguinte, embed, carta) {
         var cor = carta.cor;
@@ -91,6 +148,7 @@ module.exports = {
         return embed;
     },
 
+
     comprarCarta: function(quantidade, baralho, jogador) {
         for(q=0; q<quantidade; q++) {
             var indice = Math.floor(Math.random() * (baralho.length));
@@ -100,6 +158,7 @@ module.exports = {
         }
         return baralho, jogador;
     },
+
 
     mostrarMao: function(jogador) {
         var msg = "";
@@ -113,12 +172,14 @@ module.exports = {
         return msg;
     },
 
+
     pularJogador: function(jogadores) {
         jogadores.push(jogadores[0]);
         jogadores.splice(0,1);
         
         return jogadores;
     },
+
 
     espiarMao: function(jogador, carta) {
         var cartas = jogador.mao;
@@ -129,6 +190,7 @@ module.exports = {
             }
         } return encontrou;
     },
+
 
     encerrarPartida: function(client, vencedor, embed) {
         const usuario = client.users.get(vencedor.id);
@@ -143,6 +205,7 @@ module.exports = {
         
         return embed;
     },
+
 
     somaPontos: function(jogadores) {
         let tamJogadores = jogadores.length;

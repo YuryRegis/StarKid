@@ -2,14 +2,14 @@ const queue = new Map();
 const fs = require("fs");
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const config = require("./config.json")
-const newmember = require("./newmember.cjs");
+const config = require("./config.json");
+const { setRole } = require("./funcoes");
 const { dbUno } = require("./Routes/rotas");
+const newmember = require("./newmember.cjs");
 const messageHandler = require("./messageHandler.cjs");
 const { watsonAssistant } = require('./Routes/cloud');
 const AssistantV1 = require('ibm-watson/assistant/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
-//const reactionHandler = require("./reactionHandler.mjs")
 //const messageBotHandler = require("./messageBotHandler.mjs")
 
 client.commands = new Discord.Collection(); //Cria coleção de comandos
@@ -47,6 +47,17 @@ client.on("guildDelete", guild => {
 })
 
 
+client.on("raw", async data => {
+	let regrasID   = "603731841584988180";
+	let servidorID = "603720312911167622";
+
+	if(data.t === "MESSAGE_REACTION_ADD" || data.t === "MESSAGE_REACTION_REMOVE") {
+		if(data.d.message_id !== regrasID) return
+		setRole(client, data servidorID);
+	}
+})
+
+
 client.on("message", async message => {
 	if(message.author.bot) {
 		if (message.channel.id === "634200679224967188" && message.content[0] === config.prefix) {
@@ -63,7 +74,7 @@ client.on("message", async message => {
 		);
 		if(!verificaRoles && message.content[0]!==config.prefix) {
 			let salaRegras = message.guild.channels.get("603728556262031365");
-			message.reply(`para ter acesso ao servidor, leia as ${salaRegras} e escolha um cargo para você **aqui** com o comando \`!cargo\`.`)
+			message.reply(`para ter acesso ao servidor, você precisa **aceitar** nossos termos e ${salaRegras}.`)
 		}
 	}
 	if (message.channel.id === chatBot) {
