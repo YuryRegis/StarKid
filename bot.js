@@ -55,7 +55,7 @@ client.on("message", async message => {
 		return // messageBotHandler.run(message); //mensagem de bots
 	}
 	let flood   = "653744153171066880";
-	let chatBot = "613455674244071437";
+	let chatBot = "634200679224967188";
 
 	if (message.channel.id===flood) { 
 		let verificaRoles = await message.member.roles.some(r => 
