@@ -6,6 +6,9 @@ const config = require("./config.json")
 const newmember = require("./newmember.cjs");
 const { dbUno } = require("./Routes/rotas");
 const messageHandler = require("./messageHandler.cjs");
+const { watsonAssistant } = require('./Routes/cloud');
+const AssistantV1 = require('ibm-watson/assistant/v1');
+const { IamAuthenticator } = require('ibm-watson/auth');
 //const reactionHandler = require("./reactionHandler.mjs")
 //const messageBotHandler = require("./messageBotHandler.mjs")
 
@@ -51,7 +54,8 @@ client.on("message", async message => {
 		}
 		return // messageBotHandler.run(message); //mensagem de bots
 	}
-	let flood = "653744153171066880";
+	let flood   = "653744153171066880";
+	let chatBot = "613455674244071437";
 
 	if (message.channel.id===flood) { 
 		let verificaRoles = await message.member.roles.some(r => 
@@ -61,6 +65,11 @@ client.on("message", async message => {
 			let salaRegras = message.guild.channels.get("603728556262031365");
 			message.reply(`para ter acesso ao servidor, leia as ${salaRegras} e escolha um cargo para você **aqui** com o comando \`!cargo\`.`)
 		}
+	}
+	if (message.channel.id === chatBot) {
+		if(message.content[0]==="!") return;
+		let watson = await watsonAssistant(AssistantV1, IamAuthenticator, message);
+		return message.reply(`${watson}`);
 	}
 	if(message.channel.type === "dm") return; //ignora mensagens diretas
 	
