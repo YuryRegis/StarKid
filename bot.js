@@ -53,7 +53,7 @@ client.on("raw", async data => {
 
 	if(data.t === "MESSAGE_REACTION_ADD" || data.t === "MESSAGE_REACTION_REMOVE") {
 		if(data.d.message_id !== regrasID) return
-		setRole(client, data servidorID);
+		setRole(client, data, servidorID);
 	}
 })
 

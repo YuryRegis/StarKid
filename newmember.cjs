@@ -10,7 +10,7 @@ exports.run = async (member, client) => {
 	let fonte2 = await jimp.loadFont(jimp.FONT_SANS_64_BLACK);
 	let mask = await jimp.read(`./images/mascaraHEX.png`);
 	let fundo = await jimp.read(`./images/Fundo.png`);
-	let emojiAbraco = client.emojis.find(emote => emote.name === "abraco");
+	let emojiAbraco = client.emojis.get("628443314307334144");
 
 	jimp.read(await member.user.displayAvatarURL).then(avatar => {
 		avatar.resize(150, 150);

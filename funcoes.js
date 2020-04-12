@@ -35,44 +35,43 @@ module.exports = {
             beta    = await servidor.roles.get('627273901197492244'),
             skyG    = await servidor.roles.get('653331984420175903')
 
-    if(dados.t === "MESSAGE_REACTION_ADD"){
-        if(dados.d.emoji.id === "698184753848778883"){
+    if(data.t === "MESSAGE_REACTION_ADD"){
+        if(data.d.emoji.id === "698184753848778883"){
             if(membro.roles.has(android)) return
             membro.addRole(android)
-            
-        } else if(dados.d.emoji.id === "698184635724857445"){
+        } 
+        else if(data.d.emoji.id === "698184635724857445"){
             if(membro.roles.has(apple)) return
             membro.addRole(apple)
         }
-        
-        } else if(dados.d.emoji.name === "🛠️"){
+        else if(data.d.emoji.name === "🛠️"){
             if(membro.roles.has(beta)) return
             membro.addRole(beta)
-
-        } else if(dados.d.emoji.name === "🌐"){
+        }
+        else if(data.d.emoji.name === "🌐"){
             if(membro.roles.has(skyG)) return
             membro.addRole(skyG)
+        }
     }
 
-    if(dados.t === "MESSAGE_REACTION_REMOVE"){
-        if(dados.d.emoji.id === "698184753848778883"){
+    if(data.t === "MESSAGE_REACTION_REMOVE"){
+        if(data.d.emoji.id === "698184753848778883"){
             if(membro.roles.has(android)) return
             membro.removeRole(android)
-            
-        } else if(dados.d.emoji.id === "698184635724857445"){
+        } 
+        else if(data.d.emoji.id === "698184635724857445"){
             if(membro.roles.has(apple)) return
             membro.removeRole(apple)
         }
-        
-        } else if(dados.d.emoji.name === "🛠️"){
+        else if(data.d.emoji.name === "🛠️"){
             if(membro.roles.has(beta)) return
             membro.removeRole(beta)
-
-        } else if(dados.d.emoji.name === "🌐"){
+        } 
+        else if(data.d.emoji.name === "🌐"){
             if(membro.roles.has(skyG)) return
             membro.removeRole(skyG)
+        }
     }
-
         return
     },
 
