@@ -1,8 +1,8 @@
 const json = require(`./uno.json`);
 const {RichEmbed} = require(`discord.js`);
-const { addRank, atualizar, unoRank, listarDado } = require('./assets/uno/funcoes');
 const {comprarCarta, mostrarMao, mostrarMesa, pularJogador} = require(`../funcoes.js`);
 const {getRandomInt, getMember, encerrarPartida, somaPontos} = require(`../funcoes.js`);
+const { addRank, atualizar, unoRank, listarDado, buscaJogador } = require('./assets/uno/funcoes');
 
 
 class Jogador {
@@ -17,7 +17,7 @@ class Jogador {
 
 
 var mesa = [];
-var lotacao = 9;
+const lotacao = 9;
 const punicao = 5;
 var jogadores = [];
 var contBaralho = 1;
@@ -514,14 +514,16 @@ exports.run = async (client, message, args) => {
                     await salaAtual.send('Placar **geral** do servidor:');
                     
                     jogadores.forEach(async jogador => {
-                        jogador.pontos -= punicao;
-                        if(jogador.pontos < 0){
-                            jogador.pontos = 0;
-                            await atualizar(jogador);
+                        let jogadorDb = await buscaJogador(jogador.id);
+                        jogadorDb.pontos -= punicao;
+                        if(jogadorDb.pontos < 0){
+                            jogadorDb.pontos = 0;
                         }
+                        await atualizar(jogadorDb);    
                     });
-                    jAnterior.pontos += await somaPontos(jogadores);
-                    await atualizar(jAnterior);
+                    let vencedorDb = await buscaJogador(jAnterior.id);
+                    vencedorDb.pontos += (await somaPontos(jogadores)+punicao);
+                    await atualizar(vencedorDb);
                     salaAtual.send(await unoRank(rank));
                     return reset();
                 }
@@ -568,14 +570,16 @@ exports.run = async (client, message, args) => {
                     await salaAtual.send('Placar **geral** do servidor:');
                     
                     jogadores.forEach(async jogador => {
-                        jogador.pontos -= punicao;
-                        if(jogador.pontos < 0){
-                            jogador.pontos = 0;
-                            await atualizar(jogador);
+                        let jogadorDb = await buscaJogador(jogador.id);
+                        jogadorDb.pontos -= punicao;
+                        if(jogadorDb.pontos < 0){
+                            jogadorDb.pontos = 0;
                         }
+                        await atualizar(jogadorDb);    
                     });
-                    infoAtual.pontos += await somaPontos(jogadores);
-                    await atualizar(infoAtual);
+                    let vencedorDb = await buscaJogador(infoAtual.id);
+                    vencedorDb.pontos += (await somaPontos(jogadores)+punicao);
+                    await atualizar(vencedorDb);
                     salaAtual.send(await unoRank(rank));
                     return reset();
                 }
@@ -616,14 +620,16 @@ exports.run = async (client, message, args) => {
                     await salaAtual.send('Placar **geral** do servidor:');
                     
                     jogadores.forEach(async jogador => {
-                        jogador.pontos -= punicao;
-                        if(jogador.pontos < 0){
-                            jogador.pontos = 0;
-                            await atualizar(jogador);
+                        let jogadorDb = await buscaJogador(jogador.id);
+                        jogadorDb.pontos -= punicao;
+                        if(jogadorDb.pontos < 0){
+                            jogadorDb.pontos = 0;
                         }
+                        await atualizar(jogadorDb);    
                     });
-                    infoJogador.pontos += await somaPontos(jogadores);
-                    await atualizar(infoJogador);
+                    let vencedorDb = await buscaJogador(infoJogador.id);
+                    vencedorDb.pontos += (await somaPontos(jogadores)+punicao);
+                    await atualizar(vencedorDb);
                     salaAtual.send(await unoRank(rank));
                     return reset();
                 }
@@ -658,14 +664,16 @@ exports.run = async (client, message, args) => {
                     await salaAtual.send('Placar **geral** do servidor:');
                     
                     jogadores.forEach(async jogador => {
-                        jogador.pontos -= punicao;
-                        if(jogador.pontos < 0){
-                            jogador.pontos = 0;
-                            await atualizar(jogador);
+                        let jogadorDb = await buscaJogador(jogador.id);
+                        jogadorDb.pontos -= punicao;
+                        if(jogadorDb.pontos < 0){
+                            jogadorDb.pontos = 0;
                         }
+                        await atualizar(jogadorDb);    
                     });
-                    jAnterior.pontos += await somaPontos(jogadores);
-                    await atualizar(jAnterior);
+                    let vencedorDb = await buscaJogador(jAnterior.id);
+                    vencedorDb.pontos += (await somaPontos(jogadores)+punicao);
+                    await atualizar(vencedorDb);
                     salaAtual.send(await unoRank(rank));
                     return reset();
             }

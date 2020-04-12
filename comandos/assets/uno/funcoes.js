@@ -22,8 +22,8 @@ module.exports = {
 
 
     //buscar jogador na base de dados
-    buscaJogador: function(jogador) {
-        let resposta = dbUnoBuscar(jogador.id);
+    buscaJogador: function(id) {
+        let resposta = dbUnoBuscar(id);
         return resposta;
     },
 
@@ -59,14 +59,14 @@ module.exports = {
         });
         
         let tam = 0;
-        let max = 10;
+        let max = 9;
         rankOrdenado.forEach( jogador => {
             tam += 1;
         });
         if (tam === 0) {
             return "Ainda não coletei dados suficientes para montar o rank."
         }
-        if(tam < 10) {
+        if(tam < max) {
             max = tam;
         }
         console.log(tam)
