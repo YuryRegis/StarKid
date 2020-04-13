@@ -79,7 +79,11 @@ client.on("message", async message => {
 		}
 	}
 	if (message.channel.id === chatBot) {
-		if(message.content[0]==="!") return;
+		let regex = /\?|\+|\-|\$|\%|\*/;
+
+		if(regex.test(message.content[0])) return;
+		if(message.content[0]==="!") return messageHandler.run(message, queue, client);
+
 		let watson = await watsonAssistant(AssistantV1, IamAuthenticator, message);
 		return message.reply(`${watson}`);
 	}
