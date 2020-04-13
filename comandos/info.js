@@ -15,14 +15,18 @@ exports.run = async (client, message, args) => {
     Use o canal ${flood} , por gentileza.`)
     }
 
-    const membro = getMember(message, args.join(" "));
-    const posicao = getJoinRank(membro.id, message.guild);
+    const membro   = getMember(message, args.join(" "));
+    const posicao  = getJoinRank(membro.id, message.guild);
     const registro = formatDate(membro.joinedAt);
-    const cargos = membro.roles
+    const game     = "Nada, no momento.";
+    const cargos   = membro.roles
         .filter(cargo => cargo.id !== message.guild.id)
         .map(cargo => cargo)
         .join(", ") || "Sem cargos definidos";
-    
+
+    if(membro.user.presence.game) {
+        game = membro.user.presence.game.name;
+    }
         
     const embed = new RichEmbed()
         .setTitle('ThatSkyGameBrasil - Tudo sobre Sky!')
@@ -30,15 +34,17 @@ exports.run = async (client, message, args) => {
         .setThumbnail(membro.user.displayAvatarURL)
         .setTimestamp()
         .setColor("RANDOM")
-        .addField("\nInformações de registro", stripIndents
+        .addField("\n**INFORMAÇÕES DE REGISTRO**", stripIndents
             `**Nome:** ${membro.displayName}
             **Membro Nº:** ${posicao}
             **Data registro:** ${registro}`)
-       .addField("\nDados de usuário", stripIndents
+        .addField("\n**INFORMAÇÕES DO MEMBRO**", stripIndents
             `**Nome de usuário:** ${membro.user.username}
-            **Cargos/tags:** ${cargos}`);
-    if (membro.user.presence.game)
-        embed.addField(`**Jogando:** ${membro.user.presence.game.name}`);
+            **Jogando:** ${game}
+            **Cargos/tags:** ${cargos}`)
+        .addField("**INFORMAÇÕES DO SERVIDOR**","ThatSkyGameBrasil")
+        .addField("Total de membros:", client.users.size, true)
+        .addField("Total de canais:", client.channels.size, true);
 
     m = message.channel.send(embed);
     message.delete()
