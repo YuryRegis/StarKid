@@ -3,7 +3,7 @@ const {RichEmbed} = require("discord.js");
 
 
 exports.run = async (member, client) => {
-    let canal       = await client.channels.get("603723288757403648");
+    let canal       = await client.channels.get("603720312919556239");
 	let membername  = await member.user.username.split(" ")[0];
 	let memberId    = await member.user.id;
 	let fonte       = await jimp.loadFont(jimp.FONT_SANS_64_WHITE);
