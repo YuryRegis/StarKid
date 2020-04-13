@@ -65,16 +65,17 @@ client.on("message", async message => {
 		}
 		return // messageBotHandler.run(message); //mensagem de bots
 	}
-	let flood   = "653744153171066880";
-	let chatBot = "634200679224967188";
+	let bemVindo = "603720312919556239";
+	let chatBot  = "634200679224967188";
 
-	if (message.channel.id===flood) { 
+	if (message.channel.id===bemVindo) { 
 		let verificaRoles = await message.member.roles.some(r => 
 			r.name === "Android" || r.name === "Beta" || r.name === "Global" || r.name === "Apple"
 		);
-		if(!verificaRoles && message.content[0]!==config.prefix) {
+		if(!verificaRoles) {
 			let salaRegras = message.guild.channels.get("603728556262031365");
-			message.reply(`para ter acesso ao servidor, você precisa **aceitar** nossos termos e ${salaRegras}.`)
+			message.reply(`para ter acesso ao servidor, você precisa **aceitar** nossos termos e ${salaRegras}.`);
+			return;
 		}
 	}
 	if (message.channel.id === chatBot) {
