@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
     const membro   = getMember(message, args.join(" "));
     const posicao  = getJoinRank(membro.id, message.guild);
     const registro = formatDate(membro.joinedAt);
-    const game     = "Nada, no momento.";
+    let   game     = "Nada, no momento.";
     const cargos   = membro.roles
         .filter(cargo => cargo.id !== message.guild.id)
         .map(cargo => cargo)
