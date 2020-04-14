@@ -21,7 +21,7 @@ exports.run = async function(client, message, args) {
         return message.reply(`você nao tem permissão para usar este comando aqui. Use-o em ${flood}`)
 
     let regex    = /@/,
-        resposta = faq.trocas(client, message);
+        resposta = await faq.trocas(client, message);
 
     if(regex.test(args[0])) {
         let alvo = message.mentions.members.first();
