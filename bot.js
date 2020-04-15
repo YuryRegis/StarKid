@@ -5,7 +5,7 @@ const client = new Discord.Client();
 const config = require("./config.json");
 const { dbUno } = require("./Routes/rotas");
 const newmember = require("./newmember.cjs");
-const { setRole, removeLog } = require("./funcoes");
+const { setRole, rmvAddLog } = require("./funcoes");
 const messageHandler = require("./messageHandler.cjs");
 const { watsonAssistant } = require('./Routes/cloud');
 const AssistantV1 = require('ibm-watson/assistant/v1');
@@ -57,13 +57,13 @@ client.on("raw", async data => {
 		return;
 	}
 
-	if(data.t === 'GUILD_MEMBER_REMOVE') {
-		let salaLogs = await client.channels.get('698758957845446657'),
-			resposta = await removeLog(data);
-		
-		return salaLogs.send(resposta);
-	}
+	let salaLogs = await client.channels.get('698758957845446657');
 	
+	if(data.t === 'GUILD_MEMBER_REMOVE' || data.t === 'GUILD_MEMBER_ADD') {
+		let resposta = "";
+		(data.t === 'GUILD_MEMBER_REMOVE') ? resposta = await rmvAddLog(data, false) : resposta = await rmvAddLog(data, true);   
+		salaLogs.send(resposta);
+	}
 })
 
 

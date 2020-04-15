@@ -20,11 +20,15 @@ module.exports = {
         return target;
     },
 
-    removeLog: function(data) {
+
+    rmvAddLog: function(data, addBool) {
+        let acao = "";
+        addBool ? acao = "entrou" : acao = "saiu";
+
         const nome = data.d.user.username,
               id   = data.d.user.id;
-        let   log  = `\`\`\`Nome:  ${nome}\nID:  ${id}\`\`\``,
-              msg  = `Um membro saiu do servidor:\n` + log;
+        let   log  = `\`\`\`Nome:  ${nome}\nID:    ${id}\`\`\``,
+              msg  = `Um membro ${acao} do servidor:\n` + log;
 
         return msg;
     },
