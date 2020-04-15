@@ -74,7 +74,9 @@ client.on("message", async message => {
 		);
 		if(!verificaRoles) {
 			let salaRegras = message.guild.channels.get("603728556262031365");
-			message.reply(`para ter acesso ao servidor, você precisa **aceitar** nossos termos e ${salaRegras}.`);
+			
+			message.reply(`para ter acesso ao servidor, você precisa **aceitar** nossos termos e ${salaRegras}.`,
+				{ file:"https://i.ibb.co/GVwYx24/regras.png" });
 			return;
 		}
 	}
