@@ -129,21 +129,21 @@ module.exports = {
                 `${point} Winter (2018 - Beta);
                 ${point} Winter (2019 - pré-lançamento iOS);
                 ${point} Temporada da Gratidão (Primavera 2019 - Beta + pré-lançamento iOS);
-                ${point} Temporada da Gratidão (Verão 2019 - Global) [Playlist](https://www.youtube.com/playlist?list=PL2PBX0NE622gv9FnvcTjHDruUBGXdXNR1);
-                ${point} Temporada Caçadores de luz (Setembro 2019 - Global) [Playlist](https://www.youtube.com/playlist?list=PL2PBX0NE622gyP0OH99sXlP--FozwGgW2);
-                ${point} Temporada do Pertencer (Novembro 2019 - Global) [Playlist](https://www.youtube.com/playlist?list=PL2PBX0NE622h7rC-5WkaA78m9qG95qN_I);
-                ${point} Temporada do Ritmo (Janeiro 2020 - Global) [Playlist](https://www.youtube.com/playlist?list=PLpivGZfpf0nM7dgHvOVLb1Hr4m2OMIK24);
-                ${point} Temporada dos Encantos (Abril 2020 - Global) [Playlist](https://www.youtube.com/playlist?list=PLpivGZfpf0nPJaSjVbtsu2hu3jXnoQxEQ)`,
+                ${point} Temporada da Gratidão (Verão 2019 - Global) [Playlist](https://is.gd/UvGJVd);
+                ${point} Temporada Caçadores de luz (Setembro 2019 - Global) [Playlist](https://is.gd/vwj8g0);
+                ${point} Temporada do Pertencer (Novembro 2019 - Global) [Playlist](https://is.gd/P86HS4);
+                ${point} Temporada do Ritmo (Janeiro 2020 - Global) [Playlist](https://is.gd/hqDiYi);
+                ${point} Temporada dos Encantos (Abril 2020 - Global) [Playlist](https://is.gd/ppz7yg)`,
                 false)        
             .addField('**DURAÇÃO DE CADA TEMPORADA**',
-                'Você pode conferir o tempo que cada temporada durou [clicando aqui.](https://discordapp.com/channels/603720312911167622/624350432088686593/697266173074473001)',
+                'Você pode conferir o tempo que cada temporada durou [clicando aqui.]()',
                 false)
             .addField('**ITENS DE CADA TEMPORADA**',
                 `Além das playlists acima você consegue consultar os itens aqui:
-                ${point} [Temporada da Gratidão](https://discordapp.com/channels/603720312911167622/624350432088686593/697266173074473001);
-                ${point} [Temporada Caçadores de luz](https://discordapp.com/channels/603720312911167622/624350432088686593/697266486317940776);
-                ${point} [Temporada do Pertencer](https://discordapp.com/channels/603720312911167622/624350432088686593/697266796872597515);
-                ${point} [Temporada do Ritmo](https://discordapp.com/channels/603720312911167622/624350432088686593/697267069246373948);
+                ${point} [Temporada da Gratidão](https://is.gd/mMy8rD);
+                ${point} [Temporada Caçadores de luz](https://is.gd/5zS197);
+                ${point} [Temporada do Pertencer](https://is.gd/2dKo3p);
+                ${point} [Temporada do Ritmo](https://is.gd/38iNXH);
                 ${point} Temporada dos Encantos`,
                 false)
             .addField('**PASSE DA TEMPORADA**',
@@ -201,7 +201,7 @@ module.exports = {
                 'Note que existe uma barra medidora de energia, em forma de leque, bem no menu superior do jogo. Você poderá aumentar seu limite máximo (level) ao acumular estrelas, então, quanto mais estrelas tiver melhor será sua performance no jogo. Você pode recarregar sua *energia* se aproximando de seus amigos, nuvens, criaturas de luz ou coletando *ceras*.',
                 false)
             .addField('**LOCALIZAÇÃO**',
-                `SPOILER! Links com alocalização das estrelas:
+                `SPOILER! Links com a localização das estrelas:
                 ${estrela} [Ilha do Alvorecer](https://is.gd/Y2EOfz);
                 ${estrela} [Campina da Aurora](https://is.gd/yZvckW);
                 ${estrela} [Foresta Oculta](https://is.gd/1fvpy4);
