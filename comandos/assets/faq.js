@@ -216,7 +216,7 @@ module.exports = {
             .setDescription("Este é apenas um resumo. Para mais detalhes, confira nosso blog: [ThatSkyGameBrasil](https://thatskygamebrasil.weebly.com/estrelas.html).")
             .addBlankField()
             .addField(`**AQUILO É UMA CRIANÇA OU ESTRELA?**`, 
-                `Por que estrela? Bem, até a versão beta 0.4.8 não eram crianças, mas sim, estrelas (tinham exatamente este simbolo 👉 ${estrela}). Por alguma razão a TGC resolveu que seria melhor mudar para crianças e nomeando-as de "Luzes Aladas" O @StarKid é uma homenagem à comunidade beta que, ainda hoje, utilizam o saudoso termo "starkid".`,
+                `Por que estrela? Bem, até a versão beta 0.4.8 não eram crianças, mas sim, estrelas (tinham exatamente este simbolo 👉 ${estrela}). Por alguma razão a TGC resolveu que seria melhor mudar para crianças e nomeando-as de "**Luzes Aladas**" O @StarKid é uma homenagem à comunidade beta que, ainda hoje, utilizam o saudoso termo "starkid".`,
                 false)
             .addBlankField()        
             .addField('**COMO OBTER?**',

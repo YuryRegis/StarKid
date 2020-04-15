@@ -20,6 +20,15 @@ module.exports = {
         return target;
     },
 
+    removeLog: function(data) {
+        const nome = data.d.user.username,
+              id   = data.d.user.id;
+        let   log  = `\`\`\`Nome:  ${nome}\nID:  ${id}\`\`\``,
+              msg  = `Um membro saiu do servidor:\n` + log;
+
+        return msg;
+    },
+
 
     formatDate: function(date) {
         return new Intl.DateTimeFormat('pt-BR').format(date)

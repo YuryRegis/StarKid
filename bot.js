@@ -3,9 +3,9 @@ const fs = require("fs");
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
-const { setRole } = require("./funcoes");
 const { dbUno } = require("./Routes/rotas");
 const newmember = require("./newmember.cjs");
+const { setRole, removeLog } = require("./funcoes");
 const messageHandler = require("./messageHandler.cjs");
 const { watsonAssistant } = require('./Routes/cloud');
 const AssistantV1 = require('ibm-watson/assistant/v1');
@@ -48,13 +48,22 @@ client.on("guildDelete", guild => {
 
 
 client.on("raw", async data => {
-	let regrasID   = "603731841584988180";
-	let servidorID = "603720312911167622";
+	let regrasID   = "603731841584988180",
+	    servidorID = "603720312911167622";
 
 	if(data.t === "MESSAGE_REACTION_ADD" || data.t === "MESSAGE_REACTION_REMOVE") {
 		if(data.d.message_id !== regrasID) return
 		setRole(client, data, servidorID);
+		return;
 	}
+
+	if(data.t === 'GUILD_MEMBER_REMOVE') {
+		let salaLogs = await client.channels.get('698758957845446657'),
+			resposta = await removeLog(data);
+		
+		return salaLogs.send(resposta);
+	}
+	
 })
 
 

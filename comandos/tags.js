@@ -9,7 +9,8 @@ exports.help = {
 
 exports.run = async (client, message, args) => {
     
-    const flood = client.channels.get("653744153171066880");
+    const flood    = client.channels.get("653744153171066880"),
+          salaLogs = client.channels.get("698758957845446657");
 
     if(message.channel.id != "653744153171066880" && !message.member.roles.some(r =>  r.name === "Staff" || r.name === "Admin")){
         return message.channel.send(`Este comando não é permitido nesse canal. 
@@ -90,19 +91,27 @@ exports.run = async (client, message, args) => {
     // se o membro ja tiver o cargo selecionado, apague o mesmo
     if (member.roles.some(x => x.name === cargo.name)) {
         member.removeRole(cargo.id)
-        .then(member => console.log(`${member.user.username} removeu o cargo ${cargo.name}`))
-        .catch(err => console.log(err));
+            .then(member => {
+                console.log(`${member.user.username} removeu o cargo ${cargo.name}`);
+                salaLogs.send(`${member.displayName} removeu o cargo ${cargo.name}`);  
+            })
+            .catch(err => console.log(err));
+        
         embed.addField("**\nREMOVIDO**",
-        `${member.user.username} removeu o cargo ${cargo.name}\n` +
-        `Use o comando \`!cargo\` novamente para adicionar ou remover outro cargo.`);
+            `${member.user.username} removeu o cargo ${cargo.name}\n` +
+            `Use o comando \`!cargo\` novamente para adicionar ou remover outro cargo.`);
     } else { // caso contrario, adicione cargo selecionado
-        member.addRole(cargo.id).then(member => {
-            var nome = member.user.username;
-            console.log(`${nome} adicionou o cargo ${chave}`);       
-        }).catch(err => console.error);
+        member.addRole(cargo.id)
+            .then(member => {
+                var nome = member.user.username;
+                console.log(`${nome} adicionou o cargo ${chave}`);
+                salaLogs.send(`${nome} adicionou o cargo ${chave}`);       
+            })
+            .catch(err => console.error);
+        
         embed.addField("**\nADICIONADO**",
-        `${member.user.username} adicionou a tag ${cargo.name}\n` +
-        `Use o comando \`!tags\` novamente para adicionar ou remover outra tag.`);
+            `${member.user.username} adicionou a tag ${cargo.name}\n` +
+            `Use o comando \`!tags\` novamente para adicionar ou remover outra tag.`);
     }
 
     m.edit(embed);

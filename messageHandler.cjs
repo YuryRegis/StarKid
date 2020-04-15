@@ -9,6 +9,7 @@ exports.run = async (message, queue, client) => {
 	let sender = message.author; //Captura autor da mensagem
 	let user = message.member.user.tag;
 	let ch = message.channel.name.toString();
+	let salaLogs = client.channels.get('698758957845446657');
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
 	let comando = args.shift().toLowerCase();
@@ -113,14 +114,18 @@ exports.run = async (message, queue, client) => {
 	
 	cmd.forEach( async element => {
 		if(comando===element) {
-			console.log(`${comando} digitado por ${user} no canal ${ch}.`)
+			console.log(`${comando} digitado por ${user} no canal ${ch}.`);
+			salaLogs.send(`${comando} digitado por ${user} no canal ${ch}.`);
+			
 			if (comando === 'play') {
 				if (message.channel.id !== "613120191957565460") {
 					return message.reply(` favor usar este comando no canal ${client.channels.get("613120191957565460")}.`);
 				}
 				const voiceChannel = message.member.voiceChannel;
 				if (!voiceChannel) return message.channel.send('Me desculpe, mas você precisa estar em um canal de voz para tocar música!');
+				
 				if(voiceChannel.id!==`612843867485765656`) return message.reply(`Só posso tocar músicas no canal de rádio`);
+				
 				const permissions = voiceChannel.permissionsFor(message.client.user);
 				if (!permissions.has('CONNECT')) {
 					return message.channel.send('Não consigo me conectar ao seu canal de voz, verifique se tenho as permissões adequadas!');
@@ -168,7 +173,9 @@ exports.run = async (message, queue, client) => {
 			} 
 			else if (comando === 'skip') {
 				if (!message.member.voiceChannel) return message.channel.send('Você não está em um canal de voz');
+				
 				if (!serverQueue) return message.channel.send('Não a nada tocando posso pular pra você');
+				
 				if (message.channel.id !== "613120191957565460") {
 					return message.reply(` favor usar este comando no canal ${client.channels.get("613120191957565460")}.`);
 				}
@@ -177,7 +184,9 @@ exports.run = async (message, queue, client) => {
 			} 
 			else if (comando === 'stop') {
 				if (!message.member.voiceChannel) return message.channel.send('Você não está em um canal de voz!');
+				
 				if (!serverQueue) return message.channel.send('Não tá tocando eu não posso parar pra você');
+				
 				if (message.channel.id !== "613120191957565460") {
 					return message.reply(` favor usar este comando no canal ${client.channels.get("613120191957565460")}.`);
 				}
@@ -187,11 +196,14 @@ exports.run = async (message, queue, client) => {
 			} 
 			else if (comando === 'volume') {
 				if (!message.member.voiceChannel) return message.channel.send('Você não está em um canal de voz!');
+				
 				if (!serverQueue) return message.channel.send('Não está tocando.');
+				
 				if (message.channel.id !== "613120191957565460") {
 					return message.reply(` favor usar este comando no canal ${client.channels.get("613120191957565460")}.`);
 				}
 				if (!args[1]) return message.channel.send(`O Volume atual é: **${serverQueue.volume}**`);
+				
 				serverQueue.volume = args[1];
 				serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 6);
 				return message.channel.send(`Ajustar volume para: **${args[1]}**`);
@@ -238,16 +250,20 @@ exports.run = async (message, queue, client) => {
 	});
 
 	if(client.commands.get(comando)) {  //Comando === comandos previamente carregados?
+		
 		if (message.content[0] === config.prefix) {
-			console.log(`${comando} digitado por ${user} no canal ${ch}.`)
+			console.log(`${comando} digitado por ${user} no canal ${ch}.`);
+			salaLogs.send(`${comando} digitado por ${user} no canal ${ch}.`);
 			client.commands.get(comando).run(client, message, args, queue, serverQueue);
-		} else return
-	} else if (message.channel.id === "634200679224967188") { //ignora mensagens simples do canal #pergunte_ao_bot
-		if (message.content[0] == config.prefix) {
-			responseobject.run(message, sender, client);
-		}
-		return
-	} responseobject.run(message, sender, client);
+		} else return;
+	} else 
+		if (message.channel.id === "634200679224967188") { //ignora mensagens simples do canal #pergunte_ao_bot
+			if (message.content[0] == config.prefix) {
+				responseobject.run(message, sender, client);
+			}
+			return;
+		} 
+		responseobject.run(message, sender, client);
 	
     
     //filtrar menções here e everyone
