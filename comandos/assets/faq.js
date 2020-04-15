@@ -136,7 +136,7 @@ module.exports = {
                 ${point} Temporada dos Encantos (Abril 2020 - Global) [Playlist](https://is.gd/ppz7yg)`,
                 false)        
             .addField('**DURAÇÃO DE CADA TEMPORADA**',
-                'Você pode conferir o tempo que cada temporada durou [clicando aqui.]()',
+                'Você pode conferir o tempo que cada temporada durou, nos links de ITENS abaixo.',
                 false)
             .addField('**ITENS DE CADA TEMPORADA**',
                 `Além das playlists acima você consegue consultar os itens aqui:
@@ -192,7 +192,7 @@ module.exports = {
             .setTitle(`**PODER DE VOO E ESTRELAS** ${estrela}`)
             .setDescription("Este é apenas um resumo. Para mais detalhes, confira nosso blog: [ThatSkyGameBrasil](https://thatskygamebrasil.weebly.com/estrelas.html).")
             .addField(`**AQUILO É UMA CRIANÇA OU ESTRELA?**`, 
-                `Por que estrela? Bem, até a versão beta 0.4.8 não eram crianças, mas sim, estrelas (tinham exatamente este simbolo 👉 ${estrela}). Por alguma razão a TGC resolveu que seria melhor mudar para "crianças brilhantes." O @StarKid é uma homenagem à comunidade beta que, ainda hoje, utilizam o saudoso termo "starkid".`,
+                `Por que estrela? Bem, até a versão beta 0.4.8 não eram crianças, mas sim, estrelas (tinham exatamente este simbolo 👉 ${estrela}). Por alguma razão a TGC resolveu que seria melhor mudar para crianças e nomeando-as de "Luzes Aladas" O @StarKid é uma homenagem à comunidade beta que, ainda hoje, utilizam o saudoso termo "starkid".`,
                 false)        
             .addField('**COMO OBTER?**',
                 'Estrelas estão espalhadas em todos os sete reinos (mundos) de **Sky: Filhos da luz**.',
@@ -210,7 +210,8 @@ module.exports = {
                 ${estrela} [Relicário do Conhecimento](https://is.gd/EXdnkV);
                 ${estrela} [Olho do Éden](https://is.gd/lJvlXp);`,
                 false)
-            .setFooter(`ThatSkyGameBrasil - Tudo sobre Sky!`, client.user.displayAvatarURL);
+            .setFooter(`ThatSkyGameBrasil - Tudo sobre Sky!`, client.user.displayAvatarURL)
+            .setImage("https://i.ibb.co/NK93PhJ/estrelas.png");
         
         return embed;
     }
