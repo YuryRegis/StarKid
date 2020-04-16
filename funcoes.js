@@ -43,8 +43,9 @@ module.exports = {
             if(regex.test(state.toLowerCase())) {
                 let alvoID   = data.d.user.id,
                     alvo     = await client.users.get(data.d.user.id),
+                    palavrao = await regex.exec(state.toLowerCase())[0],
                     msg      = `<@&607754714100269056> <@&697930725529485362> encontrei uma ** *RichPresence* **suspeita, poderiam verificar?\n`,
-                    terminal = msg + `\`\`\`Membro:   ${alvo.tag}\nNome:     ${alvo.username}\nID:       ${alvoID}\nPresence: ${state}\`\`\``;
+                    terminal = msg + `\`\`\`Membro:   ${alvo.tag}\nNome:     ${alvo.username}\nID:       ${alvoID}\nSuspeita: ${palavrao}\nPresence: ${state}\`\`\``;
                 
                 return terminal;
             }
@@ -62,12 +63,14 @@ module.exports = {
             msg  = `<@&607754714100269056> <@&697930725529485362> encontrei um **nome** ou** *nick* **suspeito, poderiam verificar?\n`;
         
         if( regex.test(nome.toLowerCase()) ) {
-            let terminal = msg + `\`\`\`Membro:    ${nome}\nID:        ${id}\nVerificar: ${nick}\`\`\``;
+            let palavrao = await regex.exec(nome.toLowerCase())[0],
+                terminal = msg + `\`\`\`Membro:    ${nome}\nID:        ${id}\nSuspeita:  ${palavrao}\nVerificar: ${nick}\`\`\``;
             return terminal;
         }
         if( nick !== null ) {
             if( regex.test(nick.toLowerCase()) ){
-                let terminal = msg + `\`\`\`Membro:    ${nome}\nID:        ${id}\nVerificar: ${nick}\`\`\``;
+                let palavrao = await regex.exec(nick.toLowerCase())[0],
+                    terminal = msg + `\`\`\`Membro:    ${nome}\nID:        ${id}\nSuspeita:  ${palavrao}\nVerificar: ${nick}\`\`\``;
                 return terminal;
             }
         }
