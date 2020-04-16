@@ -66,6 +66,8 @@ client.on("raw", async data => {
 	}
 
 	if(data.t === 'PRESENCE_UPDATE') {
+		if(data.d===undefined) return;
+		
 		let resposta = await prsUPD(data, client);
 
 		if(resposta!==null) return salaLogs.send(resposta);
@@ -95,7 +97,7 @@ client.on("message", async message => {
 			r.name === "Android" || r.name === "Beta" || r.name === "Global" || r.name === "Apple"
 		);
 		if(!verificaRoles) {
-			let salaRegras = message.guild.channels.get("603728556262031365");
+			let salaRegras = await message.guild.channels.get("603728556262031365");
 			
 			message.reply(`para ter acesso ao servidor, você precisa **aceitar** nossos termos e ${salaRegras}.`,
 				{ file:"https://i.ibb.co/GVwYx24/regras.png" });

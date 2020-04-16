@@ -37,11 +37,10 @@ module.exports = {
     prsUPD: async function(data, client){
         let regex   = /b[a-u,0-9][c,s][a-u,0-9]t[a-u,0-9]|b[a-u,0-9]ss[a-z,0-9]t[a-u,0-9]|p[a,à,á,0-9][u,ù,ú,l,0-9]|[c,k][u,ú,ù]|[c,k][u,ú,ù][z,s][a-u,ã,0-9]|x[a-u,ò,ó,0-9]x[a-u,ò,ó,0-9]t[a-u,ã,0-9]|m[a,à,á]m[a,à,á]|p[a-u,ê,é,è,0-9]n[a-u,ì,í,0-9]s[a-u,0-9]|p[a-u,0-9][n,m][a-u,0-9]t[a-u,ã,0-9]|[c,k]y[a-u,ù,ú,0-9]|x[a-u,0-9]p[a-u,à,á,ã,0-9]|ch[a-u,0-9]p[a-u,á,à,ã,0-9]|p[a-u,0-9][a-u,0-9]t[a-u,0-9]|ch[a-u,ó,ò,0-9]ch[a-u,ó,ò,0-9]t[a-u,ã,0-9]|ch[o,ó,ò,0-9]t[a-u,ã,0-9]|[0-9]cm|x[a-u,ó,ò,0-9]t[a-u,ã,0-9]|r[a-u,ô,0-9]l[a,0-9]|p[a-u,í,ì,0-9][c,k][a-u,ã,0-9]|π[c,k]|π[c,k][a-u,ã,0-9]|[c,k][a-u,ó,ò,ô,0-9]m[a-u,0-9]d[a-u,ô,0-9]|m[a-u,ã,0-9][a-u,0-9]|p[a-u,à,á,0-9][a-u,ì,í,0-9]|t[a-u,ê,0-9]t[a,0-9]|g[a-u,ô,0-9]z[a-u,à,á,0-9]|l[a-u,â,ã,à,á,0-9]mb[a-u,0-9]|b[a-u,ò,ó,ô,0-9][q,k,c][a-u,è,é,0-9][t,c]|r[a,à,á,0-9]b[a-u,ã,0-9]|s[a-u,0-9]p[a-u,è,é,ê,0-9][c,k][a,à,á,0-9]|l[e,ê,è,é,0-9][i,ì,í,0-9]t[a-u,ã,0-9]|[a-u,0-9]ng[a-u,ò,ó,0-9]l[a-u,0-9]|[a-z,0-9]str[a-u,0-9]p[a-u,0-9]d[a-u,0-9]|[a-z,0-9]st[a-u,0-9]p[a-u,0-9]d[a-u,0-9]|b[a-u,0-9]n[a-u,0-9]d[a-u,ã,0-9]|f[a-u,ò,ó,0-9]d[a-u,ã,0-9]|bct[a-u,ã,0-9]|bct|v[a,à,á,0-9][g,j][a-u,0-9][a-z][a,à,á,0-9]|p[i,ì,í,0-9]r[o,ó,ò,ô,0-9][c,k][a-u,ã,0-9]|p[o,ô,õ,0-9]rr[a-u,ã,0-9]|p[o,ô,õ,0-9][r,h][a-u,ã,0-9]|[a-u,0-9]sp[o,ô,õ,0-9][r,h][a-u,ã,0-9]|[a-u,0-9]sp[o,ô,õ,0-9]rr[a-u,ã,0-9]/
 
-        if(data.d.game !== null) {
-            if(data.game.d.state===undefined) return null;
-            
-            let state = data.d.game.state.toLowerCase()
-            if(regex.test(state)) {
+        if(data.d.game !== null) {            
+            let state = data.d.game.state;
+            if (state === undefined) return null;
+            if(regex.test(state.toLowerCase())) {
                 let alvoID   = data.d.user.id,
                     alvo     = await client.users.get(data.d.user.id),
                     msg      = `<@&607754714100269056> <@&697930725529485362> encontrei uma ** *RichPresence* **suspeita, poderiam verificar?\n`,
