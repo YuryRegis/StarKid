@@ -5,11 +5,11 @@ const client = new Discord.Client();
 const config = require("./config.json");
 const { dbUno } = require("./Routes/rotas");
 const newmember = require("./newmember.cjs");
-const { setRole, rmvAddLog } = require("./funcoes");
 const messageHandler = require("./messageHandler.cjs");
 const { watsonAssistant } = require('./Routes/cloud');
 const AssistantV1 = require('ibm-watson/assistant/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
+const { setRole, rmvAddLog, mbrUPD, prsUPD } = require("./funcoes");
 //const messageBotHandler = require("./messageBotHandler.mjs")
 
 client.commands = new Discord.Collection(); //Cria coleção de comandos
@@ -63,6 +63,19 @@ client.on("raw", async data => {
 		let resposta = "";
 		(data.t === 'GUILD_MEMBER_REMOVE') ? resposta = await rmvAddLog(data, false) : resposta = await rmvAddLog(data, true);   
 		salaLogs.send(resposta);
+	}
+
+	if(data.t === 'PRESENCE_UPDATE') {
+		let resposta = await prsUPD(data, client);
+
+		if(resposta!==null) return salaLogs.send(resposta);
+	}
+
+
+	if(data.t === 'GUILD_MEMBER_UPDATE') {
+		let resposta = await mbrUPD(data, client);
+
+		if(resposta!==null) return salaLogs.send(resposta);
 	}
 })
 
