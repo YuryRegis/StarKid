@@ -508,7 +508,7 @@ exports.run = async (client, message, args) => {
                 if(cartas.length===0) {
                     let rank = new RichEmbed();
                     let fimDeJogo = new RichEmbed();
- 
+                                        
                     fimDeJogo = encerrarPartida(client, jAnterior, fimDeJogo);
                     await salaAtual.send(fimDeJogo);
                     await salaAtual.send('Placar **geral** do servidor:');
@@ -857,11 +857,28 @@ exports.run = async (client, message, args) => {
     //Encerrar partida
     if (args[0].toLowerCase() === "encerrar"|| args[0].toLowerCase() === "e")  {
         if(validaAdmin && jogoAtivo) {
+            salaAtual.send(`Jogo encerrado por ${message.author.username}.`);
             return reset();
         }
         return message.reply("sem partida ativa no momento.");
     }
-} 
+
+
+    var reset = function() {
+        mesa        = [];
+        jogadores   = [];
+        contBaralho = 1;
+        jogoAtivo   = false;
+        errStatus   = false;
+        jAtual      = new Jogador();
+        jAnterior   = new Jogador();
+        jSeguinte   = new Jogador();
+        statusCor   = {"status": false, "cor":"", "id":""};
+        statusPlus  = {"status":false, "valor":0, "id":""}; 
+        baralho     = JSON.parse(JSON.stringify(json));
+    }
+
+} //exports
 
 
 var checarBaralho = async function(quantidade) {
@@ -882,19 +899,4 @@ var addBaralho = function() {
     var msg = "UNO: +1 baralho adicionado ao jogo atual"
     console.log(msg);
     return msg;
-}
-
-var reset = function() {
-    mesa = [];
-    lotacao = 9;
-    jogadores = [];
-    contBaralho = 1;
-    jogoAtivo = false;
-    errStatus = false;
-    jAtual = new Jogador();
-    jAnterior = new Jogador();
-    jSeguinte = new Jogador();
-    statusCor = {"status": false, "cor":"", "id":""};
-    statusPlus = {"status":false, "valor":0, "id":""}; 
-    baralho = JSON.parse(JSON.stringify(json));
 }
