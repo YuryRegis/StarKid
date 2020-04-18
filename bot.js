@@ -6,10 +6,11 @@ const config = require("./config.json");
 const { dbUno } = require("./Routes/rotas");
 const newmember = require("./newmember.cjs");
 const messageHandler = require("./messageHandler.cjs");
-const { watsonAssistant } = require('./Routes/cloud');
 const AssistantV1 = require('ibm-watson/assistant/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
 const { setRole, rmvAddLog, mbrUPD, prsUPD } = require("./funcoes");
+const { watsonAssistant, watsonTradutor } = require('./Routes/cloud');
+const LanguageTranslatorV3 = require('ibm-watson/language-translator/v3');
 //const messageBotHandler = require("./messageBotHandler.mjs")
 
 client.commands = new Discord.Collection(); //Cria coleção de comandos
@@ -91,6 +92,7 @@ client.on("message", async message => {
 	}
 	let bemVindo = "603720312919556239";
 	let chatBot  = "634200679224967188";
+	let avisoTGC = "693002971944058920";
 
 	if (message.channel.id===bemVindo) { 
 		let verificaRoles = await message.member.roles.some(r => 
@@ -104,6 +106,7 @@ client.on("message", async message => {
 			return;
 		}
 	}
+
 	if (message.channel.id === chatBot) {
 		let regex = /\?|\+|\-|\$|\%|\*/;
 
@@ -113,6 +116,12 @@ client.on("message", async message => {
 		let watson = await watsonAssistant(AssistantV1, IamAuthenticator, message);
 		return message.reply(`${watson}`);
 	}
+
+	if(message.channel.id === avisoTGC) {
+		let watson = await watsonTradutor(LanguageTranslatorV3, IamAuthenticator, message);
+		return message.channel.send(`${watson}`);
+	}
+
 	if(message.channel.type === "dm") return; //ignora mensagens diretas
 	
 	messageHandler.run(message, queue, client);
