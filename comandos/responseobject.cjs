@@ -24,7 +24,7 @@ exports.run = async (message, sender, client) => {
     "!youtubeliv" : "https://www.youtube.com/channel/UCmCFwg2jRK7jHFc4N4JYCjQ",
     "!ytthatskygamebrasil" : "https://www.youtube.com/c/ThatSkyGameBrasil",
     "!youtubeharry" : "https://www.youtube.com/c/ThatSkyGameBrasil",
-    "!nightzel " : "https://www.youtube.com/channel/UCiIIyRXAVeTDG5FN1IrfP_w",
+    "!nightzel" : "https://www.youtube.com/channel/UCiIIyRXAVeTDG5FN1IrfP_w",
     "bot quero ver a fuça da liv" : "Você pode ver a fuça da @355147512216158238 aqui:\nhttps://www.youtube.com/channel/UCmCFwg2jRK7jHFc4N4JYCjQ",
     "bot quero ver a fuça da ana" : "Você pode ver a fuça da @355147512216158238 aqui:\nhttps://www.youtube.com/channel/UCmCFwg2jRK7jHFc4N4JYCjQ",
     "bom dia": `:coffee: Um bom dia para você também ${sender}!`,
