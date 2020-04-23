@@ -6,7 +6,7 @@ const {getMember, getRandomInt} = require(`../funcoes.js`);
 
 var jogadores = [];
 var status = false;
-const privadoID = "626214145158545409";
+const privadoID = "702708054172500008";
 const dezoitoID = "674127280963977216";
 var baralho = JSON.parse(JSON.stringify(json));
 var cemiterio = [];
