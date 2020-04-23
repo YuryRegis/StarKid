@@ -172,9 +172,10 @@ module.exports = {
         embed.setTitle(carta.titulo)
             .setThumbnail(carta.imagem) //thumbnail da carta
             .setDescription(carta.info)
-            .addField(`**Jogador ATUAL:**`, atual)
             .addField(`Rodada`, rodada, true)
-            .addField(`Jogador anterior:`, anterior, false)
+            .addField(`\u200b`, '\u200b')
+            .addField(`Jogador anterior:`, anterior, true)
+            .addField(`**Jogador ATUAL:**`, `**${atual}**`, true)
             .addField(`Jogador seguinte:`, seguinte, true)
             .setFooter(`ThatSkyGameBrasil - CIRCULO DE FOGO 🔥 +18`);
         return embed
