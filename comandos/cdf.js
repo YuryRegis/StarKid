@@ -4,12 +4,13 @@ const json = require(`./cards.json`);
 const {getMember, getRandomInt} = require(`../funcoes.js`);
 
 
-var jogadores = [];
-var status = false;
-const privadoID = "702708054172500008";
-const dezoitoID = "674127280963977216";
-var baralho = JSON.parse(JSON.stringify(json));
-var cemiterio = [];
+var jogadores   = [];
+var cemiterio   = [];
+var status      = false;
+var rodada      = 1;
+const privadoID = "626214145158545409";
+const dezoitoID = "702708054172500008";
+var baralho     = JSON.parse(JSON.stringify(json));
 
 
 exports.help = {
@@ -52,7 +53,7 @@ exports.run = async (client, message, args) => {
 
     //Comando para remover jogador
     if (args[0].toLowerCase() === "rmv") {
-        const jogador = getMember(message, args[1]).user.username
+        const jogador = await getMember(message, args[1]).user.username
 
         if (jogadores.some(j => j === jogador)) {
             jogadores.splice(jogadores.indexOf(jogador), 1);
@@ -115,7 +116,7 @@ exports.run = async (client, message, args) => {
         const anterior = jogadores[jogadores.length-1];
         var embed = new RichEmbed();
 
-        message.channel.send(getEmbed(anterior,atual,seguinte,embed,carta));
+        message.channel.send(getEmbed(anterior,atual,seguinte,embed,carta,rodada));
         message.delete();
     }
 
@@ -140,6 +141,13 @@ exports.run = async (client, message, args) => {
             cemiterio = [];
             message.channel.send("Cartas embaralhadas!");
         }
+        let jogadorAtual = await getMember(message, args[1]).user.username
+        
+        if (jogadores.some(j => j === jogadorAtual)) {
+            if (jogadores.indexOf(jogadorAtual)===0)
+                rodada += 1;
+        }
+
         const indice = getRandomInt(0,baralho.length-1);
         const carta = baralho[indice];
         baralho.splice(indice,1);
@@ -152,7 +160,7 @@ exports.run = async (client, message, args) => {
         jogadores.push(anterior);
         jogadores.shift();
 
-        var msg = getEmbed(anterior, atual, seguinte, embed, carta);
+        var msg = getEmbed(anterior, atual, seguinte, embed, carta,rodada);
         message.channel.send(msg);
         
         message.delete()
@@ -167,6 +175,12 @@ exports.run = async (client, message, args) => {
             message.delete();
             return console.log("Existem menos de 3 pessoas jogando.");
         }
+        let jogadorAtual = await getMember(message, args[1]).user.username
+
+        if (jogadores.some(j => j === jogadorAtual)) {
+            if (jogadores.indexOf(jogadorAtual) === (jogadores.length-1))
+                rodada -= 1;
+        }
         const carta = cemiterio[0];
         const anterior = jogadores[jogadores.length-2];
         const atual = jogadores[jogadores.length-1];
@@ -176,7 +190,7 @@ exports.run = async (client, message, args) => {
         jogadores.unshift(atual);
         jogadores.pop();
 
-        const msg = getEmbed(anterior, atual, seguinte, embed, carta);
+        const msg = getEmbed(anterior, atual, seguinte, embed, carta, rodada);
         await message.channel.send("Voltei a jogada para o jogador **anterior**.");
         message.channel.send(msg);
         
@@ -210,7 +224,7 @@ exports.run = async (client, message, args) => {
         jogadores.unshift(atual);
         jogadores.pop();
 
-        const msg = getEmbed(anterior, atual, seguinte, embed, carta);
+        const msg = getEmbed(anterior, atual, seguinte, embed, carta, rodada);
         await message.channel.send("Troquei a carta para o jogador **atual**.");
         message.channel.send(msg);
         

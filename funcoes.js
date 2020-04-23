@@ -168,13 +168,14 @@ module.exports = {
     },
     
 
-    getEmbed: function(anterior, atual, seguinte, embed, carta){
+    getEmbed: function(anterior, atual, seguinte, embed, carta, rodada){
         embed.setTitle(carta.titulo)
             .setThumbnail(carta.imagem) //thumbnail da carta
             .setDescription(carta.info)
             .addField(`**Jogador ATUAL:**`, atual)
-            .addField(`Jogador anterior:`, anterior)
-            .addField(`Jogador seguinte:`, seguinte)
+            .addField(`Rodada`, rodada, true)
+            .addField(`Jogador anterior:`, anterior, false)
+            .addField(`Jogador seguinte:`, seguinte, true)
             .setFooter(`ThatSkyGameBrasil - CIRCULO DE FOGO 🔥 +18`);
         return embed
     },
