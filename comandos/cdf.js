@@ -46,6 +46,7 @@ exports.run = async (client, message, args) => {
 
         jogadores.push(addJogador);
         console.log(`${addJogador} adicionado à lista de jogadores`);
+        salaAtual.send(`${addJogador} adicionado à lista de jogadores`);
         console.log (jogadores);
         message.delete();
     }
@@ -58,6 +59,7 @@ exports.run = async (client, message, args) => {
         if (jogadores.some(j => j === jogador)) {
             jogadores.splice(jogadores.indexOf(jogador), 1);
             message.delete();
+            salaAtual.send(`${jogador} removido da lista de jogadores.`);
             return console.log(`${jogador} removido da lista de jogadores.`);
         }
         message.delete();
@@ -69,7 +71,7 @@ exports.run = async (client, message, args) => {
     if (args[0].toLowerCase() === "jogadores"){
         
         if (jogadores.length === 0){
-            message.channel.send("Não existe nenhum jogador no momento.");
+            salaAtual.send("Não existe nenhum jogador no momento.");
             console.log("Sem jogadores no momento");
             return message.delete()
         }

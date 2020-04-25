@@ -118,7 +118,7 @@ module.exports = {
                 false)        
             .addBlankField()
             .addField('**CAPA AZUL**',
-                'A capa azul, a principio, foi um presente dado aos jogadores que participaram do beta teste. Posteriormente, a TGC, decidiu vender este item e você pode adquiri-lo ||com um NPC presente no escritório, basta conversar com ele e abrir a loja para visualizar o item para compra. Além da capa azul, voce tambem pode comprar itens especiais em como gorro de natal, capa de vampiro ou cabeça de abóbora. Porem são limitados à éopcas especificas como natal e *halloween*.||',
+                'A capa azul, a principio, foi um presente dado aos jogadores que participaram do beta teste. Posteriormente, a TGC, decidiu vender este item e você pode adquiri-lo ||com um NPC presente no escritório, basta conversar com ele e abrir a loja para visualizar o item para compra. Além da capa azul, voce tambem pode comprar itens especiais como gorro de natal, capa de vampiro ou cabeça de abóbora. Atenção! Estes itens são limitados à épocas especificas como natal e *halloween*.||',
                 false)
             .addBlankField()
             .addField('**SEGREDOS**',

@@ -84,15 +84,20 @@ client.on("raw", async data => {
 
 
 client.on("message", async message => {
-	if(message.author.bot) {
-		if (message.channel.id === "634200679224967188" && message.content[0] === config.prefix) {
-			messageHandler.run(message, queue, client);
-		}
-		return // messageBotHandler.run(message); //mensagem de bots
-	}
 	let bemVindo = "603720312919556239";
 	let chatBot  = "634200679224967188";
 	let avisoTGC = "693002971944058920";
+
+	if(message.author.bot) {
+		if (message.channel.id === chatBot && message.content[0] === config.prefix) {
+			messageHandler.run(message, queue, client);
+		} 
+		if(message.channel.id === avisoTGC) {
+			let watson = await watsonTradutor(LanguageTranslatorV3, IamAuthenticator, message);
+			return message.channel.send(`${watson}`);
+		}
+		return // messageBotHandler.run(message); //mensagem de bots
+	}
 
 	if (message.channel.id===bemVindo) { 
 		let verificaRoles = await message.member.roles.some(r => 
