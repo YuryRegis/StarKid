@@ -1,5 +1,5 @@
 const {RichEmbed} = require(`discord.js`);
-const {getMember, getRandomInt} = require(`../funcoes.js`);
+const { getMember, getRandomInt, crushBanner} = require(`../funcoes.js`);
 
 exports.help = {
     name: "crush"
@@ -27,10 +27,11 @@ exports.run = async (client, message, args) => {
         return message.channel.send(embed);
     }
     
-    var indice = getRandomInt(0,10)
-    var progresso = "❤️".repeat(indice) + "💔".repeat(10 - indice);
-    var img = ""
-    let alvo = getMember(message, args[0]);
+    var indice    = getRandomInt(0, 10),
+        progresso = "❤️".repeat(indice) + "💔".repeat(10 - indice),
+        img       = "";
+    let alvo      = getMember(message, args[0]),
+        autor     = message.author;
 
     if(!alvo || message.author.id === alvo.id) {
         alvo = message.guild.members
@@ -51,10 +52,14 @@ exports.run = async (client, message, args) => {
             }
         }
     }
-
+    
     if (indice >= 5) {
-        img = "https://media.giphy.com/media/xThtaxm8RQ5koMKKxW/giphy.gif"
-    } else img = "https://media.giphy.com/media/3oriNM8HF8oijarwre/200w_d.gif"
+        img = "https://media.giphy.com/media/xThtaxm8RQ5koMKKxW/giphy.gif";
+        await crushBanner(autor.displayAvatarURL, alvo.user.displayAvatarURL, true);
+    } else {
+        img = "https://media.giphy.com/media/3oriNM8HF8oijarwre/200w_d.gif";
+        await crushBanner(autor.displayAvatarURL, alvo.user.displayAvatarURL, false);
+    }
 
     const embed = new RichEmbed()
         .setTitle(`SKYNDER`)
@@ -62,7 +67,8 @@ exports.run = async (client, message, args) => {
         .setColor(`RANDOM`)
         .setThumbnail(img)
         .setTimestamp()
-        .addField(`${message.member.displayName} 💞 ${alvo.user.username}`, progresso)
+        .addField(`**${message.member.displayName} 💞 ${alvo.user.username}**`, progresso)
+        .attachFile(`./images/match.png`)
         .setFooter(`Requisitado por ${message.member.displayName}`, client.user.displayAvatarURL)
 
     message.channel.send(embed);
