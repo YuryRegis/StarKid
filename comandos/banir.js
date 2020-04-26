@@ -1,11 +1,16 @@
+const {RichEmbed} = require("discord.js");
+
 
 exports.help = {
     name: "banir"
 }
 
+
 exports.run = async (client, message, args) => {
     if(message.member.roles.some(r => r.name === "Admin") || message.member.roles.some(r => r.name === "Staff")) {
-        let canal = await client.channels.get("698758957845446657");
+        let canal = await client.channels.get("698758957845446657"),
+            aviso = await client.channels.get("603720312919556239");
+
         // retorna id usuario mencionado e motivo do ban
         let idusuario = await message.guild.members.get(`${message.mentions.users.first().id}`);
         let motivo = args.slice(1).join(" ");
@@ -19,7 +24,18 @@ exports.run = async (client, message, args) => {
             });
         
         await idusuario.ban(1, `${motivo} + \nVocê não poderá interagir no servidor.`)
-            .then( () => idusuario.createDM(`${idusuario.displayName} banido.`) ) 
+            .then( () => {
+                let nome  = idusuario.displayName,
+                    embed = new RichEmbed(),
+                    gif   = 'https://media1.tenor.com/images/4c906e41166d0d154317eda78cae957a/tenor.gif';
+
+                embed.setTitle("**BANIDO**")
+                     .setColor('#CF3F47')
+                     .setDescription(`${nome} foi pego! Banido do servidor por \`\`\`${motivo}\`\`\``)
+                     .setImage(gif);
+                
+                aviso.send(embed) 
+            }) 
             .catch(err => {
                 console.log(`Ban error => ${err}`);
                 let log = `Terminal Ban\n\`\`\`${err}\`\`\``;

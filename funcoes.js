@@ -295,6 +295,38 @@ module.exports = {
         pontuacao = Math.round(pontuacao / tamJogadores);
         console.log("somaPontos: pontuação -> ", pontuacao);
         return  pontuacao;
+    },
+
+
+    crushBanner: async function(autor, alvo, match) {
+        const jimp = require("jimp");
+
+        let fundo   = await jimp.read(`./images/banner.png`),
+            mask    = await jimp.read(`./images/mascaraCore.png`),
+            breakeH = await jimp.read(`./images/breakeH.png`),
+            avatar1 = await jimp.read(autor),
+            avatar2 = await jimp.read(alvo),
+            borda   = await jimp.read(`./images/borda.png`),
+            fonte   = await jimp.loadFont(`./images/projetoPSD/HipsterScript.fnt`);
+
+        fundo.resize(750,450);
+        
+        if (match) {
+            await mask.resize(150, 150);
+            await avatar1.resize(150, 150);
+            await avatar2.resize(150, 150);
+            await avatar1.mask(mask);
+            await avatar2.mask(mask);
+            
+            fundo.print(fonte, 220, 235, 'It\'s a Match!');
+            fundo.composite(borda, 0, 0);
+            fundo.composite(avatar1, 251, 90)
+            fundo.composite(avatar2, 351, 90).write(`./images/match.png`);
+        } else {
+            fundo.print(fonte, 220, 250, 'Sinto Muito!');
+            fundo.composite(breakeH, 220,40).write(`./images/match.png`);
+        }
+        return;
     }   
     
 };
