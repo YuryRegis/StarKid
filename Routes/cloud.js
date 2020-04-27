@@ -56,9 +56,8 @@ module.exports = {
           return msgErr;
         });
 
-        console.log("Watson:",watson);
-        return;
-
+        return watson.translations[0].translation;
+        
     }
 
 }

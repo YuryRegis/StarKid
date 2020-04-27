@@ -96,17 +96,18 @@ client.on("message", async message => {
 			if(/^(!)/i.test(message.content))
 				return messageHandler.run(message, queue, client);
 
-			if(message.author.id === '612347655493910632')
+			if(message.author.id === '612347655493910632') 
 				return
 				
-			let watson = await watsonTradutor(LanguageTranslatorV3, IamAuthenticator, message);
-
+			let watson  = await watsonTradutor(LanguageTranslatorV3, IamAuthenticator, message),
+				salaLog = await message.guild.channels.get('698758957845446657');
+				
 			if(watson === undefined) {
-				let salaLog = await message.guild.channels.get('698758957845446657');
 				salaLog.send('Tradutor error ```Watson response UNDEFINED```');
 				return console.log("Watson response UNDEFINED");
 			}
-			return message.channel.send(`${watson}`);
+			message.channel.send(`${watson}`).then()
+				.catch(err => salaLog.send(`Tradutor error \`\`\`${err}\`\`\``));
 		}
 		return // messageBotHandler.run(message); //mensagem de bots
 	}
