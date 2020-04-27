@@ -24,6 +24,11 @@ exports.run = async (client, message, args) => {
 
         await rebelde.send(`${message.author} silenciou você pelo seguinte motivo:\n` + 
         `\`\`\`${msg}\`\`\`\nVocê não poderá interagir nos canais de chat até que um Staff permita novamente.`)
+            .then()
+            .catch(err => {
+                console.log(err);
+                canal.send(`!mutar error\nUsuário não permite mensagem privada.\n\`\`\`${err}\`\`\``);
+            });
             
         await rebelde.setRoles(['621755924855652353']); // Define role "Silenciados" para o usuario
         await message.delete();

@@ -18,7 +18,12 @@ exports.run = async (client, message, args) => {
             // notificando rebelde desmutado
             await rebelde.send(`Você não está mais silenciado.\n`+
             `Cuide para ter um bom relacionamento com seus colegas.\n`+
-            `Vamos fazer, juntos, o **nosso servidor** ser um lugar **agradavel para todos.** `);
+            `Vamos fazer, juntos, o **nosso servidor** ser um lugar **agradavel para todos.** `)
+                .then()
+                .catch(err => {
+                    console.log(err);
+                    canal.send(`!desmutar error\nNão é possível enviar mensagem privada\n\`\`\`${err}\`\`\``);
+                });
             
             await message.delete(); 
             return canal.send(`\`${message.author}\` removeu silenciar de ${rebelde.displayName}.`);
