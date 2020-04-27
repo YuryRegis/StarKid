@@ -94,6 +94,8 @@ client.on("message", async message => {
 		} 
 		if(message.channel.id === avisoTGC) {
 			let watson = await watsonTradutor(LanguageTranslatorV3, IamAuthenticator, message);
+			if(watson === undefined)
+				return console.log("Watson response UNDEFINED");
 			return message.channel.send(`${watson}`);
 		}
 		return // messageBotHandler.run(message); //mensagem de bots
