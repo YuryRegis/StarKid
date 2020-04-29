@@ -162,7 +162,7 @@ module.exports = {
                 +`\n${point} [Temporada Caçadores de luz](https://discordapp.com/channels/603720312911167622/624350432088686593/697266486317940776);`
                 +`\n${point} [Temporada do Pertencer](https://discordapp.com/channels/603720312911167622/624350432088686593/697266796872597515);`
                 +`\n${point} [Temporada do Ritmo](https://discordapp.com/channels/603720312911167622/624350432088686593/697267069246373948);`
-                +`\n${point} Temporada dos Encantos`,
+                +`\n${point} [Temporada dos Encantos](https://discordapp.com/channels/603720312911167622/624350432088686593/701718532668260472)`,
                 false)
             .addBlankField()
             .addField('**PASSE DA TEMPORADA**',

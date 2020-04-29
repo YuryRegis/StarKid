@@ -525,7 +525,20 @@ exports.run = async (client, message, args) => {
                     vencedorDb.pontos += (await somaPontos(jogadores)+punicao);
                     await atualizar(vencedorDb);
                     salaAtual.send(await unoRank(rank));
-                    return reset();
+                    
+                    //reset
+                    mesa        = [];
+                    jogadores   = [];
+                    contBaralho = 1;
+                    jogoAtivo   = false;
+                    errStatus   = false;
+                    jAtual      = new Jogador();
+                    jAnterior   = new Jogador();
+                    jSeguinte   = new Jogador();
+                    statusCor   = {"status": false, "cor":"", "id":""};
+                    statusPlus  = {"status":false, "valor":0, "id":""}; 
+                    baralho     = JSON.parse(JSON.stringify(json));
+                    return;
                 }
                 salaAtual.send(`${jAtual.nome} use o comando \`!uno comprar\` ou jogue outro **"+2"** para cobrir.`);
                 return;
@@ -581,7 +594,20 @@ exports.run = async (client, message, args) => {
                     vencedorDb.pontos += (await somaPontos(jogadores)+punicao);
                     await atualizar(vencedorDb);
                     salaAtual.send(await unoRank(rank));
-                    return reset();
+                    
+                    //reset
+                    mesa        = [];
+                    jogadores   = [];
+                    contBaralho = 1;
+                    jogoAtivo   = false;
+                    errStatus   = false;
+                    jAtual      = new Jogador();
+                    jAnterior   = new Jogador();
+                    jSeguinte   = new Jogador();
+                    statusCor   = {"status": false, "cor":"", "id":""};
+                    statusPlus  = {"status":false, "valor":0, "id":""}; 
+                    baralho     = JSON.parse(JSON.stringify(json));
+                    return;
                 }
                 return salaAtual.send(`Aguardando ${jAtual.nome} fazer a sua jogada...`)
             }
@@ -631,7 +657,20 @@ exports.run = async (client, message, args) => {
                     vencedorDb.pontos += (await somaPontos(jogadores)+punicao);
                     await atualizar(vencedorDb);
                     salaAtual.send(await unoRank(rank));
-                    return reset();
+                    
+                    //reset
+                    mesa        = [];
+                    jogadores   = [];
+                    contBaralho = 1;
+                    jogoAtivo   = false;
+                    errStatus   = false;
+                    jAtual      = new Jogador();
+                    jAnterior   = new Jogador();
+                    jSeguinte   = new Jogador();
+                    statusCor   = {"status": false, "cor":"", "id":""};
+                    statusPlus  = {"status":false, "valor":0, "id":""}; 
+                    baralho     = JSON.parse(JSON.stringify(json));
+                    return;
                 }
                 return salaAtual.send(`Aguardando ${jAtual.nome} fazer a sua jogada...`);
             }
@@ -675,7 +714,20 @@ exports.run = async (client, message, args) => {
                     vencedorDb.pontos += (await somaPontos(jogadores)+punicao);
                     await atualizar(vencedorDb);
                     salaAtual.send(await unoRank(rank));
-                    return reset();
+                    
+                    //reset
+                    mesa        = [];
+                    jogadores   = [];
+                    contBaralho = 1;
+                    jogoAtivo   = false;
+                    errStatus   = false;
+                    jAtual      = new Jogador();
+                    jAnterior   = new Jogador();
+                    jSeguinte   = new Jogador();
+                    statusCor   = {"status": false, "cor":"", "id":""};
+                    statusPlus  = {"status":false, "valor":0, "id":""}; 
+                    baralho     = JSON.parse(JSON.stringify(json));
+                    return;
             }
             return salaAtual.send(`Aguardando ${jAtual.nome} fazer a sua jogada...`);
         }   
@@ -858,25 +910,24 @@ exports.run = async (client, message, args) => {
     if (args[0].toLowerCase() === "encerrar"|| args[0].toLowerCase() === "e")  {
         if(validaAdmin && jogoAtivo) {
             salaAtual.send(`Jogo encerrado por ${message.author.username}.`);
-            return reset();
-        }
+            
+            //reset
+            mesa        = [];
+            jogadores   = [];
+            contBaralho = 1;
+            jogoAtivo   = false;
+            errStatus   = false;
+            jAtual      = new Jogador();
+            jAnterior   = new Jogador();
+            jSeguinte   = new Jogador();
+            statusCor   = {"status": false, "cor":"", "id":""};
+            statusPlus  = {"status":false, "valor":0, "id":""}; 
+            baralho     = JSON.parse(JSON.stringify(json));
+            return;
+        }//if
         return message.reply("sem partida ativa no momento.");
-    }
+    }//if
 
-
-    var reset = function() {
-        mesa        = [];
-        jogadores   = [];
-        contBaralho = 1;
-        jogoAtivo   = false;
-        errStatus   = false;
-        jAtual      = new Jogador();
-        jAnterior   = new Jogador();
-        jSeguinte   = new Jogador();
-        statusCor   = {"status": false, "cor":"", "id":""};
-        statusPlus  = {"status":false, "valor":0, "id":""}; 
-        baralho     = JSON.parse(JSON.stringify(json));
-    }
 
 } //exports
 
