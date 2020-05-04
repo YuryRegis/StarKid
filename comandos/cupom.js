@@ -22,7 +22,8 @@ exports.run = async (client, message, args) => {
           vipOuroID  = '706706714766082060',
           vipPrataID = '706706548998668370',
           membroAlvo = message.mentions.members.first(),
-          salaLogs   = client.channels.get("698758957845446657");
+          salaLogs   = client.channels.get("698758957845446657"),
+          chatGeral  = client.channels.get("603723288757403648");
 
     const concursoID = args[1],
           sorteio    = args[2],
@@ -84,7 +85,9 @@ exports.run = async (client, message, args) => {
         await dbAddPasse(apoiador);
         await ticket(cupom, sorteio);
 
-        membroAlvo.send( await messageDM(apoiador, sorteio) );
+        membroAlvo.send( await messageDM(apoiador, sorteio) )
+            .then(chatGeral.send(`${membroAlvo} seus cupons para o sorteio do concurso ${concursoID} foram enviados por mensagem privada. Boa Sorte! 🍀`,
+                {file: 'https://acegif.com/wp-content/gifs/boa-sorte-17.gif'}));
 
         aux++
     } while (aux <= quantidade);
