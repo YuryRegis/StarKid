@@ -113,7 +113,7 @@ module.exports = {
         if(cupons.length === 0)
             return;
         
-        cupons.forEach(element => {
+        cupons.forEach(async element => {
             let idNaLista = listaIDs.some(id => id === element.id);
             if(!idNaLista)
                 listaIDs.push(element.id);

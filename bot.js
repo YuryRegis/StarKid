@@ -5,6 +5,7 @@ const client = new Discord.Client();
 const config = require("./config.json");
 const { dbUno } = require("./Routes/rotas");
 const newmember = require("./newmember.cjs");
+const { dbPasse } = require('./Routes/rotasPasse');
 const messageHandler = require("./messageHandler.cjs");
 const AssistantV1 = require('ibm-watson/assistant/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
