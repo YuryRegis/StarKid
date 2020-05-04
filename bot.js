@@ -30,9 +30,10 @@ fs.readdir("./comandos/",(erro, arquivo) => {
 client.on("ready", () => {
     console.log(`Bot iniciado! ${client.users.size} usuários, ${client.channels.size} canais e ${client.guilds.size} servidores.`);
 	client.user.setActivity(`Sky: Filhos da luz`);
-	if(dbUno()) {
+	
+	if(dbUno() && dbPasse()) 
 		console.log("Rota: banco de dados OK");
-	};
+	else console.log("Rota: verifique o banco de dados...");
 })
 
 
