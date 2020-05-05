@@ -1,5 +1,6 @@
-const { dbFindPasse, dbAddPasse, dbEditPasse, dbListPasses } = require('../Routes/rotasPasse'),
-      { geraCupom, ticket, messageDM }  = require('./assets/loto/ticket');
+const { dbAddVIP, dbEditVIP, dbFindVIP, dbListVIPs } = require('../Routes/rotasVIP'),
+      { geraCupom, ticket, messageDM }  = require('./assets/loto/ticket'),
+      { dbFindPasse, dbAddPasse } = require('../Routes/rotasPasse');
 
 
 class Apoiador {
@@ -86,8 +87,10 @@ exports.run = async (client, message, args) => {
         await ticket(cupom, sorteio);
 
         membroAlvo.send( await messageDM(apoiador, sorteio) )
-            .then(chatGeral.send(`${membroAlvo} seus cupons para o sorteio do concurso ${concursoID} foram enviados por mensagem privada. Boa Sorte! 🍀`,
-                {file: 'https://acegif.com/wp-content/gifs/boa-sorte-17.gif'}));
+        
+        if(aux===1)
+            chatGeral.send(`${membroAlvo} seus cupons para o sorteio do concurso ${concursoID} foram enviados por mensagem privada. Boa Sorte! 🍀`,
+                {file: 'https://acegif.com/wp-content/gifs/boa-sorte-17.gif'})
 
         aux++
     } while (aux <= quantidade);
@@ -101,29 +104,62 @@ exports.run = async (client, message, args) => {
         (nivel==='vip') ? vip = vipID : (nivel==='prata') ? vip = vipPrataID : (nivel==='ouro') ? vip = vipOuroID : vip = null;
 
         if(vip === null)
-            return salaLogs.send(`${message.author} ${nivel} não é um cargo válido, use vip, prata ou ouro.`);
+            return salaLogs.send(`${message.author} ${nivel} não é um cargo válido, coloque o cargo manualmente.`);
 
         let cargo = await message.guild.roles.get(vip);
 
-        if(!membroVip)
+        if(!membroVip) {
             membroAlvo.addRole(cargo)
-                .then()
+                .then( () => {
+                    if(vip==='prata')
+                        membroAlvo.addRole('695833895848902677') //DiscordBeta
+                            .then().catch(error => { 
+                                salaLogs.send(`!cupom: erro ao add cargo\`\`\`${error}\`\`\``);
+                                console.log(error) });
+
+                    if(vip==='ouro')
+                        membroAlvo.addRole('695833895848902677') //DiscordBeta
+                            .then().catch(error => { 
+                                salaLogs.send(`!cupom: erro ao add cargo\`\`\`${error}\`\`\``);
+                                console.log(error) });
+
+                        membroAlvo.addRole('704448465853349979') //GarticMod
+                            .then().catch(error => { 
+                                salaLogs.send(`!cupom: erro ao add cargo\`\`\`${error}\`\`\``);
+                                console.log(error) });
+                })
                 .catch(error => { 
                     salaLogs.send(`!cupom: erro ao add cargo\`\`\`${error}\`\`\``);
                     console.log(error)
                 });
+            }
     }//if nivel
         
-    if(membroVip) {
+    if(membroVip) { //renova ou adiciona data de expiração VIP
         let dia = new Date().getDate(),
-        filtro = f => f.id === membroAlvo.id,
-        cupons = dbListPasses();
+            mes = new Date().getMonth() + 1 ,
+         filtro = f => f.id === membroAlvo.id,
+         VIPs   = dbListVIPs(),
+         vip    = '';
     
-        cupons = cupons.filter(filtro);
-        if(cupons.length === 0)
+        VIPs = VIPs.filter(filtro);
+        (dia === 31) ? dia = 30 : dia;
+        (nivel === undefined) ? vip = 'vip' : vip = nivel;
+
+        if(VIPs.length === 0)
             return;
-        cupons.forEach( async element => 
-            await dbEditPasse(element, element.cupom, element.concurso, dia) );
+
+        VIPs.forEach( async element => 
+            await dbEditVIP(element.id, vip, dia, mes) );
+    } else {
+        let dia = new Date().getDate(),
+            mes = new Date().getMonth() + 1 ,
+            vip = '';
+
+        (dia === 31) ? dia = 30 : dia;
+        (nivel === undefined) ? vip = 'vip' : vip = nivel;
+
+        dbAddVIP(membroAlvo.id, membroAlvo.displayName, vip, dia, mes);
     }
     return;
 }

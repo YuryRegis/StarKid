@@ -6,6 +6,7 @@ const config = require("./config.json");
 const { dbUno } = require("./Routes/rotas");
 const newmember = require("./newmember.cjs");
 const { dbPasse } = require('./Routes/rotasPasse');
+const { dbVIP } = require('./Routes/rotasVIP');
 const messageHandler = require("./messageHandler.cjs");
 const AssistantV1 = require('ibm-watson/assistant/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
@@ -32,7 +33,7 @@ client.on("ready", () => {
     console.log(`Bot iniciado! ${client.users.size} usuários, ${client.channels.size} canais e ${client.guilds.size} servidores.`);
 	client.user.setActivity(`Sky: Filhos da luz`);
 	
-	if(dbUno() && dbPasse()) 
+	if( dbUno() && dbPasse() && dbVIP() ) 
 		console.log("Rota: banco de dados OK");
 	else console.log("Rota: verifique o banco de dados...");
 })

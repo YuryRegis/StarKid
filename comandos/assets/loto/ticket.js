@@ -1,7 +1,7 @@
-const jimp                      = require("jimp"),
-{ RichEmbed }                   = require("discord.js"),
-{ getRandomInt }                = require('../../../funcoes'),
-{ dbListPasses, dbDeletePasse } = require('../../../Routes/rotasPasse');
+const jimp                  = require("jimp"),
+{ RichEmbed }               = require("discord.js"),
+{ getRandomInt }            = require('../../../funcoes'),
+{ dbDeleteVIP, dbListVIPs } = require('../../../Routes/rotasVIP');
 
 
 module.exports = {
@@ -98,48 +98,53 @@ module.exports = {
     },
 
     verificaVIP: async function(message) {
-        const salaLogs = message.guild.channels.get('698758957845446657'),
-              vipID    = '701655470141603911',
-              ouroID   = '706706714766082060',
-              prataID  = '706706548998668370';
-
-        let dia      = new Date().getDate(),
-            filtro   = f => f.renova === dia || ((f.renova===31)&&(dia===30)),
-            cupons   = await dbListPasses(),
-            listaIDs = [];
         
-        cupons.filter(filtro);
-
-        if(cupons.length === 0)
+        const salaLogs  = await message.guild.channels.get('698758957845446657'),
+              chatGeral = await message.guild.channels.get('603723288757403648'),
+              discBeta  = '695833895848902677',
+              GarticMod = '704448465853349979',
+              vipID     = '701655470141603911',
+              ouroID    = '706706714766082060',
+              prataID   = '706706548998668370';
+              
+        let dia       = new Date().getDate(),
+            mes       = new Date().getMonth() + 1,
+            filtroDia = f => f.dia <= dia || (mes===2 && f.dia>=28),
+            filtroMes = f => f.mes < mes, 
+            VIPs      = await dbListVIPs(),
+            listaIDs  = [];
+        
+        VIPs = VIPs.filter(filtroMes);
+        VIPs = VIPs.filter(filtroDia);
+        
+        if(VIPs.length === 0)
             return;
         
-        cupons.forEach(async element => {
+        VIPs.forEach(async element => {
             let idNaLista = listaIDs.some(id => id === element.id);
+
             if(!idNaLista)
                 listaIDs.push(element.id);
-            await dbDeletePasse(element.cupom);
+                await dbDeleteVIP(element.id);
         });
 
         listaIDs.forEach(id => {
-            let membro = message.guild.members.get(id);
+            let membro = message.guild.members.get(id),
+                harry  = message.guild.members.get('322421000153333761'),
+                cargos = [ vipID, prataID, ouroID, discBeta, GarticMod ];
             
-            if(membro.roles.some(cargo=>cargo.id===vipID))
-                membro.removeRole(vipID)
-                    .then()
-                    .catch(err => salaLogs.send(`Remove VIP error:\`\`\`${err}\`\`\``));
-            else if(membro.roles.some(cargo=>cargo.id===prataID))
-                membro.removeRole(prataID)
-                    .then()
-                    .catch(err => salaLogs.send(`Remove VIP error:\`\`\`${err}\`\`\``));
-            else if(membro.roles.some(cargo=>cargo.id===ouroID))
-                membro.removeRole(ouroID)
-                    .then()
-                    .catch(err => salaLogs.send(`Remove VIP error:\`\`\`${err}\`\`\``));
+            cargos.forEach(role => {
+                if(membro.roles.some(cargo => cargo.id === role))
+                    membro.removeRole(role)
+                        .then()
+                        .catch(err => salaLogs.send(`Remove VIP error:\`\`\`${err}\`\`\``));
+            })
             
-            membro.send(`Seu beneficio mensal V.I.P encerrou hoje, obrigado por apoiar a ThatSkyGameBrasil!`)
-                .then(salaLogs.send(`Plano V.I.P de ${membro.displayName} expirou.`))
+            membro.send(`Seu beneficio mensal V.I.P encerrou hoje. Obrigado por apoiar a ThatSkyGameBrasil ❤️`)
+                .then(salaLogs.send(`${harry} o plano V.I.P de ${membro.displayName} expirou.`))
                 .catch(error => {
                     console.log(error);
+                    chatGeral.send(`${membro} seu plano V.I.P expirou. Obrigado por sua contribuição ❤️`);
                     salaLogs.send(`Plano V.I.P de ${membro.displayName} expirou.\`\`\`${error}\`\`\``);
                 });
         });

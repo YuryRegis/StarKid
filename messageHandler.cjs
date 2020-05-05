@@ -1,3 +1,5 @@
+const { verificaVIP } = require('./comandos/assets/loto/ticket')
+
 
 exports.run = async (message, queue, client) => {
     const Util = require("discord.js");
@@ -252,6 +254,8 @@ exports.run = async (message, queue, client) => {
 	if(client.commands.get(comando)) {  //Comando === comandos previamente carregados?
 		
 		if (message.content[0] === config.prefix) {
+			verificaVIP(message);
+			
 			console.log(`${comando} digitado por ${user} no canal ${ch}.`);
 			salaLogs.send(`${comando} digitado por ${user} no canal ${ch}.`);
 			client.commands.get(comando).run(client, message, args, queue, serverQueue);
