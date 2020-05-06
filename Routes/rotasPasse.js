@@ -24,11 +24,20 @@ module.exports = {
                 id: apoiador.id,
                 nome: apoiador.nome,
                 cupom: apoiador.cupom,
+                avatar: apoiador.avatar,
                 concurso: apoiador.concurso
             })
-            .write();
+            .write()
+        
         return true;
-    },  
+    },
+
+    
+    dbAtualiza: function(){
+        db.update('count', n => n + 1)
+            .write()
+        return
+    },
 
 
     //Lista todos os passes

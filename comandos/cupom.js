@@ -1,6 +1,6 @@
 const { dbAddVIP, dbEditVIP, dbFindVIP, dbListVIPs } = require('../Routes/rotasVIP'),
       { geraCupom, ticket, messageDM }  = require('./assets/loto/ticket'),
-      { dbFindPasse, dbAddPasse } = require('../Routes/rotasPasse');
+      { dbFindPasse, dbAddPasse, dbAtualiza } = require('../Routes/rotasPasse');
 
 
 class Apoiador {
@@ -83,10 +83,11 @@ exports.run = async (client, message, args) => {
         );
         salaLogs.send(`Cupom ${sorteio}\`\`\`Nome:     ${apoiador.nome}\nCupom:    ${apoiador.cupom}\nConcurso: ${apoiador.concurso}\`\`\``);
 
-        await dbAddPasse(apoiador);
+        await dbAddPasse(apoiador); //LowDb grava dados mas nao atualiza arquivo
+        await message.guild.channels.get('634200679224967188').send('!atualizapassedb') //Gambiarra, LowDB não grava dados sem atualizar?
         await ticket(cupom, sorteio);
 
-        membroAlvo.send( await messageDM(apoiador, sorteio) )
+        membroAlvo.send( await messageDM(apoiador, sorteio) );
         
         if(aux===1)
             chatGeral.send(`${membroAlvo} seus cupons para o sorteio do concurso ${concursoID} foram enviados por mensagem privada. Boa Sorte! 🍀`,
