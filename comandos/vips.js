@@ -36,7 +36,7 @@ exports.run = async function(client, message, args) {
         .setTimestamp()
         .setColor('#ffff53')
         .setTitle(`V.I.P's DO MÊS DE ${ano[mes]}`)
-        .setThumbnail('https://phoneky.co.uk/thumbs/screensavers/down/technology/vip_94tjc3hn.gif')
+        .setThumbnail('https://media1.giphy.com/media/IgpsRT6FdinjrDWzNu/giphy.gif')
         .setFooter(`ThatSkyGameBrasil - Tudo sobre Sky`, 
             'https://s3.amazonaws.com/assets.apoia.se/campaigns/5db49c70e2d7737c4cd4e520%7C5db49c99193385a323d53d4c/user-campaign-about-photo%7CDisocodLogo-20200502_23062002.png');
 

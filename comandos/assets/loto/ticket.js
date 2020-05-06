@@ -62,13 +62,14 @@ module.exports = {
 
     vencedor: async function(apoiador, args) {
         let embed = new RichEmbed,
-            logo  = "https://s3.amazonaws.com/assets.apoia.se/campaigns/5db49c70e2d7737c4cd4e520%7C5db49c99193385a323d53d4c/user-campaign-about-photo%7CDisocodLogo-20200502_23062002.png";
+            logo  = "https://s3.amazonaws.com/assets.apoia.se/campaigns/5db49c70e2d7737c4cd4e520%7C5db49c99193385a323d53d4c/user-campaign-about-photo%7CDisocodLogo-20200502_23062002.png",
+            thumb = 'https://i.pinimg.com/originals/a0/50/1e/a0501e0c5659dcfde397299e4234e75a.gif';
         
         embed
             .setTimestamp()
             .setColor('#F0FF01')
             .setTitle(`**SORTEIO ${args}**`.toUpperCase())
-            .setThumbnail(apoiador.avatar)
+            .setThumbnail(apoiador.avatar || thumb)
             .setDescription(`Vamos dar uma salva de palmas ao apoiador(a) ${apoiador.nome} ! Parabéns pelo prêmio!!!`)
             .addField("CONCURSO", apoiador.concurso, true)
             .addField("NOME DO VENCEDOR", apoiador.nome, true)
