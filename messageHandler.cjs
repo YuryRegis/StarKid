@@ -111,7 +111,10 @@ exports.run = async (message, queue, client) => {
 			salaLogs.send(`!radio fim de múscia\`\`\`Motivo: ${reason}\`\`\``);
 			if(serverQueue.songs.length > 0)
 				play(guild, serverQueue.songs[0]);
-			else return radio.send(`Toquei a última música da lista, use \`!pay\` para adicionar mais músicas.`);
+			else 
+				serverQueue.voiceChannel.leave();
+				queue.delete(guild.id);
+				return radio.send(`Toquei a última música da lista, use \`!pay\` para adicionar mais músicas.`);
 		})
 		.on('error', error => {
 			console.error(error);
