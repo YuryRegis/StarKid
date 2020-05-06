@@ -5,7 +5,7 @@ exports.run = async (client, message, args) => {
     message.delete();
     
     let autor   = message.author,
-        tag     = 'd_' + autor.tag + '🔐',
+        tag     = 'p_' + autor.tag + '🔐',
         info    = `${autor} você criou um chat **privado**🔐 com @Moderador, @Staff e @Admin. `;
     // let novaRole = await message.guild.createRole({
     //     name: tag,

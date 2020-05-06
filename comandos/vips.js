@@ -28,9 +28,9 @@ exports.run = async function(client, message, args) {
     if(listaVips.length === 0)
         return message.channel.send('Ainda não temos nenhum mebro VIP neste mês.');
     
-    listaVip.forEach(apoiador => vip += `${apoiador.nome} ` );
-    listaOuro.forEach(apoiador => ouro += `${apoiador.nome}`);
-    listaPrata.forEach(apoiador => prata += `${apoiador.nome} `);
+    listaVip.forEach(apoiador => vip += ` **${apoiador.nome}** |` );
+    listaOuro.forEach(apoiador => ouro += ` **${apoiador.nome}** |`);
+    listaPrata.forEach(apoiador => prata += ` **${apoiador.nome}** |`);
 
     embed
         .setTimestamp()
@@ -52,5 +52,6 @@ exports.run = async function(client, message, args) {
         (vip.length > 1024) ? vip = vip.slice(0,1023) : vip;
         embed.addField('V.I.P', vip, false);
     
-    floodID.send(embed);
+    let sala = await message.guild.channels.get(floodID);
+    sala.send(embed);
 }
