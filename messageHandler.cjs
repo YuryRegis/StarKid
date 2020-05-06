@@ -108,8 +108,10 @@ exports.run = async (message, queue, client) => {
 		//console.log(stream, dispatcher);
 		dispatcher.on('end', reason => {
 			serverQueue.songs.shift();
-			radio.send(`!radio fim de múscia\`\`\`Motivo: ${reason}\`\`\``);
-			play(guild, serverQueue.songs[0]);
+			salaLogs.send(`!radio fim de múscia\`\`\`Motivo: ${reason}\`\`\``);
+			if(serverQueue.songs.length > 0)
+				play(guild, serverQueue.songs[0]);
+			else return radio.send(`Toquei a última música da lista, use \`!pay\` para adicionar mais músicas.`);
 		})
 		.on('error', error => {
 			console.error(error);
