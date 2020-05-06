@@ -257,7 +257,10 @@ exports.run = async (message, queue, client) => {
 			verificaVIP(message);
 			
 			console.log(`${comando} digitado por ${user} no canal ${ch}.`);
-			salaLogs.send(`${comando} digitado por ${user} no canal ${ch}.`);
+
+			if(comando !== 'denuncia')
+				salaLogs.send(`${comando} digitado por ${user} no canal ${ch}.`);
+				
 			client.commands.get(comando).run(client, message, args, queue, serverQueue);
 		} else return;
 	} else 

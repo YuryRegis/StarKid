@@ -157,7 +157,7 @@ exports.run = async (client, message, args) => {
             vip = '';
 
         (dia === 31) ? dia = 30 : dia;
-        (nivel === undefined) ? vip = 'vip' : vip = nivel;
+        (nivel === undefined) ? vip = 'vip' : vip = nivel.toLowerCase();
 
         dbAddVIP(membroAlvo.id, membroAlvo.displayName, vip, dia, mes);
     }

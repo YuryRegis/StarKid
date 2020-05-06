@@ -4,7 +4,7 @@ const Discord = require("discord.js");
 exports.run = async (client, message, args) => {
     
     let salaTag = await message.guild.channels.get('701571073845755974'),
-        tag     = 'id_' + message.author.tag,
+        tag     = 'id_' + message.author.tag + '🔐',
         info    = ' envie uma **selfie** segurando um documento de identidade (RG, CNH, CTPS, Passaport,etc).\n' + 
                   'Escolha um local bem iluminado, a sua ID precisa estar **LEGÍVEL** na selfie.';
     // let novaRole = await message.guild.createRole({
