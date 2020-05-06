@@ -31,7 +31,7 @@ exports.run = async (client, message, args) => {
                 .then( () => {
                     let nome  = idusuario.displayName,
                         embed = new RichEmbed(),
-                        gif   = 'https://media1.tenor.com/images/4c906e41166d0d154317eda78cae957a/tenor.gif';
+                        gif   = 'https://media1.tenor.com/images/7129d4fbd2bd63ab987a768951ff44cb/tenor.gif';
     
                     embed.setColor('#CF3F47')
                          .setTitle("**BANIDO**")

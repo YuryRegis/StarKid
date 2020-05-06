@@ -6,7 +6,7 @@ exports.run = async (client, message, args) => {
     
     let autor   = message.author,
         tag     = 'p_' + autor.tag + '🔐',
-        info    = `${autor} você criou um chat **privado**🔐 com @Moderador, @Staff e @Admin. `;
+        info    = `${autor} você criou um chat **privado**🔐 com <@&697930725529485362>, <@&607754714100269056> e <@&607776618064248843>. `;
     // let novaRole = await message.guild.createRole({
     //     name: tag,
     //     hoist: false,
