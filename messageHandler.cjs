@@ -151,7 +151,7 @@ exports.run = async (message, queue, client) => {
 						const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
 						await handleVideo(video2, message, voiceChannel, true); // eslint-disable-line no-await-in-loop
 					}
-					return message.channel.send(`Adc Playlist: **${playlist.title}** foi bem adicionada a lista!`);
+					return message.channel.send(`Adc Playlist: **${playlist.title}** foi adicionada a lista!`);
 				} else {
 					try {
 						var video = await youtube.getVideo(url);
@@ -159,6 +159,9 @@ exports.run = async (message, queue, client) => {
 						try {
 							var videos = await youtube.searchVideos(searchString, 10);
 							let index = 0;
+							console.log('videos -->',videos);
+							if(videos.length === 0)
+								return message.channel.send(`Pesquisa de \`${searchString}\` não retornou resultados.`);
 							message.channel.send(`__**Seleção**__\n${videos.map(video2 => 
 								`**${++index} -** ${video2.title}`).join('\n')}\nEscolha uma das músicas de 1-10`);
 							// eslint-disable-next-line max-depth
