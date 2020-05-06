@@ -11,7 +11,8 @@ exports.run = async (message, queue, client) => {
 	let sender = message.author; //Captura autor da mensagem
 	let user = message.member.user.tag;
 	let ch = message.channel.name.toString();
-	let salaLogs = client.channels.get('698758957845446657');
+	const salaLogs = client.channels.get('698758957845446657');
+	const radio = client.channels.get("613120191957565460");
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
 	let comando = args.shift().toLowerCase();
@@ -91,8 +92,12 @@ exports.run = async (message, queue, client) => {
 
 	function play(guild, song) {
 		const serverQueue = queue.get(guild.id);
-		if (!song) {
+		if (!song || song.url===undefined) {
 			console.log("No music!");
+			if(song.url===undefined)
+				radio.send(`!radio error \`\`\`Erro ao obter url da música.\`\`\``);
+			else
+				radio.send(`\`\`\`Sem música...\n${song}\`\`\``);
 			serverQueue.voiceChannel.leave();
 			queue.delete(guild.id);
 			return;
@@ -103,9 +108,13 @@ exports.run = async (message, queue, client) => {
 		//console.log(stream, dispatcher);
 		dispatcher.on('end', reason => {
 			serverQueue.songs.shift();
+			radio.send(`!radio fim de múscia\`\`\`Motivo: ${reason}\`\`\``);
 			play(guild, serverQueue.songs[0]);
 		})
-		.on('error', error => console.error(error));
+		.on('error', error => {
+			console.error(error);
+			salaLogs.send(`!radio error \`\`\`${error}\`\`\``);
+		});
 		dispatcher.setVolumeLogarithmic(serverQueue.volume / 6);
 		serverQueue.textChannel.send(`Tocando: **${song.title}**`);
 	}
