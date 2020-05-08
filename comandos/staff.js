@@ -5,8 +5,9 @@ exports.run = async (client, message, args) => {
 
     console.log(member)
 
-    if (member == "harry" || member == "liv" || member == "jc" || member == "john"
-        || member == "miles" || member == "frau") {
+    let regex = /harry|liv|jc|miles/
+
+    if (regex.test(member)) {
         const embed = new RichEmbed();
 
         const harry = "Ola, eu sou o Harry! Sou responsável por criar este" +
@@ -32,17 +33,6 @@ exports.run = async (client, message, args) => {
         " to drop it to you! casado e ~~safado~~.* ’*designer and developer (desenvolvedor" +
         " e projetista da empresa Apple).*"
 
-        const john = "Olá jovem Padawan!!" + 
-        "\n\nSou o John :man_mage_tone3:" +
-        "\nTenho 18 anos, sou do Japão :flag_jp:" + 
-        "\nAmo café ☕️ livros :books: e natureza :camping:\n\n" +            
-        '“*Lar é onde você se sente em casa e é bem tratado.*“'
-
-        const frau = "Heyy! Sou a Ste, mais conhecida como Frau."+
-        "\n\nEstudante, amante de jogos e cultura geek. Adoro fazer amizades"+
-        " novas no Sky! Que tal fazer uma festa da mesa na campina huh?" + 
-        `\n\n“*Vou indo e quando eu voltar, estarei de volta” - Gandalf*"`
-
         const miles = "Inhai, eu sou a Miles :sparkles:" +
         "\n\nEstudante, 21 anos, fã de Coldplay, louca por Star Wars" + 
         " e atualmente viciada em Sky." +
@@ -59,16 +49,16 @@ exports.run = async (client, message, args) => {
         } else if (member == "jc") {
             embed.setTitle("**STAFF: JC**");
             embed.setDescription(jotaC)
-            embed.setThumbnail("https://i.ibb.co/5cqSqQS/jotaC.png")
-        } else if (member == "john") {
-            embed.setTitle("**STAFF: JOHN KANETA**");
-            embed.setDescription(john)
-            embed.setThumbnail("https://i.ibb.co/c2BrMPK/john2.png")
-        }
-        else if (member == "frau") {
-            embed.setTitle("**STAFF: FRAU STE**");
-            embed.setDescription(frau)
-            embed.setThumbnail("https://i.ibb.co/HpjBRqf/Ste2.png")
+            embed.setThumbnail("https://cdn.discordapp.com/attachments/612399243520639016/708204055029088256/image0.jpg")
+        // } else if (member == "john") {
+        //     embed.setTitle("**STAFF: JOHN KANETA**");
+        //     embed.setDescription(john)
+        //     embed.setThumbnail("https://i.ibb.co/c2BrMPK/john2.png")
+        // }
+        // else if (member == "frau") {
+        //     embed.setTitle("**STAFF: FRAU STE**");
+        //     embed.setDescription(frau)
+        //     embed.setThumbnail("https://i.ibb.co/HpjBRqf/Ste2.png")
         } 
         else if (member == "miles") {
             embed.setTitle("**STAFF: MILES**");
