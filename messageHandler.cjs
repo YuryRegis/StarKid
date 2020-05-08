@@ -49,7 +49,8 @@ exports.run = async (message, queue, client) => {
 	
 	
 	//restringindo bate-papo no canal de radio
-	if(message.channel.id === radio.id && message.content[0] !== "!") {
+	let inicio = message.content[0];
+	if(message.channel.id === radio.id && inicio !== "!" && isNaN(inicio)) {
 		message.delete();
 		let botMsg = await radio.send('Não é permitido chat aqui.');
 		botMsg.delete(3000);
