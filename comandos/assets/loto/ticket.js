@@ -74,7 +74,7 @@ module.exports = {
             .addField("CONCURSO", apoiador.concurso, true)
             .addField("NOME DO VENCEDOR", apoiador.nome, true)
             .addField("CUPOM VENCEDOR", apoiador.cupom, true)
-            .setImage("https://media1.tenor.com/images/6364000fc59984b29decdd32f522322d/tenor.gif")
+            .setImage("https://media1.tenor.com/images/08f87711d12de6e82eac9659caedea8a/tenor.gif")
             .setFooter(`ThatSkyGameBrasil - Tudo sobre Sky`, logo);
         return embed;
     },

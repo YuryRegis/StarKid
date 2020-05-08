@@ -87,9 +87,9 @@ client.on("raw", async data => {
 
 
 client.on("message", async message => {
-	let bemVindo = "603720312919556239";
-	let chatBot  = "634200679224967188";
-	let avisoTGC = "693002971944058920";
+	let bemVindo = "603720312919556239",
+	    chatBot  = "634200679224967188",
+	    avisoTGC = "693002971944058920";
 
 	if(message.author.bot) {
 		if (message.channel.id === chatBot && message.content[0] === config.prefix) {

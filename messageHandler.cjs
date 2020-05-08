@@ -2,22 +2,18 @@ const { verificaVIP } = require('./comandos/assets/loto/ticket')
 
 
 exports.run = async (message, queue, client) => {
-    const Util = require("discord.js");
-	const YouTube = require('simple-youtube-api');
-	const config = require("./config.json");
-	const youtube = new YouTube(config.Google_API_KEY);
-	const ytdl = require('ytdl-core');
-	const responseobject = require(`./comandos/responseobject.cjs`);
-	let sender = message.author; //Captura autor da mensagem
-	let user = message.member.user.tag;
-	let ch = message.channel.name.toString();
-	const salaLogs = client.channels.get('698758957845446657');
-	const radio = client.channels.get("613120191957565460");
-	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-	const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
-	let comando = args.shift().toLowerCase();
-	const searchString = args.slice(0).join(' ');	
-	const serverQueue = queue.get(message.guild.id);
+	const config         = require("./config.json"),
+	      serverQueue    = queue.get(message.guild.id),
+		  responseobject = require(`./comandos/responseobject.cjs`),
+	      salaLogs       = await client.channels.get('698758957845446657'),
+	      radio          = await client.channels.get("613120191957565460"),
+	      args           = message.content.slice(config.prefix.length).trim().split(/ +/g);
+		
+	let sender  = message.author, //Captura autor da mensagem
+	    user    = message.member.user.tag,
+	    comando = args.shift().toLowerCase(),
+	    ch      = message.channel.name.toString();
+	
 	
 	//Restringindo canal comandos_bot
 	if(message.channel.id === "612753120925057036") {
@@ -49,224 +45,16 @@ exports.run = async (message, queue, client) => {
 			} //fim verifcação link valido
 			else return;	
 		} //fim verificação de roles
-	} 
-
-	async function handleVideo(video, message, voiceChannel, playlist = false) {
-		const serverQueue = queue.get(message.guild.id);
-		//console.log(video);
-		const song = {
-			id: video.id,
-			title: Util.escapeMarkdown(video.title),
-			url: `https://www.youtube.com/watch?v=${video.id}`
-		};
-		if (!serverQueue) {
-			const queueConstruct = {
-				textChannel: message.channel,
-				voiceChannel: voiceChannel,
-				connection: null,
-				songs: [],
-				volume: 6,
-				playing: true
-			};
-			queue.set(message.guild.id, queueConstruct);
-			queueConstruct.songs.push(song);
-			//console.log(queueConstruct.songs.push(song));
-			try {
-				var connection = await voiceChannel.join();
-				queueConstruct.connection = connection;
-				play(message.guild, queueConstruct.songs[0]);
-			} catch (error) {
-				console.error(`Eu não pude entrar no canal de voz: ${error}`);
-				queue.delete(message.guild.id);
-				return message.channel.send(`Eu não pude entrar no canal de voz: ${error}`);
-			}
-		} else {
-			serverQueue.songs.push(song);
-			//console.log(serverQueue.songs);
-			if (playlist) return undefined;
-			else return message.channel.send(`Agora **${song.title}** foi adicionado a lista!`);
-		}
-		return undefined;
 	}
-
-
-	function play(guild, song) {
-		const serverQueue = queue.get(guild.id);
-		if (!song || song.url===undefined) {
-			console.log("No music!");
-			if(song.url===undefined)
-				radio.send(`!radio error \`\`\`Erro ao obter url da música.\`\`\``);
-			else
-				radio.send(`\`\`\`Sem música...\n${song}\`\`\``);
-			serverQueue.voiceChannel.leave();
-			queue.delete(guild.id);
-			return;
-		}
-		//console.log(serverQueue.songs);
-		const stream = ytdl(song.url, {filter : 'audioonly'});
-		const dispatcher = serverQueue.connection.playStream(stream, song.url);
-		//console.log(stream, dispatcher);
-		dispatcher.on('end', reason => {
-			serverQueue.songs.shift();
-			salaLogs.send(`!radio fim de múscia\`\`\`Motivo: ${reason}\`\`\``);
-			if(serverQueue.songs.length > 0)
-				play(guild, serverQueue.songs[0]);
-			else 
-				serverQueue.voiceChannel.leave();
-				queue.delete(guild.id);
-				return radio.send(`Toquei a última música da lista, use \`!pay\` para adicionar mais músicas.`);
-		})
-		.on('error', error => {
-			console.error(error);
-			salaLogs.send(`!radio error \`\`\`${error}\`\`\``);
-		});
-		dispatcher.setVolumeLogarithmic(serverQueue.volume / 6);
-		serverQueue.textChannel.send(`Tocando: **${song.title}**`);
-	}
-
-
-	//Busca comando digitado em comandos e o executa caso encontre
-	let cmd = ["play","pause","resume","stop","np","queue", "skip", "volume"];
 	
-	cmd.forEach( async element => {
-		if(comando===element) {
-			console.log(`${comando} digitado por ${user} no canal ${ch}.`);
-			salaLogs.send(`${comando} digitado por ${user} no canal ${ch}.`);
-			
-			if (comando === 'play') {
-				if (message.channel.id !== "613120191957565460") {
-					return message.reply(` favor usar este comando no canal ${client.channels.get("613120191957565460")}.`);
-				}
-				const voiceChannel = message.member.voiceChannel;
-				if (!voiceChannel) return message.channel.send('Me desculpe, mas você precisa estar em um canal de voz para tocar música!');
-				
-				if(voiceChannel.id!==`612843867485765656`) return message.reply(`Só posso tocar músicas no canal de rádio`);
-				
-				const permissions = voiceChannel.permissionsFor(message.client.user);
-				if (!permissions.has('CONNECT')) {
-					return message.channel.send('Não consigo me conectar ao seu canal de voz, verifique se tenho as permissões adequadas!');
-				}
-				if (!permissions.has('SPEAK')) {
-					return message.channel.send('Eu não posso falar neste canal de voz, verifique se eu tenho as permissões adequadas!');
-				}
-				if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
-					const playlist = await youtube.getPlaylist(url);
-					const videos = await playlist.getVideos();
-					for (const video of Object.values(videos)) {
-						const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
-						await handleVideo(video2, message, voiceChannel, true); // eslint-disable-line no-await-in-loop
-					}
-					return message.channel.send(`Adc Playlist: **${playlist.title}** foi adicionada a lista!`);
-				} else {
-					try {
-						var video = await youtube.getVideo(url);
-					} catch (error) {
-						try {
-							var videos = await youtube.searchVideos(searchString, 10);
-							let index = 0;
-							console.log('videos -->',videos);
-							if(videos.length === 0)
-								return message.channel.send(`Pesquisa de \`${searchString}\` não retornou resultados.`);
-							message.channel.send(`__**Seleção**__\n${videos.map(video2 => 
-								`**${++index} -** ${video2.title}`).join('\n')}\nEscolha uma das músicas de 1-10`);
-							// eslint-disable-next-line max-depth
-							try {
-								var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 11, {
-									maxMatches: 1,
-									time: 25000,
-									errors: ['time']
-								});
-							} catch (err) {
-								console.error(err);
-								return message.channel.send('Nenhum valor inserido ou está inválido , cancelando a operação de seleção de vídeo.');
-							}
-							const videoIndex = parseInt(response.first().content);
-							var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
-						} catch (err) {
-							console.error(err);
-							return message.channel.send('🆘 Não consegui obter nenhum resultado de pesquisa.');
-						}
-					}
-					return handleVideo(video, message, voiceChannel);
-				}
-			} 
-			else if (comando === 'skip') {
-				if (!message.member.voiceChannel) return message.channel.send('Você não está em um canal de voz');
-				
-				if (!serverQueue) return message.channel.send('Não a nada tocando posso pular pra você');
-				
-				if (message.channel.id !== "613120191957565460") {
-					return message.reply(` favor usar este comando no canal ${client.channels.get("613120191957565460")}.`);
-				}
-				serverQueue.connection.dispatcher.end('Skipado com Sucesso');
-				return undefined;
-			} 
-			else if (comando === 'stop') {
-				if (!message.member.voiceChannel) return message.channel.send('Você não está em um canal de voz!');
-				
-				if (!serverQueue) return message.channel.send('Não tá tocando eu não posso parar pra você');
-				
-				if (message.channel.id !== "613120191957565460") {
-					return message.reply(` favor usar este comando no canal ${client.channels.get("613120191957565460")}.`);
-				}
-				serverQueue.songs = [];
-				serverQueue.connection.dispatcher.end('O Comando de parar foi usado!');
-				return undefined;
-			} 
-			else if (comando === 'volume') {
-				if (!message.member.voiceChannel) return message.channel.send('Você não está em um canal de voz!');
-				
-				if (!serverQueue) return message.channel.send('Não está tocando.');
-				
-				if (message.channel.id !== "613120191957565460") {
-					return message.reply(` favor usar este comando no canal ${client.channels.get("613120191957565460")}.`);
-				}
-				if (!args[1]) return message.channel.send(`O Volume atual é: **${serverQueue.volume}**`);
-				
-				serverQueue.volume = args[1];
-				serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 6);
-				return message.channel.send(`Ajustar volume para: **${args[1]}**`);
-			} 
-			else if (comando === 'np') {
-				if (message.channel.id !== "613120191957565460") {
-					return message.reply(` favor usar este comando no canal ${client.channels.get("613120191957565460")}.`);
-				}
-				if (!serverQueue) return message.channel.send('Não a nada tocando.');
-				return message.channel.send(`Tocando: **${serverQueue.songs[0].title}**`);
-			} 
-			else if (comando === 'queue') {
-				if (message.channel.id !== "613120191957565460") {
-					return message.reply(` favor usar este comando no canal ${client.channels.get("613120191957565460")}.`);
-				}
-				if (!serverQueue) return message.channel.send('Não a nada tocando.');
-				return message.channel.send(`__**Lista de Música:**__\n${serverQueue.songs.map(song => 
-					`**-** ${song.title}`).join('\n')}\n**Tocando Agora:** ${serverQueue.songs[0].title}`);
-			} 
-			else if (comando === 'pause') {
-				if (message.channel.id !== "613120191957565460") {
-					return message.reply(` favor usar este comando no canal ${client.channels.get("613120191957565460")}.`);
-				}
-				if (serverQueue && serverQueue.playing) {
-					serverQueue.playing = false;
-					serverQueue.connection.dispatcher.pause();
-					return message.channel.send('⏸ Pausou');
-				}
-				return message.channel.send('Não a nada tocando.');
-			}
-			else if (comando === 'resume') {
-				if (message.channel.id !== "613120191957565460") {
-					return message.reply(` favor usar este comando no canal ${client.channels.get("613120191957565460")}.`);
-				}
-				if (serverQueue && !serverQueue.playing) {
-					serverQueue.playing = true;
-					serverQueue.connection.dispatcher.resume();
-					return message.channel.send('▶ Rusumindo');
-				}
-				return message.channel.send('Não a nada tocando.');
-			}
-			return undefined;
-		} 
-	});
+	
+	//restringindo bate-papo no canal de radio
+	if(message.channel.id === radio.id && message.content[0] !== "!") {
+		message.delete();
+		let botMsg = await radio.send('Não é permitido chat aqui.');
+		botMsg.delete(3000);
+	}
+
 
 	if(client.commands.get(comando)) {  //Comando === comandos previamente carregados?
 		
