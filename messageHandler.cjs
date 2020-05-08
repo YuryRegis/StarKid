@@ -6,7 +6,7 @@ exports.run = async (message, queue, client) => {
 	      serverQueue    = queue.get(message.guild.id),
 		  responseobject = require(`./comandos/responseobject.cjs`),
 	      salaLogs       = await client.channels.get('698758957845446657'),
-	      radio          = await client.channels.get("613120191957565460"),
+	      radio          = await client.channels.get("708163178915168326"),
 	      args           = message.content.slice(config.prefix.length).trim().split(/ +/g);
 		
 	let sender  = message.author, //Captura autor da mensagem
