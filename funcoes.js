@@ -212,7 +212,10 @@ module.exports = {
             var indice = Math.floor(Math.random() * (baralho.length));
             var carta = baralho[indice];
             jogador.mao.unshift(carta);
-            baralho.splice(indice,1);
+            baralho.splice(indice, 1)
+                .then()
+                .catch(err => console.log(`Erro ao comprar carta: ${err}\n`+
+                    `Baralho:${baralho}\njogador${jogador}\nQuantidade:${quantidade}`));
         }
         return baralho, jogador;
     },
