@@ -1,7 +1,7 @@
 const json = require(`./uno.json`);
 const {RichEmbed} = require(`discord.js`);
-const {comprarCarta, mostrarMao, mostrarMesa, pularJogador} = require(`../funcoes.js`);
-const {getRandomInt, getMember, encerrarPartida, somaPontos} = require(`../funcoes.js`);
+const {comprarCarta, mostrarMao, mostrarMesa, pularJogador}     = require(`../funcoes.js`);
+const {getRandomInt, getMember, encerrarPartida, somaPontos}    = require(`../funcoes.js`);
 const { addRank, atualizar, unoRank, listarDado, buscaJogador } = require('./assets/uno/funcoes');
 
 
@@ -16,20 +16,20 @@ class Jogador {
 }
 
 
-var mesa = [];
-const lotacao = 9;
-const punicao = 5;
-var jogadores = [];
+var mesa        = [];
+var lotacao     = 9;
+const punicao   = 5;
+var jogadores   = [];
 var contBaralho = 1;
-var jogoAtivo = false;
-var errStatus = false;
-var jAtual = new Jogador();
-var jAnterior = new Jogador();
-var jSeguinte = new Jogador();
-var statusCor = {"status": false, "cor":"", "id":"", "escolhido":false};
-var statusPlus = {"status":false, "valor":0, "id":""}; 
-const SalaID = "695640007494467604";  //ID da sala permitida para jogar
-var baralho = JSON.parse(JSON.stringify(json));
+var jogoAtivo   = false;
+var errStatus   = false;
+var jAtual      = new Jogador();
+var jAnterior   = new Jogador();
+var jSeguinte   = new Jogador();
+var statusCor   = {"status": false, "cor":"", "id":"", "escolhido":false};
+var statusPlus  = {"status":false, "valor":0, "id":""}; 
+const SalaID    = "695640007494467604";  //ID da sala permitida para jogar
+var baralho     = JSON.parse(JSON.stringify(json));
 
 
 exports.help = {
@@ -38,7 +38,7 @@ exports.help = {
 
 
 exports.run = async (client, message, args) => {
-    const salaAtual = message.channel;
+    const salaAtual   = message.channel;
     const salaCorreta = await message.guild.channels.get(SalaID);
     const validaAdmin = await message.member.roles
             .some(r =>  r.name === "Staff" || r.name === "Admin");
@@ -68,9 +68,9 @@ exports.run = async (client, message, args) => {
         if(jogadores.length > lotacao) {
             let baralhoAdicional = JSON.parse(JSON.stringify(json));
             await salaAtual.send("Limite de jogadores atingido.");
-            let m = await salaAtual.send("Adicionando baralho........");
+            let m    = await salaAtual.send("Adicionando baralho........");
             lotacao += 9;
-            baralho = await baralho.push(baralhoAdicional);
+            baralho  = await baralho.push(baralhoAdicional);
             setTimeout(()=>{m.edit("OK !!! Novo baralho adicionado.")},2000);
         }
         
