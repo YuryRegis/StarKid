@@ -1,6 +1,6 @@
-const { dbAddVIP, dbEditVIP, dbFindVIP, dbListVIPs } = require('../Routes/rotasVIP'),
-      { geraCupom, ticket, messageDM }  = require('./assets/loto/ticket'),
-      { dbFindPasse, dbAddPasse, dbAtualiza } = require('../Routes/rotasPasse');
+const { dbAddVIP, dbEditVIP, dbListVIPs } = require('../Routes/rotaCadastroVIP'),
+      { geraCupom, ticket, messageDM }    = require('./assets/loto/ticket'),
+      { dbFindPasse, dbAddPasse }         = require('../Routes/rotasPasse');
 
 
 class Apoiador {
@@ -135,7 +135,7 @@ exports.run = async (client, message, args) => {
         let dia = new Date().getDate(),
             mes = new Date().getMonth() + 1 ,
          filtro = f => f.id === membroAlvo.id,
-         VIPs   = dbListVIPs(),
+         VIPs   = await dbListVIPs(),
          vip    = '';
     
         VIPs = VIPs.filter(filtro);
@@ -155,7 +155,7 @@ exports.run = async (client, message, args) => {
         (dia === 31) ? dia = 30 : dia;
         (nivel === undefined) ? vip = 'vip' : vip = nivel.toLowerCase();
 
-        dbAddVIP(membroAlvo.id, membroAlvo.displayName, vip, dia, mes);
+        await dbAddVIP(membroAlvo.id, membroAlvo.displayName, vip, dia, mes);
     }
     return;
 }

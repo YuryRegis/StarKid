@@ -1,4 +1,4 @@
-const { dbListVIPs, dbDeleteVIP } = require('../Routes/rotasVIP');
+const { dbListVIPs, dbDeleteVIP } = require('../Routes/rotaCadastroVIP');
       
 
 exports.run = async (client, message, args) => {

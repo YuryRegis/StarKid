@@ -1,4 +1,4 @@
-const { dbListVIPs } = require('../Routes/rotasVIP'),
+const { dbListVIPs } = require('../Routes/rotaCadastroVIP'),
       { RichEmbed }  = require('discord.js');
 
 
