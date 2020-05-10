@@ -112,18 +112,13 @@ exports.run = async (client, message, args) => {
         if(!membroVip) {
             membroAlvo.addRole(cargo)
                 .then( () => {
-                    if(vip==='prata')
+                    if(vip==='prata' || vip==='ouro')
                         membroAlvo.addRole('695833895848902677') //DiscordBeta
                             .then().catch(error => { 
                                 salaLogs.send(`!cupom: erro ao add cargo\`\`\`${error}\`\`\``);
                                 console.log(error) });
 
                     if(vip==='ouro')
-                        membroAlvo.addRole('695833895848902677') //DiscordBeta
-                            .then().catch(error => { 
-                                salaLogs.send(`!cupom: erro ao add cargo\`\`\`${error}\`\`\``);
-                                console.log(error) });
-
                         membroAlvo.addRole('704448465853349979') //GarticMod
                             .then().catch(error => { 
                                 salaLogs.send(`!cupom: erro ao add cargo\`\`\`${error}\`\`\``);
