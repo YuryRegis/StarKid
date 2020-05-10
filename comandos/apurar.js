@@ -5,12 +5,13 @@ const { dbListPasses, dbDeletePasse } = require('../Routes/rotasPasse'),
 exports.run = async (client, message, args) => {
     await message.delete();
 
-    const concurso = args[0],
-          premiado = parseInt(args[1]),
-          titulo   = args[2],
-          remover  = args[3] || false,
-          salaAlvo = await message.guild.channels.get('603724150275702835'),
-          salaLogs = await message.guild.channels.get('698758957845446657');
+    const concurso  = args[0],
+          premiado  = parseInt(args[1]),
+          titulo    = args[2],
+          remover   = args[3] || false,
+          salaAlvo  = await message.guild.channels.get('603724150275702835'),
+          salaLogs  = await message.guild.channels.get('698758957845446657'),
+          mencoesID = ['627270660271374387','627275771710406673','627273901197492244','653331984420175903'];
 
     if(concurso === 'h' || concurso === 'ajuda')
         return message.reply('`!apurar concurso cupomGerado`');
@@ -48,7 +49,15 @@ exports.run = async (client, message, args) => {
             auxMbr = element;
     });
 
-    let mensagem = await vencedor(auxMbr, titulo);
+    let mensagem = await vencedor(auxMbr, titulo),
+        mencoes  = '';
+    
+    mencoesID.forEach(mencao => mencoes += `<@&${mencao}> `);
+
+    await salaAlvo.send(mencoes)
+        .then()
+        .catch(e=>salaLogs.send(`!apurar error\`\`\`${e}\`\`\``));
+        
     await salaAlvo.send(mensagem);
     await salaLogs.send(`Sorteio ${titulo} apurado\`\`\`Nome:  ${auxMbr.nome}\nCupom: ${auxMbr.cupom}\`\`\``);
 
