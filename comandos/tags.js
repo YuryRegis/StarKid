@@ -23,10 +23,10 @@ exports.run = async (client, message, args) => {
     embed.setThumbnail("https://image.freepik.com/vetores-gratis/tag-neon-verde-noite-brilhante-elemento-de-propaganda_1262-13490.jpg");
     embed.setFooter(message.guild.me.displayName, client.user.displayAvatarURL);
     embed.setDescription("Escolha **uma** TAG clicando na reação correspondente:\n") 
-    embed.addField("**Tags Customizáveis**","👤 - Jogador Solo \n👥 - Formador de grupos \n"+
-    "👑 - Colecionador \n🤠 - Explorador \n🎹 - Músico Skyniano \n🎨 - Desenhista / Pintor \n" +
-    "🔰 - Veterano \n🗺️ - Guia Turístico \n🧢 - Turista \n🧚 - Ajudante \n🎒 - Carregado \n" +
-    "❤️ - Trocador \n🤳 - YouTuber\n💍 - Casado\n😄 - Solteiro\n💋 - Namorando\n💙 - Capa azul\n"= +
+    embed.addField("**Tags Customizáveis**","👤 - Jogador Solo \n👥 - Formador de grupos \n"    +
+    "👑 - Colecionador \n🤠 - Explorador \n🎹 - Músico Skyniano \n🎨 - Desenhista / Pintor \n"  +
+    "🔰 - Veterano \n🗺️ - Guia Turístico \n🧢 - Turista \n🧚 - Ajudante \n🎒 - Carregado \n"    +
+    "❤️ - Trocador \n🤳 - YouTuber\n💍 - Casado\n😄 - Solteiro\n💋 - Namorando\n💙 - Capa azul\n"+
     "🧓 - Elder \n🃏 - UNO")
     embed.setTimestamp();
 
