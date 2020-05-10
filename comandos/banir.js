@@ -8,7 +8,7 @@ exports.help = {
 
 exports.run = async (client, message, args) => {
     if(message.member.roles.some(r => r.name === "Admin") || message.member.roles.some(r => r.name === "Staff")) {
-        let canal = await client.channels.get("698758957845446657"),
+        let canal = await client.channels.get("603723288757403648"),
             aviso = await client.channels.get("603720312919556239"),
             alvo  = await message.mentions.users.first();
 
@@ -37,8 +37,10 @@ exports.run = async (client, message, args) => {
                          .setTitle("**BANIDO**")
                          .setThumbnail('https://i.ibb.co/FD93h6p/KRILL.png')
                          .setDescription(`OPA! Parece que ${nome} foi pego por um Krill !!!`)
-                         .addField(`**MOTIVO**`, motivo)
                          .setImage(gif);
+                    
+                    if(motivo.length!==0)
+                        embed.addField(`**MOTIVO**`, motivo);                         
                     
                     aviso.send(embed)
                         .then(async msg => {

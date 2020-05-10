@@ -35,13 +35,14 @@ exports.run = async (client, message, args) => {
         
         let descricao = args.slice(2, args.length).join(' ');
         
+        let thumbnail = 'https://s3.amazonaws.com/assets.apoia.se/campaigns/5db49c70e2d7737c4cd4e520%7C5db49c99193385a323d53d4c/user-campaign-about-photo%7CDisocodLogo-20200502_23062002.png'; 
         embed
             .setTimestamp()
-            .setColor('RANDOM')
             .setTitle(titulo)
+            .setColor('RANDOM')
+            .setThumbnail(thumbnail)
             .setDescription(descricao)
-            .setFooter(`ThatSkyGameBrasil - Tudo sobre Sky`, 
-            'https://s3.amazonaws.com/assets.apoia.se/campaigns/5db49c70e2d7737c4cd4e520%7C5db49c99193385a323d53d4c/user-campaign-about-photo%7CDisocodLogo-20200502_23062002.png');
+            .setFooter(`ThatSkyGameBrasil - Tudo sobre Sky`, thumbnail);
         
         if(link !== undefined)
             embed.setImage(link);
