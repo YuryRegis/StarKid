@@ -5,7 +5,7 @@ const megasena = require('./assets/loto/megasena'),
 exports.run = async (client, message, args) => {
     await message.delete();
 
-    const salaAlvo = message.guild.channels.get('613455479842013219');
+    const salaAlvo = message.guild.channels.get('603724150275702835');
 
     if(isNaN(args[0]))
         return message.reply('Digite o numero de concurso.');
