@@ -39,7 +39,7 @@ exports.run = async (client, message, args) => {
             auxMbr = element;
         }
         else if(aux === maisPx)
-            (element.cupom > auxMbr.cupom) ? auxMbr = auxMbr : auxMbr = element
+            (element.cupom < auxMbr.cupom) ? auxMbr = auxMbr : auxMbr = element
     });
     
     cupons.forEach(element => {
