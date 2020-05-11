@@ -12,6 +12,7 @@ exports.run = async (client, message, args) => {
 
     if(message.member.roles.some(r => r.name === "Admin") || message.member.roles.some(r => r.name === "Staff")) {
         const salaLogs = await message.guild.channels.get('698758957845446657'),
+              avatar   = await message.author.displayAvatarURL,    
               linkTest = /http|https|ftp|ftps|www/g;
               
         let canal  = undefined,
@@ -42,7 +43,7 @@ exports.run = async (client, message, args) => {
             .setColor('RANDOM')
             .setThumbnail(thumbnail)
             .setDescription(descricao)
-            .setFooter(`ThatSkyGameBrasil - Tudo sobre Sky`, thumbnail);
+            .setFooter(`ThatSkyGameBrasil - Tudo sobre Sky`, avatar);
         
         if(link !== undefined)
             embed.setImage(link);
