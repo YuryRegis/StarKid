@@ -32,8 +32,8 @@ exports.run = async (client, message, args) => {
     
     if(args.length < 4) {
         if(args[0] === 'h' || args[0] === 'ajuda' || args[0] === undefined)
-            return salaAtual.send('\`!cupom @menção concurso sorteio quantidade\`');
-        return salaAtual.send('Faltando argumento: \`!cupom @menção concurso sorteio quantidade\`')
+            return salaAtual.send('\`!addvip @menção dia mes nivel\`');
+        return salaAtual.send('Faltando argumento: \`!addvip @menção dia mes nivel\`')
     }
     
 
