@@ -45,7 +45,7 @@
     {
       "id": "533753395555729438",
       "nome": "Hikune",
-      "vip": "prata",
+      "vip": "vip",
       "dia": 9,
       "mes": 5
     },
@@ -61,13 +61,6 @@
       "nome": "Maraysa",
       "vip": "ouro",
       "dia": 9,
-      "mes": 5
-    },
-    {
-      "id": "322421000153333761",
-      "nome": "Harry",
-      "vip": "ouro",
-      "dia": 10,
       "mes": 5
     }
   ]

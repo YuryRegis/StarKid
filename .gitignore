@@ -3,10 +3,12 @@ config.json
 images/bemVindo.png
 Routes/db_603720312911167622.json
 Routes/db_Passes.json
-Routes/db_VIP.json
+
 
 images/match.png
 
 comandos/assets/loto/ticket.png
 
 .vscode/
+
+Routes/db_VIP.json
