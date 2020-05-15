@@ -22,6 +22,18 @@ exports.run = async (client, message, args) => {
         {
             id: message.author.id,
             allow: ['VIEW_CHANNEL'],
+        },
+        {
+            id: '697930725529485362',
+            allow: ['VIEW_CHANNEL'],
+        },
+        {
+            id: '607754714100269056',
+            allow: ['VIEW_CHANNEL'],
+        },
+        {
+            id: '607776618064248843',
+            allow: ['VIEW_CHANNEL'],
         }]
     })
     

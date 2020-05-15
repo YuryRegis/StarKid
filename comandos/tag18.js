@@ -41,7 +41,7 @@ exports.run = async (client, message, args) => {
 
                 coletor.on('end', async coletado => {
                     let resposta = await coletado.first().attachments.first().proxyURL,
-                        mensagem = `<@&607754714100269056> ${message.author.username} solicitou tag +18.`;
+                        mensagem = `<@&607754714100269056> ${message.author.tag} solicitou tag +18.`;
                     await salaTag.send(mensagem, { file:resposta });
                     novaSala.delete();
                 })
