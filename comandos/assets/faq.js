@@ -241,7 +241,21 @@ module.exports = {
             .setFooter(`ThatSkyGameBrasil - Tudo sobre Sky!`, client.user.displayAvatarURL);
         
         return embed;
-    }
+    },
+
+    nightzel: function(client, message) {
+        const descricao = 'O canal *NightzelGames*, no *YouTube*, é um parceiro do servidor *ThatSkyGameBrasil* e um projeto separado deste servidor aqui no Discord. Além de todos os vídeos relacionados ao Sky e outros jogos postados quase diariamente no canal, o Nightzel tem realizado Lives diárias jogando Sky com os apoiadores do seu projeto pessoal. Caso você deseje participar das Lives dele, mais informações podem ser encontradas em: [Apoia-se NightzelGames!](https://www.apoia.se/nightzelgames) ou o contate em seu privado.'
+        let embed = new RichEmbed()
+            .setTimestamp()
+            .setColor("#A341FF")
+            .setThumbnail('https://i.ibb.co/Kjj4bgZ/captura.png')
+            .setTitle(`**NIGHTZEL GAMES**`)
+            .setDescription(descricao)
+            .setFooter(`ThatSkyGameBrasil - Tudo sobre Sky!`, client.user.displayAvatarURL)
+            .setImage("https://thumbs.gfycat.com/WarmheartedDependentGarpike-size_restricted.gif");
+        
+        return embed;
+    },
     
 
 }

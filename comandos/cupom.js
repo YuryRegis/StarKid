@@ -131,29 +131,31 @@ exports.run = async (client, message, args) => {
             }
     }//if nivel
         
-    if(membroVip) { //renova ou adiciona data de expiração VIP
+    if(membroVip && nivel !== undefined) { //renova ou adiciona data de expiração VIP
         let dia = new Date().getDate(),
             mes = new Date().getMonth() + 1 ,
          filtro = f => f.id === membroAlvo.id,
          VIPs   = await dbListVIPs(),
-         vip    = '';
+         vip    = nivel;
     
         VIPs = VIPs.filter(filtro);
         (dia === 31) ? dia = 30 : dia;
-        (nivel === undefined) ? vip = 'vip' : vip = nivel;
-
+        
         if(VIPs.length === 0)
             return;
 
         VIPs.forEach( async element => 
             await dbEditVIP(element.id, vip, dia, mes) );
     } else {
+        if (nivel !== undefined)
+            return;
+            
         let dia = new Date().getDate(),
             mes = new Date().getMonth() + 1 ,
-            vip = '';
+            vip = nivel.toLowerCase();
 
         (dia === 31) ? dia = 30 : dia;
-        (nivel === undefined) ? vip = 'vip' : vip = nivel.toLowerCase();
+        (nivel === undefined) ? vip = 'vip' : 
 
         await dbAddVIP(membroAlvo.id, membroAlvo.displayName, vip, dia, mes);
     }
