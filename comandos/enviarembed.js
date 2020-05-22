@@ -20,6 +20,9 @@ exports.run = async (client, message, args) => {
             embed  = new RichEmbed(),
             titulo = args[1].replace(/_/g,' ');
         
+        if(args[0] === 'h' || args[0] === 'ajuda' || args[0] === undefined)
+            return message.channel.send('`Ajuda: !enviarembed canal titulo_ mensagem linkImagem`')
+
         if( !isNaN(args[0]) ) 
             canal = await client.channels.get(args[0]);
         
