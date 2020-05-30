@@ -14,7 +14,13 @@ exports.run = async (client, message, args) => {
           mencoesID = ['627270660271374387','627275771710406673','627273901197492244','653331984420175903'];
 
     if(concurso === 'h' || concurso === 'ajuda')
-        return message.reply('`!apurar concurso cupomGerado`');
+        return message.reply('`!apurar concurso cupomGerado tituloSorteio`');
+    
+    if(isNaN(concurso))
+        return message.reply('`!apurar concurso cupomGerado tituloSorteio <rmv bool>`');
+    
+    if(isNaN(premiado))
+        return message.reply('`Faltou informar cupom premiado\n!apurar concurso cupomGerado tituloSorteio <rmv bool>`');
 
     let filtro = f => f.concurso === concurso,
         cupons = dbListPasses(),
@@ -28,9 +34,10 @@ exports.run = async (client, message, args) => {
         return salaLogs.send(`${message.author} não encontrei cupons para o concurso ${concurso}`);
 
     cupons.forEach(element => { 
-        element.cupom = parseInt(element.cupom);   
-        (premiado > element.cupom) ? aux = premiado - element.cupom : aux = element.cupom - premiado;
+        let cupom = parseInt(element.cupom);   
 
+        (premiado > cupom) ? aux = premiado - cupom : aux = cupom - premiado;
+        
         if(maisPx===0) {
             maisPx = aux;
             auxMbr = element;
@@ -40,7 +47,7 @@ exports.run = async (client, message, args) => {
             auxMbr = element;
         }
         else if(aux === maisPx)
-            (element.cupom < auxMbr.cupom) ? auxMbr = auxMbr : auxMbr = element
+            (cupom < auxMbr.cupom) ? auxMbr = auxMbr : auxMbr = element
     });
     
     cupons.forEach(element => {

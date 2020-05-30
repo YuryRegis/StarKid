@@ -24,6 +24,7 @@ exports.run = async (client, message, args) => {
           vipPrataID = '706706548998668370',
           membroAlvo = message.mentions.members.first(),
           salaLogs   = client.channels.get("698758957845446657"),
+          salaBot    = client.channels.get("634200679224967188"),
           chatGeral  = client.channels.get("603723288757403648");
 
     const concursoID = args[1],
@@ -84,7 +85,7 @@ exports.run = async (client, message, args) => {
         salaLogs.send(`Cupom ${sorteio}\`\`\`Nome:     ${apoiador.nome}\nCupom:    ${apoiador.cupom}\nConcurso: ${apoiador.concurso}\`\`\``);
 
         await dbAddPasse(apoiador); //LowDb grava dados mas nao atualiza arquivo
-        await message.guild.channels.get('634200679224967188').send('!atualizapassedb') //Gambiarra, LowDB não grava dados sem atualizar?
+        // await message.guild.channels.get('634200679224967188').send('!atualizapassedb') //Gambiarra, LowDB não grava dados sem atualizar?
         await ticket(cupom, sorteio);
 
         membroAlvo.send( await messageDM(apoiador, sorteio) );
@@ -147,17 +148,15 @@ exports.run = async (client, message, args) => {
         VIPs.forEach( async element => 
             await dbEditVIP(element.id, vip, dia, mes) );
     } else {
-        if (nivel !== undefined)
-            return;
-            
+                    
         let dia = new Date().getDate(),
             mes = new Date().getMonth() + 1 ,
-            vip = nivel.toLowerCase();
+            vip = '';
 
         (dia === 31) ? dia = 30 : dia;
-        (nivel === undefined) ? vip = 'vip' : 
+        (nivel === undefined) ? vip = 'vip' : vip = nivel.toLowerCase();
 
-        await dbAddVIP(membroAlvo.id, membroAlvo.displayName, vip, dia, mes);
+        await salaBot.send(`!addvip ${membroAlvo} ${dia} ${mes} ${vip}`);
     }
     return;
 }
