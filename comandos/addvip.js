@@ -97,11 +97,14 @@ exports.run = async (client, message, args) => {
         (dia === 31) ? dia = 30 : dia;
         (nivel === undefined) ? vip = 'vip' : vip = nivel;
 
-        if(VIPs.length === 0)
+        if(VIPs.length === 0) {
+            await dbAddVIP(membroAlvo.id, membroAlvo.displayName, vip, dia, mes);
             return;
+        }
 
         VIPs.forEach( async element => 
             await dbEditVIP(element.id, vip, dia, mes) );
+
     } else {
         let dia = new Date().getDate(),
             mes = new Date().getMonth() + 1 ,
