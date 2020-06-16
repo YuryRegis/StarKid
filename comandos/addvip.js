@@ -89,7 +89,10 @@ exports.run = async (client, message, args) => {
         let filtro = f => f.id === membroAlvo.id,
             VIPs   = await dbListVIPs(),
             vip    = '';
-    
+        
+        if (VIPs === undefined)
+            return;
+            
         VIPs = VIPs.filter(filtro);
         (dia === 31) ? dia = 30 : dia;
         (nivel === undefined) ? vip = 'vip' : vip = nivel;

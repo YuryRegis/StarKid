@@ -15,6 +15,9 @@ exports.run = async function(client, message, args) {
 
     if(message.channel.id !== floodID) 
         return message.delete();
+
+    if(listaVips.length === 0)
+        return message.channel.send('Ainda não temos nenhum mebro VIP neste mês.');    
     
     let listaOuro  = listaVips.filter( f => f.vip === 'ouro'),
         listaPrata = listaVips.filter(f => f.vip === 'prata'),
@@ -24,9 +27,6 @@ exports.run = async function(client, message, args) {
         prata      = '',
         ouro       = '',
         vip        = '';
-
-    if(listaVips.length === 0)
-        return message.channel.send('Ainda não temos nenhum mebro VIP neste mês.');
     
     listaVip.forEach(apoiador => vip += `**${apoiador.nome}** | ` );
     listaOuro.forEach(apoiador => ouro += `**${apoiador.nome}** | `);
@@ -40,18 +40,21 @@ exports.run = async function(client, message, args) {
         .setFooter(`ThatSkyGameBrasil - Tudo sobre Sky`, 
             'https://s3.amazonaws.com/assets.apoia.se/campaigns/5db49c70e2d7737c4cd4e520%7C5db49c99193385a323d53d4c/user-campaign-about-photo%7CDisocodLogo-20200502_23062002.png');
 
-    if(ouro.length !== 0)
+    if(ouro.length !== 0) {
         (ouro.length > 1024) ? ouro = ouro.slice(0,1023) : ouro = ouro;
         embed.addField('V.I.P - OURO', ouro, false);
+    }
 
-    if(prata.length !== 0)
+    if(prata.length !== 0) {
         (prata.length > 1024) ? prata = prata.slice(0,1023) : prata = prata;
         embed.addField('V.I.P - PRATA', prata, false);
+    }
 
-    if(vip.length !== 0)
+    if(vip.length !== 0) {
         (vip.length > 1024) ? vip = vip.slice(0,1023) : vip = vip;
         embed.addField('V.I.P', vip, false);
-    
+    }
+
     let sala = await message.guild.channels.get(floodID);
     sala.send(embed);
 }

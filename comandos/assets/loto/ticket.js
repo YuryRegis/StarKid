@@ -115,11 +115,14 @@ module.exports = {
             VIPs      = await dbListVIPs(),
             listaIDs  = [];
         
-        VIPs = VIPs.filter(filtroMes);
-        VIPs = VIPs.filter(filtroDia);
-        
+        if(VIPs === undefined)
+            return;
+
         if(VIPs.length === 0)
             return;
+
+        VIPs = VIPs.filter(filtroMes);
+        VIPs = VIPs.filter(filtroDia);
         
         VIPs.forEach(async element => {
             let idNaLista = listaIDs.some(id => id === element.id);
