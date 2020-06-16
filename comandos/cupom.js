@@ -148,7 +148,7 @@ exports.run = async (client, message, args) => {
         VIPs.forEach( async element => 
             await dbEditVIP(element.id, vip, dia, mes) );
     } else {
-                    
+        /*            
         let dia = new Date().getDate(),
             mes = new Date().getMonth() + 1 ,
             vip = '';
@@ -157,6 +157,8 @@ exports.run = async (client, message, args) => {
         (nivel === undefined) ? vip = 'vip' : vip = nivel.toLowerCase();
 
         await salaBot.send(`!addvip ${membroAlvo} ${dia} ${mes} ${vip}`);
+        */
+        console.log(`!cupom: Cupons enviados para ${apoiador.nome} sem alterar cargo.`);
     }
     return;
 }
