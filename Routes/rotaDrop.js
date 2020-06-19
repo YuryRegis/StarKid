@@ -41,7 +41,7 @@ module.exports = {
     dbListDrops: function() {
         let resposta = db.get('Drops')
             .__wrapped__
-            .Passe;
+            .Drops;
         return resposta;
     },
 
