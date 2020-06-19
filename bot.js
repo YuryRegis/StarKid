@@ -5,6 +5,7 @@ const client = new Discord.Client();
 const config = require("./config.json");
 const { dbUno } = require("./Routes/rotas");
 const newmember = require("./newmember.cjs");
+const { dbDrops } = require('./Routes/rotaDrop');
 const { dbPasse } = require('./Routes/rotasPasse');
 const { dbVIP } = require('./Routes/rotaCadastroVIP');
 const messageHandler = require("./messageHandler.cjs");
@@ -33,7 +34,7 @@ client.on("ready", () => {
     console.log(`Bot iniciado! ${client.users.size} usuários, ${client.channels.size} canais e ${client.guilds.size} servidores.`);
 	client.user.setActivity(`Sky: Filhos da luz`);
 	
-	if( dbUno() && dbPasse() && dbVIP() ) 
+	if( dbUno() && dbPasse() && dbVIP() && dbDrops() ) 
 		console.log("Rota: banco de dados OK");
 	else console.log("Rota: verifique o banco de dados...");
 })
