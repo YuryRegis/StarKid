@@ -69,9 +69,9 @@ module.exports = {
 
 
     //deletar dado
-    dbDeleteDrop: function(dropID) {
+    dbDeleteDrop: function(drop) {
         db.get('Drops')
-            .remove({id: dropID})
+            .remove({drop: drop.drop})
             .write()
         return true;
     }

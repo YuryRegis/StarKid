@@ -1,4 +1,4 @@
-const { dbAddDrop } = require('../Routes/rotaDrop');
+const { dbAddDrop, dbListDrops } = require('../Routes/rotaDrop');
 
 
 class Drop {
@@ -10,8 +10,11 @@ class Drop {
 
 
 exports.run = async (client, message, args) => {
+    message.delete();
+
     const concurso = args[0],
           chave    = args[1],
+          autor    = message.author,
           salaLog  = await message.guild.channels.get('698758957845446657'), 
           perm     = await message.member.roles.some(r => r.name === "Admin") || 
                            message.member.roles.some(r => r.name === "Staff");
@@ -22,6 +25,21 @@ exports.run = async (client, message, args) => {
     if(concurso === 'h' || concurso === 'ajuda' || concurso === undefined)
         return message.reply('Comando drop: `!drop <concurso> <chave>`');
     
+    if(args[0] === 'lista') {
+        let lista    = await dbListDrops(),
+            dropMsg  = '',
+            mensagem = `${autor} Aqui esta a lista dos Drops gerados:\n`;
+        
+        if(lista.lenght === 0)
+            return salaLog.send(`${autor} não existem drops no banco de dados.`);
+
+        lista.forEach(drop => { dropMsg += `${drop.drop}#${drop.id}`; });
+
+        mensagem += `\`\`\`${dropMsg}\`\`\``;
+        
+        return salaLog.send(mensagem);
+    }
+        
     if(isNaN(concurso) || chave === undefined)
         return message.reply('Argumentos inválidos, use `!drop ajuda` para ajuda.');
     
@@ -29,7 +47,7 @@ exports.run = async (client, message, args) => {
 
     await dbAddDrop(drop);
 
-    return message.delete();
+    return salaLog.send(`${autor} seu drop para o concurso ${concurso} foi registrado com sucesso.`);
 }
 
 exports.help = {

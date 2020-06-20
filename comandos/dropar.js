@@ -30,7 +30,7 @@ exports.run = async (client, message, args) => {
     if(!drop)
         return message.reply('Chave já resgatada ou inválida.');
     else {
-        await dbDeleteDrop(drop.id);
+        await dbDeleteDrop(drop);
         salaBot.send(`!cupom ${autor} ${drop.id} passe.av 1`);
         salaLogs.send(`${autor.tag} resgatou um cupom com a chave ${chave}.`); 
     }
