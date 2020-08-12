@@ -9,11 +9,12 @@ exports.run = async (client, message, args) => {
     if (isNaN(args[0]))
         return message.reply(`${args[0]} não é um ID de mensagem válido.`);
 
-    const messageID = args[0],
-          msgAlvo   = await message.channel.messages.get(messageID);
+    const messageID     = args[0],
+          msgAlvo       = await message.channel.fetchMessage(messageID),
+          participantes = await msgAlvo.reactions.get(`🎉`).fetchUsers();
 
-    let participantes = await msgAlvo.reactions.get(`🎉`).users,
-        vencedorID    = participantes.random(),
+    
+    let vencedorID    = participantes.random(),
         embeds        = msgAlvo.embeds[0];
     
     console.log("PARTICIPANTES => "+participantes,"ID => "+vencedorID);
