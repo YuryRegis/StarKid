@@ -7,7 +7,7 @@ let ytsounds = "https://www.youtube.com/playlist?list=PL2PBX0NE622gm8kQ8pUNXU1z6
 exports.run = async (message, sender, client) => {
     let responseObject = {
     "!ajuda": `Entre no canal ${client.channels.get("612753120925057036")} para obter a lista de comandos atualizada.`,
-    "!convite" : "https://is.gd/ThatSkyGameBrasil",
+    "!convite" : "https://discord.gg/thatskygamebrasil",
     "!blog": `${blog}`,
     "!bemotes": `${blog + "emotes"}`,
     "!bestrelas": `${blog + "estrelas"}`,
