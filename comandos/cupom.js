@@ -25,7 +25,7 @@ exports.run = async (client, message, args) => {
           membroAlvo = message.mentions.members.first(),
           salaLogs   = client.channels.get("698758957845446657"),
           salaBot    = client.channels.get("634200679224967188"),
-          chatGeral  = client.channels.get("603723288757403648");
+          chatGeral  = client.channels.get("653744153171066880");
 
     const concursoID = args[1],
           sorteio    = args[2],
