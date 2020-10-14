@@ -1,7 +1,7 @@
 
 exports.run = async (client, message, args) => {
     await message.delete();
-    estou zoando o codigo hehehe
+    
     let admin    = await client.users.get("322421000153333761"),
         salaLogs = await message.guild.channels.get('698758957845446657');
     
