@@ -3,6 +3,7 @@ const fs = require("fs");
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
+const getID = require('./funcoes/ids.json');
 const { dbUno } = require("./Routes/rotas");
 const newmember = require("./newmember.cjs");
 const { dbDrops } = require('./Routes/rotaDrop');
@@ -31,7 +32,7 @@ fs.readdir("./comandos/",(erro, arquivo) => {
 
 
 client.on("ready", () => {
-    console.log(`Bot iniciado! ${client.users.size} usuários, ${client.channels.size} canais e ${client.guilds.size} servidores.`);
+    console.log(`Bot iniciado! ${client.users.cache.size} usuários, ${client.channels.cache.size} canais e ${client.guilds.cache.size} servidores.`);
 	client.user.setActivity(`Sky: Filhos da luz`);
 	
 	if( dbUno() && dbPasse() && dbVIP() && dbDrops() ) 
@@ -53,8 +54,8 @@ client.on("guildDelete", guild => {
 
 
 client.on("raw", async data => {
-	let regrasID   = "603731841584988180",
-	    servidorID = "603720312911167622";
+	let regrasID   = getID.sala.REGRAS,
+	    servidorID = getID.SERVIDOR;
 
 	if(data.t === "MESSAGE_REACTION_ADD" || data.t === "MESSAGE_REACTION_REMOVE") {
 		if(data.d.message_id !== regrasID) return
@@ -62,7 +63,7 @@ client.on("raw", async data => {
 		return;
 	}
 
-	let salaLogs = await client.channels.get('698758957845446657');
+	let salaLogs = await client.channels.cache.get(getID.sala.LOGS);
 	
 	if(data.t === 'GUILD_MEMBER_REMOVE' || data.t === 'GUILD_MEMBER_ADD') {
 		let resposta = "";
@@ -88,9 +89,9 @@ client.on("raw", async data => {
 
 
 client.on("message", async message => {
-	let bemVindo = "603720312919556239",
-	    chatBot  = "634200679224967188",
-	    avisoTGC = "693002971944058920";
+	let bemVindo = getID.sala.BEMVINDO,
+	    chatBot  = getID.sala.CHATBOT,
+	    avisoTGC = getID.sala.TGCNEWS;
 
 	if(message.author.bot) {
 		if (message.channel.id === chatBot && message.content[0] === config.prefix) {
@@ -104,7 +105,7 @@ client.on("message", async message => {
 				return
 				
 			let watson  = await watsonTradutor(LanguageTranslatorV3, IamAuthenticator, message),
-				salaLog = await message.guild.channels.get('698758957845446657');
+				salaLog = await message.guild.channels.cache.get(getID.sala.LOGS);
 				
 			if(watson === undefined) {
 				salaLog.send('Tradutor error ```Watson response UNDEFINED```');
@@ -116,27 +117,15 @@ client.on("message", async message => {
 		return // messageBotHandler.run(message); //mensagem de bots
 	}
 
-	if (message.channel.id===bemVindo) { 
-		let verificaRoles = await message.member.roles.some(r => 
-			r.name === "Android" || r.name === "Beta" || r.name === "Global" || r.name === "Apple"
-		);
-		if(!verificaRoles) {
-			let salaRegras = await message.guild.channels.get("603728556262031365");
-			
-			message.reply(`para ter acesso ao servidor, você precisa **aceitar** nossos termos e ${salaRegras}.`,
-				{ file:"https://i.ibb.co/GVwYx24/regras.png" });
-			return;
-		}
-	}
-
 	if (message.channel.id === chatBot) {
-		let regex = /\?|\+|\-|\$|\%|\*/;
+		let regex = /\+|\-|\$|\%|\*/;
 
 		if(regex.test(message.content[0])) return;
 		if(message.content[0]==="!") return messageHandler.run(message, queue, client);
-
-		let watson = await watsonAssistant(AssistantV1, IamAuthenticator, message);
-		return message.reply(`${watson}`);
+		if(message.content[0]==="?") {
+			let watson = await watsonAssistant(AssistantV1, IamAuthenticator, message);
+			return message.reply(`${watson}`);
+		}
 	}
 
 	if(message.channel.type === "dm") return; //ignora mensagens diretas
