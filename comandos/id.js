@@ -1,3 +1,5 @@
+const {verificaPerm} = require('../funcoes/members'),
+               getID = require('../funcoes/ids.json');
 
 exports.help = {
     name: "id"
@@ -7,9 +9,11 @@ exports.run = async (client, message, args) => {
     message.delete();
     
     // console.log(args[0].split("@"));
-    if(message.member.roles.some(r => r.name === "Admin" || r.name === "Staff" || r.name==="Moderador")) {
+    const perm = await verificaPerm(message.member);
+    
+    if(perm) {
         let regexSala = /#/;
-        let canal = await client.channels.get("612399243520639016");
+        let canal = await client.channels.cache.get(getID.sala.LOGS);
 
         if (regexSala.test(args[0])) {
             let procurado = await message.mentions.channels.first();

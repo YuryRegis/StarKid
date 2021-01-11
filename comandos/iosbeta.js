@@ -1,7 +1,7 @@
-const {RichEmbed} = require("discord.js");
+const {MessageEmbed} = require("discord.js");
 
 exports.run = async (client, message, args) => {
-    const embed = new RichEmbed();
+    const embed = new MessageEmbed();
     embed.setColor("WHITE");
     embed.setThumbnail("https://i.ibb.co/vzgQL2x/6-E03519-F-A591-4-AEC-96-A3-44-ECB07699-ED.png");
     embed.setTitle("**INSTRUÇÕES PARA ACESSO BETA iOS**");

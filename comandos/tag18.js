@@ -1,9 +1,10 @@
-const Discord = require("discord.js");
+const Discord = require("discord.js"),
+getID = require('../funcoes/ids.json')
 
 
 exports.run = async (client, message, args) => {
     
-    let salaTag = await message.guild.channels.get('701571073845755974'),
+    let salaTag = await message.guild.channels.cache.get(getID.sala.REQ18),
         tag     = 'id_' + message.author.tag + '🔐',
         info    = ' envie uma **selfie** segurando um documento de identidade (RG, CNH, CTPS, Passaport,etc).\n' + 
                   'Escolha um local bem iluminado, a sua ID precisa estar **LEGÍVEL** na selfie.';
@@ -13,7 +14,7 @@ exports.run = async (client, message, args) => {
     //     mentionable: false,
     // });
 
-    let novaSala = await message.guild.createChannel(tag, {
+    let novaSala = await message.guild.channels.create(tag, {
         type: 'text',
         permissionOverwrites: [{
             id: message.guild.id,

@@ -1,9 +1,12 @@
-const {RichEmbed} = require('discord.js');
+const {MessageEmbed} = require('discord.js'),
+      {verificaPerm} = require('../funcoes/members');
 
 
 exports.run = async (client, message, args) => {
     
-    if(!message.member.roles.some(r => r.name === "Admin" || r.name === "Staff" || r.name === "Moderador"))
+    const perm = await verificaPerm(message.member);
+
+    if(!perm)
         return message.reply("Você não tem permissão para usar este comando.");
     
     if (isNaN(args[0]))
@@ -18,7 +21,7 @@ exports.run = async (client, message, args) => {
         embeds        = msgAlvo.embeds[0];
     
     console.log("PARTICIPANTES => "+participantes,"ID => "+vencedorID);
-    const embed    = new RichEmbed(embeds);
+    const embed    = new MessageEmbed(embeds);
 
     embed.addField(`**VENCEDOR**`, `${vencedorID}`);
 

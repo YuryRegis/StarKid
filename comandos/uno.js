@@ -1,5 +1,7 @@
 const json = require(`./uno.json`);
-const {RichEmbed} = require(`discord.js`);
+const {MessageEmbed} = require(`discord.js`);
+const getID = require('../funcoes/ids.json');
+const {verificaPerm} = require('../funcoes/members');
 const {comprarCarta, mostrarMao, mostrarMesa, pularJogador}     = require(`../funcoes.js`);
 const {getRandomInt, getMember, encerrarPartida, somaPontos}    = require(`../funcoes.js`);
 const { addRank, atualizar, unoRank, listarDado, buscaJogador } = require('./assets/uno/funcoes');
@@ -28,7 +30,7 @@ var jAnterior   = new Jogador();
 var jSeguinte   = new Jogador();
 var statusCor   = {"status": false, "cor":"", "id":"", "escolhido":false};
 var statusPlus  = {"status":false, "valor":0, "id":""}; 
-const SalaID    = "695640007494467604";  //ID da sala permitida para jogar
+const SalaID    = getID.sala.UNO;  //ID da sala permitida para jogar
 var baralho     = JSON.parse(JSON.stringify(json));
 
 
@@ -39,9 +41,8 @@ exports.help = {
 
 exports.run = async (client, message, args) => {
     const salaAtual   = message.channel;
-    const salaCorreta = await message.guild.channels.get(SalaID);
-    const validaAdmin = await message.member.roles
-            .some(r =>  r.name === "Staff" || r.name === "Admin");
+    const salaCorreta = await message.guild.channels.cache.get(SalaID);
+    const validaAdmin = await verificaPerm(message.member);
             
 
     if(args[0] === undefined) {
@@ -49,10 +50,10 @@ exports.run = async (client, message, args) => {
     }
 
 
-    if(salaAtual.id === SalaID || salaAtual.id === '653744153171066880') {
+    if(salaAtual.id === SalaID || salaAtual.id === getID.sala.FLOOD) {
         if(args[0].toLowerCase() === "rank" || args[0].toLowerCase() === "r") {
             message.delete();
-            let rank = new RichEmbed();
+            let rank = new MessageEmbed();
             return salaAtual.send(await unoRank(rank));
         } 
     }
@@ -79,7 +80,7 @@ exports.run = async (client, message, args) => {
             jAnterior.salvo = false;
             baralho, jAnterior = comprarCarta(2, baralho, jAnterior);
             let punicao = "Parece que você falou **uno** sem ter 1 carta na mão. Punido com +2 cartas."
-            let alvojAnterior = await message.guild.members.get(jAnterior.id);
+            let alvojAnterior = await message.guild.members.cache.get(jAnterior.id);
             await alvojAnterior.send(punicao + mostrarMao(jAnterior));
             salaAtual.send(`🗣️ **${jAnterior.nome}** punido com +2 cartas por falar **uno** sem ter 1 carta na mão`);
             return;
@@ -93,13 +94,13 @@ exports.run = async (client, message, args) => {
         // deleteDado(message.author.id)
         // buscaJogador(message.author.id)
 
-        // var myGuild = await client.guilds.get(message.guild.id)
+        // var myGuild = await client.guilds.cache.get(message.guild.id)
         // var myMbrGuild = myGuild.members
         // var members = []
         // myMbrGuild.forEach(mbr => { members.push(mbr.user.id) })
         // console.log(members.length)
         // members.forEach(async id => {
-        //     var membr = await message.guild.members.get(id);
+        //     var membr = await message.guild.members.cache.get(id);
         //     //console.log(membr.nickname)
         //     if(membr.roles.some(rolé => rolé.name==="Beta")){
         //         //membr.roles.add('695833895848902677')
@@ -144,7 +145,7 @@ exports.run = async (client, message, args) => {
         let alvoEdit = {};
 
         if(!isNaN(args[1])) {
-            alvoEdit = await message.guild.members.get(args[1]);
+            alvoEdit = await message.guild.members.cache.get(args[1]);
             // console.log("regex ->", alvoEdit)
         }
         if(regex.test(args[1])) {
@@ -234,7 +235,7 @@ exports.run = async (client, message, args) => {
             indice = getRandomInt(0, baralho.length-1);
             carta = baralho[indice];
         } while (carta.id==="10"||carta.id==="11" ||carta.id==="12" || carta.id==="13" || carta.id==="14");
-        var embed = new RichEmbed();
+        var embed = new MessageEmbed();
         embed = mostrarMesa(jAnterior, jAtual, jSeguinte, embed, carta);
         if(errStatus) {
             errStatus = false;
@@ -259,7 +260,7 @@ exports.run = async (client, message, args) => {
         for(i=0; i<jogadores.length; i++){
             strJogadores += `${jogadores[i].nome}, `;
         }
-        var embed = new RichEmbed()
+        var embed = new MessageEmbed()
             .setTitle("JOGADORES")
             .setDescription(strJogadores)
             .addField("Total de jogadores", jogadores.length, true)
@@ -295,13 +296,13 @@ exports.run = async (client, message, args) => {
                     jSeguinte = jogadores[1];
                     jAtual = jogadores[0];
 
-                    var embed = new RichEmbed();
+                    var embed = new MessageEmbed();
                     embed = mostrarMesa(jAnterior, jAtual, jSeguinte, embed, mesa[0]);
                     await salaAtual.send(embed);
                     return salaAtual.send(`Aguardando ${jAtual.nome} fazer sua jogada...`);
                 }
                 if(statusCor.status) {
-                    var alvo = client.users.get(statusCor.id);
+                    var alvo = client.users.cache.get(statusCor.id);
                     message.reply(`estamos aguardando o ${alvo} escolher uma **cor** com o comando \`\`\`!uno cor\`\`\``);
                     return;
                 }
@@ -325,7 +326,7 @@ exports.run = async (client, message, args) => {
             return message.reply(`você não pode usar este comando no momento`);
         }
         if(message.author.id!==statusCor.id) {
-            var nome = client.users.get(statusCor.id)
+            var nome = client.users.cache.get(statusCor.id)
             nome = nome.user.username;
             return message.reply(`Estamos aguardando ${nome} escolher uma cor.`);
         }
@@ -397,7 +398,7 @@ exports.run = async (client, message, args) => {
             statusPlus.status = true;
             statusPlus.id = carta.id;
         
-            var alvo = client.users.get(jSeguinte.id);
+            var alvo = client.users.cache.get(jSeguinte.id);
             
             statusCor.status = true;
             statusCor.id = message.author.id;
@@ -408,7 +409,7 @@ exports.run = async (client, message, args) => {
             jSeguinte = jogadores[1];
             jAtual = jogadores[0];
             
-            var embed = new RichEmbed();
+            var embed = new MessageEmbed();
             embed = mostrarMesa(jAnterior, jAtual, jSeguinte, embed, mesa[0]);
             await salaAtual.send(embed);
             salaAtual.send(`${alvo} use o comando \`!uno comprar\` ou jogue outro **+4** para cobrir.`);
@@ -438,14 +439,14 @@ exports.run = async (client, message, args) => {
             jSeguinte = jogadores[1];
             jAtual = jogadores[0];
 
-            var embed = new RichEmbed();
+            var embed = new MessageEmbed();
             embed = mostrarMesa(jAnterior, jAtual, jSeguinte, embed, mesa[0]);
             await salaAtual.send(embed);
             return salaAtual.send(`Aguardando um jogador escolher uma cor para ${jAtual.nome} fazer sua jogada...`);
         }
         if(statusCor.status) {
             if(statusCor.cor==="") {
-                var alvo = client.users.get(statusCor.id);
+                var alvo = client.users.cache.get(statusCor.id);
                 message.reply(`estamos aguardando o ${alvo} escolher uma **cor** com o comando \`\`\`!uno cor\`\`\``);
                 return;
             }
@@ -478,7 +479,7 @@ exports.run = async (client, message, args) => {
                 //     baralho, jSeguinte = comprarCarta(statusPlus.valor, baralho, jSeguinte);
 
                 //     var msg = mostrarMao(jSeguinte);
-                //     var alvo = client.users.get(jSeguinte.id);
+                //     var alvo = client.users.cache.get(jSeguinte.id);
                 //     await alvo.send(`${jAtual.nome} jogou um **+2** para você. Sua mão agora esta assim:`+msg)
                 //         .catch(err => { salaAtual.send(`\`\`\`${err}\`\`\``) });
                     
@@ -491,7 +492,7 @@ exports.run = async (client, message, args) => {
                     // jSeguinte = jogadores[1];
                     // jAtual = jogadores[0];
 
-                //     var embed = new RichEmbed();
+                //     var embed = new MessageEmbed();
                 //     embed = mostrarMesa(jAnterior, jAtual, jSeguinte, embed, mesa[0]);
                 //     await salaAtual.send(embed);
                 //     salaAtual.send(`${jAnterior.nome} comprou ${statusPlus.valor} cartas e perdeu sua vez.`);
@@ -501,13 +502,13 @@ exports.run = async (client, message, args) => {
                 jSeguinte = jogadores[1];
                 jAtual = jogadores[0];
 
-                let embed = new RichEmbed();
+                let embed = new MessageEmbed();
                 embed = mostrarMesa(jAnterior, jAtual, jSeguinte, embed, mesa[0]);
                 await salaAtual.send(embed);
 
                 if(cartas.length===0) {
-                    let rank = new RichEmbed();
-                    let fimDeJogo = new RichEmbed();
+                    let rank = new MessageEmbed();
+                    let fimDeJogo = new MessageEmbed();
                                         
                     fimDeJogo = encerrarPartida(client, jAnterior, fimDeJogo);
                     await salaAtual.send(fimDeJogo);
@@ -570,13 +571,13 @@ exports.run = async (client, message, args) => {
                 jSeguinte = jogadores[1];
                 jAnterior = jogadores[jogadores.length-1];
                 
-                var embed = new RichEmbed();
+                var embed = new MessageEmbed();
                 embed = mostrarMesa(jAnterior, jAtual, jSeguinte, embed, mesa[0]);
                 await salaAtual.send(embed);
 
                 if(cartas.length===0) {  //fim de jogo
-                    let rank = new RichEmbed();
-                    let fimDeJogo = new RichEmbed();
+                    let rank = new MessageEmbed();
+                    let fimDeJogo = new MessageEmbed();
  
                     fimDeJogo = encerrarPartida(client, infoAtual, fimDeJogo);
                     await salaAtual.send(fimDeJogo);
@@ -624,7 +625,7 @@ exports.run = async (client, message, args) => {
 
                 var infoJogador = jAtual;
 
-                var alvo = client.users.get(jSeguinte.id);
+                var alvo = client.users.cache.get(jSeguinte.id);
                 message.reply(`pulou a vez de ${alvo} com a carta ${carta.titulo}`);
 
                 jogadores = pularJogador(jogadores);
@@ -633,13 +634,13 @@ exports.run = async (client, message, args) => {
                 jSeguinte = jogadores[1];
                 jAtual = jogadores[0];
 
-                var embed = new RichEmbed();
+                var embed = new MessageEmbed();
                 embed = mostrarMesa(jAnterior, jAtual, jSeguinte, embed, mesa[0]);
                 await salaAtual.send(embed);
 
                 if(cartas.length===0) {
-                    let rank = new RichEmbed();
-                    let fimDeJogo = new RichEmbed();
+                    let rank = new MessageEmbed();
+                    let fimDeJogo = new MessageEmbed();
  
                     fimDeJogo = encerrarPartida(client, infoJogador, fimDeJogo);
                     await salaAtual.send(fimDeJogo);
@@ -691,12 +692,12 @@ exports.run = async (client, message, args) => {
             jSeguinte = jogadores[1];
             jAtual = jogadores[0];
 
-            var embed = new RichEmbed();
+            var embed = new MessageEmbed();
             embed = mostrarMesa(jAnterior, jAtual, jSeguinte, embed, mesa[0]);
             await salaAtual.send(embed);
             if(cartas.length===0) {
-                    let rank = new RichEmbed();
-                    let fimDeJogo = new RichEmbed();
+                    let rank = new MessageEmbed();
+                    let fimDeJogo = new MessageEmbed();
  
                     fimDeJogo = encerrarPartida(client, jAnterior, fimDeJogo);
                     await salaAtual.send(fimDeJogo);
@@ -755,7 +756,7 @@ exports.run = async (client, message, args) => {
                 jSeguinte = jogadores[1];
                 jAtual = jogadores[0];
 
-                embed = new RichEmbed();
+                embed = new MessageEmbed();
                 embed = mostrarMesa(jAnterior, jAtual, jSeguinte, embed, mesa[0]);
                 await salaAtual.send(embed);
                 return salaAtual.send(`Aguardando ${jAtual.nome} fazer a sua jogada...`);
@@ -780,7 +781,7 @@ exports.run = async (client, message, args) => {
                 id = mencao.id
             } else return message.reply("apenas **Staff** pode excluir algúem do jogo.")
         }
-        let alvoSair = await client.users.get(id);
+        let alvoSair = await client.users.cache.get(id);
         
         if(statusCor.status===true && statusCor.id===id) {
             aviso = `${alvoSair.nome} precisa escolher uma cor antes de abandonar a partida.\n`;
@@ -809,7 +810,7 @@ exports.run = async (client, message, args) => {
     //comando de ajuda
     if (args[0].toLowerCase() === "ajuda" || args[0].toLowerCase() === "h" )  {
         message.delete();
-        let regras = await message.guild.channels.get("695643704236572793");
+        let regras = await message.guild.channels.cache.get("695643704236572793");
         message.reply(`Aqui vai uma ajudinha para os comandos:
         \`\`\`
 ╔════════════════╦══════════════════════╦═══════════════╗

@@ -1,16 +1,19 @@
-const {RichEmbed} = require("discord.js");
-const {promptMessage} = require("../funcoes.js");
+const {MessageEmbed}  = require("discord.js"),
+      {promptMessage} = require("../funcoes.js"),
+      {verificaPerm}  = require('../funcoes/members');
 
-const opcoes = ["🏔","📜","✂"]
+const opcoes = ["🏔","📜","✂"],
+      getID  = require('../funcoes/ids.json');
 
 exports.run = async (client, message, args) => {
     
-    if(message.channel.id != "653744153171066880" && !message.member.roles.some(r =>  r.name === "Staff" || r.name === "Admin")){
+    const perm = await verificaPerm(message.member);
+    if(message.channel.id != getID.sala.FLOOD && !perm){
         return message.channel.send(`Este comando não é permitido nesse canal. 
-        Use o canal <@653744153171066880>, por gentileza.`)
+        Use o canal <#${getID.sala.FLOOD}>, por gentileza.`)
     }
 
-    const embed = new RichEmbed();
+    const embed = new MessageEmbed();
     embed.setColor("ORANGE");
     embed.setThumbnail("https://i.ibb.co/nD0SV4r/ppt.png");
     embed.setTitle("**PEDRA 🆚 PAPEL 🆚 TESOURA**");

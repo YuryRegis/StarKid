@@ -1,5 +1,7 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
+const getID = require('../funcoes/ids.json');
 const { promptMessage } = require("../funcoes.js");
+const { verificaPerm } = require('../funcoes/members');
 
 const opcoes = [`👤`,`👥`,`👑`,`🤠`,`🎹`,`🎨`,`🔰`,`🗺️`,`🧢`,`🧚`,`🤳`,`🎒`,`❤️`,`💍`,`💍`,`😄`,`💋`, `💙`,`🧓`,`🃏`]
 
@@ -9,15 +11,17 @@ exports.help = {
 
 exports.run = async (client, message, args) => {
     
-    const flood    = client.channels.get("653744153171066880"),
-          salaLogs = client.channels.get("698758957845446657");
+    const flood    = client.channels.cache.get(getID.sala.FLOOD),
+          salaLogs = client.channels.cache.get(getID.sala.LOGS);
 
-    if(message.channel.id != "653744153171066880" && !message.member.roles.some(r =>  r.name === "Staff" || r.name === "Admin")){
+    const perm = await verificaPerm(message.member);
+
+    if(message.channel.id != flood.id && !perm){
         return message.channel.send(`Este comando não é permitido nesse canal. 
     Use o canal ${flood} , por gentileza.`)
     }
 
-    const embed = new RichEmbed();
+    const embed = new MessageEmbed();
     embed.setTitle("**ThatSkyGameBrasil - TAGS**");
     embed.setColor("RANDOM");
     embed.setThumbnail("https://image.freepik.com/vetores-gratis/tag-neon-verde-noite-brilhante-elemento-de-propaganda_1262-13490.jpg");
@@ -60,7 +64,7 @@ exports.run = async (client, message, args) => {
     } else if (cargoEscolhido === `❤️`) { 
         var chave = "Trocador"
     } else if (cargoEscolhido === `🤳`) {
-        var chave = "YouTuber"
+        var chave = "🚩  🆈🅾🆄🆃🆄🅱🅴🆁"
     } else if (cargoEscolhido === "💍") {
         var chave = "Casado"
     } else if (cargoEscolhido === "😄") {
@@ -81,8 +85,8 @@ exports.run = async (client, message, args) => {
         return m.delete(15000)
     }; // retorna nada para caso de emoji diferente
     
-    var cargo = await message.guild.roles.find(role => role.name.toLowerCase() === chave.toLowerCase());
-    var member = message.guild.members.find(member => member.id === message.author.id);
+    var cargo  = await message.guild.roles.cache.find(role => role.name.toLowerCase() === chave.toLowerCase());
+    var member = await message.guild.members.cache.find(member => member.id === message.author.id);
 
     if (cargo == null) { // Caso não exista o cargo com o valor de chave passado
         embed.addField(`TAG ${chave.toUpperCase()} NÃO ENCONTRADA`)
@@ -92,8 +96,8 @@ exports.run = async (client, message, args) => {
     }
 
     // se o membro ja tiver o cargo selecionado, apague o mesmo
-    if (member.roles.some(x => x.name === cargo.name)) {
-        member.removeRole(cargo.id)
+    if (member.roles.cache.some(x => x.name === cargo.name)) {
+        member.roles.remove(cargo.id)
             .then(member => {
                 console.log(`${member.user.username} removeu o cargo ${cargo.name}`);
                 salaLogs.send(`${member.displayName} removeu o cargo ${cargo.name}`);  
@@ -104,7 +108,7 @@ exports.run = async (client, message, args) => {
             `${member.user.username} removeu o cargo ${cargo.name}\n` +
             `Use o comando \`!cargo\` novamente para adicionar ou remover outro cargo.`);
     } else { // caso contrario, adicione cargo selecionado
-        member.addRole(cargo.id)
+        member.roles.add(cargo.id)
             .then(member => {
                 var nome = member.user.username;
                 console.log(`${nome} adicionou o cargo ${chave}`);
@@ -119,7 +123,7 @@ exports.run = async (client, message, args) => {
 
     m.edit(embed);
     message.delete();
-    m.delete(40000);
+    m.delete({timeout:40000});
     return 
 }
 

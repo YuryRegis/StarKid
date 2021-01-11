@@ -1,6 +1,8 @@
 const { getMember, formatDate, getJoinRank } = require("../funcoes.js");
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { stripIndents } = require("common-tags");
+const { verificaPerm } = require("../funcoes/members");
+const getID = require("../funcoes/ids.json");
 
 exports.help = {
     name: "info"
@@ -8,9 +10,10 @@ exports.help = {
 
 exports.run = async (client, message, args) => {
 
-    const flood = client.channels.get("653744153171066880");
+    const flood = client.channels.get(getID.sala.FLOOD),
+          perm  = await verificaPerm(message.member);
 
-    if(message.channel.id != "653744153171066880" && !message.member.roles.some(r =>  r.name === "Staff" || r.name === "Admin")){
+    if(message.channel.id != flood.id && !perm){
         return message.channel.send(`Este comando não é permitido nesse canal. 
     Use o canal ${flood} , por gentileza.`)
     }
@@ -19,7 +22,7 @@ exports.run = async (client, message, args) => {
     const posicao  = getJoinRank(membro.id, message.guild);
     const registro = formatDate(membro.joinedAt);
     let   game     = "Nada, no momento.";
-    const cargos   = membro.roles
+    const cargos   = membro.roles.cache
         .filter(cargo => cargo.id !== message.guild.id)
         .map(cargo => cargo)
         .join(", ") || "Sem cargos definidos";
@@ -28,7 +31,7 @@ exports.run = async (client, message, args) => {
         game = membro.user.presence.game.name;
     }
         
-    const embed = new RichEmbed()
+    const embed = new MessageEmbed()
         .setTitle('ThatSkyGameBrasil - Tudo sobre Sky!')
         .setFooter(`Requisitado por ${message.member.user.username}`, client.user.displayAvatarURL)
         .setThumbnail(membro.user.displayAvatarURL)
