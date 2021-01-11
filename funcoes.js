@@ -1,14 +1,16 @@
+const getID = require('./funcoes/ids.json')
+
 module.exports = {
     getMember: function(message, toFind = '') {
         toFind = toFind.toLowerCase();
 
-        let target = message.guild.members.get(toFind);
+        let target = message.guild.members.cache.get(toFind);
         
         if (!target && message.mentions.members)
             target = message.mentions.members.first();
 
         if (!target && toFind) {
-            target = message.guild.members.find(member => {
+            target = message.guild.members.cache.find(member => {
                 return member.displayName.toLowerCase().includes(toFind) ||
                 member.user.tag.toLowerCase().includes(toFind)
             });
@@ -84,48 +86,48 @@ module.exports = {
 
 
     setRole: async function(client, data, servidorID) {
-        let servidor = await client.guilds.get(servidorID);
-        let membro   = await servidor.members.get(data.d.user_id);
+        let servidor = await client.guilds.cache.get(servidorID);
+        let membro   = await servidor.members.cache.get(data.d.user_id);
 
-        let android = await servidor.roles.get('627270660271374387'),
-            apple   = await servidor.roles.get('627275771710406673'),
-            beta    = await servidor.roles.get('627273901197492244'),
-            skyG    = await servidor.roles.get('653331984420175903')
+        let android = await servidor.roles.cache.get(getID.cargo.ANDROID),
+            apple   = await servidor.roles.cache.get(getID.cargo.APPLE),
+            beta    = await servidor.roles.cache.get(getID.cargo.BETA),
+            skyG    = await servidor.roles.cache.get(getID.cargo.GLOBAL)
 
     if(data.t === "MESSAGE_REACTION_ADD"){
         if(data.d.emoji.id === "698184753848778883"){
-            if(membro.roles.has(android)) return
+            if(membro.roles.cache.has(android)) return
             membro.addRole(android)
         } 
         else if(data.d.emoji.id === "698184635724857445"){
-            if(membro.roles.has(apple)) return
+            if(membro.roles.cache.has(apple)) return
             membro.addRole(apple)
         }
         else if(data.d.emoji.name === "🛠️"){
-            if(membro.roles.has(beta)) return
+            if(membro.roles.cache.has(beta)) return
             membro.addRole(beta)
         }
         else if(data.d.emoji.name === "🌐"){
-            if(membro.roles.has(skyG)) return
+            if(membro.roles.cache.has(skyG)) return
             membro.addRole(skyG)
         }
     }
 
     if(data.t === "MESSAGE_REACTION_REMOVE"){
         if(data.d.emoji.id === "698184753848778883"){
-            if(membro.roles.has(android)) return
+            if(membro.roles.cache.has(android)) return
             membro.removeRole(android)
         } 
         else if(data.d.emoji.id === "698184635724857445"){
-            if(membro.roles.has(apple)) return
+            if(membro.roles.cache.has(apple)) return
             membro.removeRole(apple)
         }
         else if(data.d.emoji.name === "🛠️"){
-            if(membro.roles.has(beta)) return
+            if(membro.roles.cache.has(beta)) return
             membro.removeRole(beta)
         } 
         else if(data.d.emoji.name === "🌐"){
-            if(membro.roles.has(skyG)) return
+            if(membro.roles.cache.has(skyG)) return
             membro.removeRole(skyG)
         }
     }
@@ -251,8 +253,8 @@ module.exports = {
     },
 
 
-    encerrarPartida: function(client, vencedor, embed) {
-        const usuario = client.users.get(vencedor.id);
+    encerrarPartida: async function(client, vencedor, embed) {
+        const usuario = await client.users.cache.get(vencedor.id);
         var txt = `**${vencedor.nome}** descartou sua última carta e ergueu o troféu !!!\n`;
         embed.setTimestamp()
             .setColor('#FAFB2C')
