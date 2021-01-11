@@ -1,11 +1,16 @@
-const { RichEmbed } = require('discord.js'),
-      Discord       = require('discord.js');
+const { MessageEmbed } = require('discord.js'),
+      Discord          = require('discord.js');
 
 const atr = {};
 
 
 exports.run = async (client, message, args) => {
+    message.delete();
+    message.reply("Comando desabilitado temporariamente")
+        .then(m => m.delete({ timeout: 1500 }))
+    return;
     await message.delete();
+    
     const salaOrigem = await client.channels.get(message.channel.id);
 
     if (!message.member.roles.some( r => [`Admin`,`Staff`,`Moderador`].includes(r.name)))

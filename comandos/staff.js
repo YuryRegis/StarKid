@@ -1,6 +1,10 @@
-const {RichEmbed} = require("discord.js");
+const {MessageEmbed} = require("discord.js");
 
 exports.run = async (client, message, args) => {
+    message.delete();
+    message.reply("Comando desabilitado temporariamente")
+        .then(m => m.delete({ timeout: 1500 }))
+    return;
     let member = args[0].toLowerCase()
 
     console.log(member)

@@ -1,4 +1,4 @@
-const {RichEmbed} = require(`discord.js`);
+const {MessageEmbed} = require(`discord.js`);
 const {getEmbed} = require(`../funcoes.js`);
 const json = require(`./cards.json`);
 const {getMember, getRandomInt} = require(`../funcoes.js`);
@@ -18,6 +18,10 @@ exports.help = {
 }
 
 exports.run = async (client, message, args) => {
+    message.delete();
+    message.reply("Comando desabilitado temporariamente")
+        .then(m => m.delete({ timeout: 1500 }))
+    return;
     
     const salaAtual = message.channel
     const validaAdmin = message.member.roles.some(r =>  r.name === "Staff" || r.name === "Admin")

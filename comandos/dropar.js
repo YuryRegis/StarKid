@@ -2,6 +2,10 @@ const { dbListDrops, dbDeleteDrop } = require('../Routes/rotaDrop');
 
 
 exports.run = async (client, message, args) => {
+    message.delete();
+    message.reply("Comando desabilitado temporariamente")
+        .then(m => m.delete({ timeout: 1500 }))
+    return;
     const chave      = args[0],
           autor      = message.author,
           drops      = await dbListDrops(),

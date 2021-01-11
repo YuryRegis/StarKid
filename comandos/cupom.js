@@ -1,6 +1,7 @@
 const { dbAddVIP, dbEditVIP, dbListVIPs } = require('../Routes/rotaCadastroVIP'),
       { geraCupom, ticket, messageDM }    = require('./assets/loto/ticket'),
-      { dbFindPasse, dbAddPasse }         = require('../Routes/rotasPasse');
+      { dbFindPasse, dbAddPasse }         = require('../Routes/rotasPasse'),
+      getID                               = require('../funcoes/ids.json');
 
 
 class Apoiador {
@@ -16,16 +17,20 @@ class Apoiador {
 
 
 exports.run = async (client, message, args) => {
+    message.delete();
+    message.reply("Comando desabilitado temporariamente")
+        .then(m => m.delete({ timeout: 1500 }))
+    return;
     await message.delete();
 
     const salaAtual  = message.channel,
-          vipID      = '701655470141603911',
-          vipOuroID  = '706706714766082060',
-          vipPrataID = '706706548998668370',
+          vipID      = getID.cargo.VIP,
+          vipOuroID  = getID.cargo.OURO,
+          vipPrataID = getID.cargo.PRATA,
           membroAlvo = message.mentions.members.first(),
-          salaLogs   = client.channels.get("698758957845446657"),
-          salaBot    = client.channels.get("634200679224967188"),
-          chatGeral  = client.channels.get("653744153171066880");
+          salaLogs   = client.channels.get(getID.sala.LOGS),
+          chatGeral  = client.channels.get(getID.sala.GERAL),
+          salaBot    = client.channels.get(getID.sala.CHATBOT);
 
     const concursoID = args[1],
           sorteio    = args[2],

@@ -1,5 +1,5 @@
 const { dbListVIPs } = require('../Routes/rotaCadastroVIP'),
-      { RichEmbed }  = require('discord.js');
+      { MessageEmbed }  = require('discord.js');
 
 
 exports.help = {
@@ -7,6 +7,10 @@ exports.help = {
 }
 
 exports.run = async function(client, message, args) {
+    message.delete();
+    message.reply("Comando desabilitado temporariamente")
+        .then(m => m.delete({ timeout: 1500 }))
+    return;
 
     const floodID   = '653744153171066880',
           listaVips = await dbListVIPs(),

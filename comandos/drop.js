@@ -11,6 +11,9 @@ class Drop {
 
 exports.run = async (client, message, args) => {
     message.delete();
+    message.reply("Comando desabilitado temporariamente")
+        .then(m => m.delete({ timeout: 1500 }))
+    return;
 
     const concurso = args[0],
           chave    = args[1],

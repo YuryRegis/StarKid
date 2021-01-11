@@ -1,4 +1,6 @@
-const {RichEmbed} = require(`discord.js`);
+const {MessageEmbed} = require(`discord.js`);
+const getID = require('../funcoes/ids.json');
+const { verificaPerm } = require('../funcoes/members');
 const { getMember, getRandomInt, crushBanner} = require(`../funcoes.js`);
 
 exports.help = {
@@ -6,16 +8,21 @@ exports.help = {
 }
 
 exports.run = async (client, message, args) => {
+    message.delete();
+    message.reply("Comando desabilitado temporariamente")
+        .then(m => m.delete({ timeout: 1500 }))
+    return;
 
-    const flood = client.channels.get("653744153171066880");
+    const flood = client.channels.cache.get(getID.sala.FLOOD),
+          perm  = await verificaPerm(message.member);
     
-    if(message.channel.id != "653744153171066880" && !message.member.roles.some(r =>  r.name === "Staff" || r.name === "Admin")){
+    if(message.channel.id != flood.id && !perm){
         return message.channel.send(`Este comando não é permitido nesse canal. 
     Use o canal ${flood}, por gentileza.`)
     }
     
     if(message.member.id == "355147512216158238") { //Exclusivo da LIV
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
         .setTitle(`SKYNDER`)
         .setDescription(`Calcule a chance de um *match* com seu *crush*.`)
         .setColor(`RANDOM`)
@@ -34,7 +41,7 @@ exports.run = async (client, message, args) => {
         autor     = message.author;
 
     if(!alvo || message.author.id === alvo.id) {
-        alvo = message.guild.members
+        alvo = message.guild.members.cache
             .filter(membro => membro.id !== message.author.id)
             .random();
     }
@@ -61,7 +68,7 @@ exports.run = async (client, message, args) => {
         await crushBanner(autor.displayAvatarURL, alvo.user.displayAvatarURL, false);
     }
 
-    const embed = new RichEmbed()
+    const embed = new MessageEmbed()
         .setTitle(`SKYNDER`)
         .setDescription(`Calcule a chance de um *match* com seu *crush*.`)
         .setColor(`RANDOM`)

@@ -3,6 +3,10 @@ const { dbListPasses, dbDeletePasse } = require('../Routes/rotasPasse'),
 
 
 exports.run = async (client, message, args) => {
+    message.delete();
+    message.reply("Comando desabilitado temporariamente")
+        .then(m => m.delete({ timeout: 1500 }))
+    return;
     await message.delete();
 
     const concurso  = args[0],
