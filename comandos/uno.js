@@ -75,7 +75,7 @@ exports.run = async (client, message, args) => {
             setTimeout(()=>{m.edit("OK !!! Novo baralho adicionado.")},2000);
         }
         
-        if(jAnterior.salvo && jAnterior.mao.length!==1) {
+        if(jAnterior.salvo && jAnterior.mao.length>1) {
             checarBaralho(2);
             jAnterior.salvo = false;
             baralho, jAnterior = comprarCarta(2, baralho, jAnterior);
