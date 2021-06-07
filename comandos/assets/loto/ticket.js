@@ -1,5 +1,5 @@
 const jimp                  = require("jimp"),
-{ RichEmbed }               = require("discord.js"),
+{ MessageEmbed }            = require("discord.js"),
 { getRandomInt }            = require('../../../funcoes'),
 { dbDeleteVIP, dbListVIPs } = require('../../../Routes/rotasVIP');
 
@@ -41,7 +41,7 @@ module.exports = {
 
 
     messageEmbed: async function(cupom, args, corpo) {
-        let embed = new RichEmbed,
+        let embed = new MessageEmbed(),
             logo  = "https://s3.amazonaws.com/assets.apoia.se/campaigns/5db49c70e2d7737c4cd4e520%7C5db49c99193385a323d53d4c/user-campaign-about-photo%7CDisocodLogo-20200502_23062002.png";
         
         embed
@@ -61,7 +61,7 @@ module.exports = {
     },
 
     vencedor: async function(apoiador, args) {
-        let embed = new RichEmbed,
+        let embed = new MessageEmbed(),
             logo  = "https://s3.amazonaws.com/assets.apoia.se/campaigns/5db49c70e2d7737c4cd4e520%7C5db49c99193385a323d53d4c/user-campaign-about-photo%7CDisocodLogo-20200502_23062002.png",
             thumb = 'https://i.pinimg.com/originals/a0/50/1e/a0501e0c5659dcfde397299e4234e75a.gif';
         
@@ -80,7 +80,7 @@ module.exports = {
     },
 
     messageDM: async function(apoiador, args) {
-        let embed = new RichEmbed,
+        let embed = new MessageEmbed(),
             logo  = "https://s3.amazonaws.com/assets.apoia.se/campaigns/5db49c70e2d7737c4cd4e520%7C5db49c99193385a323d53d4c/user-campaign-about-photo%7CDisocodLogo-20200502_23062002.png";
         
         embed
@@ -138,8 +138,8 @@ module.exports = {
                 cargos = [ vipID, prataID, ouroID, discBeta, GarticMod ];
             
             cargos.forEach(role => {
-                if(membro.roles.some(cargo => cargo.id === role))
-                    membro.removeRole(role)
+                if(membro.roles.cache.some(cargo => cargo.id === role))
+                    membro.roles.remove(role)
                         .then()
                         .catch(err => salaLogs.send(`Remove VIP error:\`\`\`${err}\`\`\``));
             })
