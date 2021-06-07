@@ -100,8 +100,8 @@ module.exports = {
 
     verificaVIP: async function(message) {
         
-        const salaLogs  = await message.guild.channels.get('698758957845446657'),
-              chatGeral = await message.guild.channels.get('603723288757403648'),
+        const salaLogs  = await message.guild.channels.cache.get('698758957845446657'),
+              chatGeral = await message.guild.channels.cache.get('603723288757403648'),
               discBeta  = '695833895848902677',
               GarticMod = '704448465853349979',
               vipID     = '701655470141603911',
@@ -133,8 +133,8 @@ module.exports = {
         });
 
         listaIDs.forEach(id => {
-            let membro = message.guild.members.get(id),
-                harry  = message.guild.members.get('322421000153333761'),
+            let membro = message.guild.members.cache.get(id),
+                harry  = message.guild.members.cache.get('322421000153333761'),
                 cargos = [ vipID, prataID, ouroID, discBeta, GarticMod ];
             
             cargos.forEach(role => {
